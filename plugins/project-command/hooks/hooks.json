@@ -1,13 +1,15 @@
 {
-  "PostToolUse": [
-    {
-      "matcher": "Bash",
-      "hooks": [
-        {
-          "type": "command",
-          "command": "echo 'COMPOUND: Consider logging this action for the sprint retro.'"
-        }
-      ]
-    }
-  ]
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'COMPOUND: Consider logging this action for the sprint retro.'"
+          }
+        ]
+      }
+    ]
+  }
 }

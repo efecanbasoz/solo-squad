@@ -1,13 +1,15 @@
 {
-  "PostToolUse": [
-    {
-      "matcher": "Write",
-      "hooks": [
-        {
-          "type": "command",
-          "command": "echo 'PIPELINE: If this is a proposal or outreach template, consider logging it for reuse.'"
-        }
-      ]
-    }
-  ]
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'PIPELINE: If this is a proposal or outreach template, consider logging it for reuse.'"
+          }
+        ]
+      }
+    ]
+  }
 }
