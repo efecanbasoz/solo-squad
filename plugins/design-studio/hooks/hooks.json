@@ -1,0 +1,13 @@
+{
+  "PostToolUse": [
+    {
+      "matcher": "Write|Edit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "echo 'BRAND CHECK: Verify colors and typography match brand guidelines.'"
+        }
+      ]
+    }
+  ]
+}

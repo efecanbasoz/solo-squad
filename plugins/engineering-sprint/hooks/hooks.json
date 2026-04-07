@@ -1,0 +1,13 @@
+{
+  "PostToolUse": [
+    {
+      "matcher": "Write|Edit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "echo 'REMINDER: If you wrote code before its test, delete the code and write the test first.'"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "PostToolUse": [
+    {
+      "matcher": "Write",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "echo 'TRACKING CHECK: If this is a landing page, verify UTM parameters and conversion tracking.'"
+        }
+      ]
+    }
+  ]
+}
