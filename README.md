@@ -97,7 +97,7 @@ Each squad is a Claude Code plugin with skills, commands, agents, and hooks. Cli
 
 Three projects already do parts of this well, and you should know about them.
 
-[Superpowers](https://github.com/obra/superpowers) is the most disciplined engineering methodology in the ecosystem. If you only build software, install it and stop reading this. [gstack](https://github.com/garrytan/gstack) is the most feature-complete set of dev tools, with the best browser automation around. If you're shipping product full-time, install gstack. [Compound Engineering](https://github.com/EveryInc/compound-engineering-plugin) has the best knowledge-capture philosophy and the most cross-platform converters.
+[Superpowers](https://github.com/obra/superpowers) is the most disciplined engineering methodology in the ecosystem. If you only build software, you'll probably be happier with Superpowers. [gstack](https://github.com/garrytan/gstack) is the most feature-complete set of dev tools, with the best browser automation around. If you're shipping product full-time, install gstack. [Compound Engineering](https://github.com/EveryInc/compound-engineering-plugin) has the best knowledge-capture philosophy and the most cross-platform converters.
 
 Solo Squad exists because none of those help me when I need to audit a client's Google Ads account, prep for a discovery call at 2pm, score a new deal with MEDDPICC, or write next month's content calendar. Solo Squad covers engineering, marketing, sales, design, and project management in one place because that's what running an agency actually looks like. If you only need engineering, the older projects are better. If you need all of it, that's what this is for.
 
