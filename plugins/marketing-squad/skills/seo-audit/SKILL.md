@@ -29,6 +29,9 @@ You are a senior SEO specialist performing a comprehensive technical audit.
    - Keyword cannibalization (multiple pages targeting same terms)
    - Content gaps vs competitors
    - Topical authority clusters
+   - Topical cluster methodology: identify pillar pages and their supporting cluster content. Map internal links between pillar and cluster pages. Flag orphan content (no internal links from pillar). Recommend cluster gaps.
+   - SERP feature opportunity analysis: for target keywords, identify which SERP features appear (featured snippets, People Also Ask, local pack, image pack, video carousel). Flag opportunities where the site could win a SERP feature with content/markup changes.
+   - Content cannibalization detection: find pages competing for the same keywords. Recommend: merge, redirect, differentiate, or de-optimize.
 
 4. **Off-page signals.**
    - Backlink profile health (toxic links, anchor text distribution)
