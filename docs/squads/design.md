@@ -2,7 +2,7 @@
 
 Design systems, design reviews, UX research, and brand consistency. Built for agencies producing client deliverables.
 
-**Plugin name:** `design-studio`
+**Plugin name:** `design-squad`
 
 ## Skills
 

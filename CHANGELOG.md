@@ -11,27 +11,27 @@ Initial release.
 ### Added
 
 - Marketplace catalog at `.claude-plugin/marketplace.json` with six plugin entries
-- **Engineering Squad** (`engineering-sprint`): 8 skills, 3 commands, 3 agents, 1 hook
+- **Engineering Squad** (`engineering-squad`): 8 skills, 3 commands, 3 agents, 1 hook
   - Skills: brainstorm, plan, build, review, qa, ship, compound, investigate
   - Commands: /sprint, /hotfix, /tdd
   - Agents: Architect, Tester, Debugger
-- **Campaign Squad** (`campaign-ops`): 8 skills, 3 commands, 3 agents, 1 hook
+- **Marketing Squad** (`marketing-squad`): 8 skills, 3 commands, 3 agents, 1 hook
   - Skills: seo-audit, ppc-strategy, social-strategy, content-plan, ad-creative, tracking-audit, paid-audit, ai-citation
   - Commands: /client-audit, /monthly-report, /campaign-launch
   - Agents: SEO Analyst, Media Buyer, Content Strategist
-- **Sales Squad** (`sales-pipeline`): 6 skills, 2 commands, 2 agents, 1 hook
+- **Sales Squad** (`sales-squad`): 6 skills, 2 commands, 2 agents, 1 hook
   - Skills: outbound, discovery-prep, deal-strategy, proposal, pipeline-review, account-plan
   - Commands: /deal-review, /prep-call
   - Agents: Closer, Researcher
-- **Design Squad** (`design-studio`): 5 skills, 2 commands, 1 agent, 1 hook
+- **Design Squad** (`design-squad`): 5 skills, 2 commands, 1 agent, 1 hook
   - Skills: design-system, design-review, ux-research, brand-check, image-prompts
   - Commands: /design-sprint, /asset-gen
   - Agents: Design Critic
-- **Project Squad** (`project-command`): 6 skills, 3 commands, 1 agent, 1 hook
+- **Project Squad** (`project-squad`): 6 skills, 3 commands, 1 agent, 1 hook
   - Skills: client-kickoff, sprint-plan, status-report, experiment-track, feedback-synthesis, retro
   - Commands: /standup, /weekly-sync, /onboard
   - Agents: Studio Producer
-- **Security Squad** (`power-tools`): 7 skills, 2 commands, 1 agent, 1 hook
+- **Security Squad** (`security-squad`): 7 skills, 2 commands, 1 agent, 1 hook
   - Skills: cso, browse, benchmark, careful, freeze, guard, codex-review
   - Commands: /lockdown, /security-scan
   - Agents: Sentinel

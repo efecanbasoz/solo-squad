@@ -46,7 +46,7 @@ Required elements:
 - Explicit rules that constrain behavior.
 - A defined deliverable format.
 
-Match the format of any existing skill in the same squad. Look at `plugins/engineering-sprint/skills/brainstorm/SKILL.md` for a strong reference.
+Match the format of any existing skill in the same squad. Look at `plugins/engineering-squad/skills/brainstorm/SKILL.md` for a strong reference.
 
 ## How to add a new command
 

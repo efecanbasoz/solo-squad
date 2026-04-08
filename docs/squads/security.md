@@ -2,7 +2,7 @@
 
 Safety guardrails, security audits, performance benchmarks, and cross-AI tooling. Built for shipping production code without breaking it.
 
-**Plugin name:** `power-tools`
+**Plugin name:** `security-squad`
 
 ## Skills
 

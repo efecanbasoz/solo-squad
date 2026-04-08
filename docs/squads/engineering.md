@@ -2,7 +2,7 @@
 
 The full development lifecycle from idea to shipped PR, with TDD enforcement and multi-agent code review.
 
-**Plugin name:** `engineering-sprint`
+**Plugin name:** `engineering-squad`
 
 ## The workflow
 

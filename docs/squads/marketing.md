@@ -1,8 +1,8 @@
-# Campaign Squad
+# Marketing Squad
 
 Everything a digital marketing team runs day-to-day. Built for agencies that work across SEO, paid, social, content, and tracking.
 
-**Plugin name:** `campaign-ops`
+**Plugin name:** `marketing-squad`
 
 ## Skills
 

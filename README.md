@@ -70,15 +70,18 @@ Add the marketplace, then install whichever squads you need.
 
 ```
 /plugin marketplace add efecanbasoz/solo-squad
-/plugin install engineering-sprint@solo-squad
-/plugin install campaign-ops@solo-squad
-/plugin install sales-pipeline@solo-squad
-/plugin install design-studio@solo-squad
-/plugin install project-command@solo-squad
-/plugin install power-tools@solo-squad
+/plugin install engineering-squad@solo-squad marketing-squad@solo-squad sales-squad@solo-squad design-squad@solo-squad project-squad@solo-squad security-squad@solo-squad
 ```
 
-The squads are independent. Install only what you need today, add the rest later. Skipping a squad means fewer tokens consumed in the background.
+Or install only the squads you need:
+
+```
+/plugin marketplace add efecanbasoz/solo-squad
+/plugin install engineering-squad@solo-squad
+/plugin install marketing-squad@solo-squad
+```
+
+The squads are independent. Skipping a squad means fewer tokens consumed in the background.
 
 ## The six squads
 
@@ -87,7 +90,7 @@ Each squad is a Claude Code plugin with skills, commands, agents, and hooks. Cli
 | Squad | What they do |
 |-------|--------------|
 | [Engineering Squad](docs/squads/engineering.md) | Brainstorm, plan, build with TDD, review, QA in a real browser, ship a PR, capture learnings |
-| [Campaign Squad](docs/squads/campaign.md) | SEO audits, PPC strategy, social planning, content calendars, ad creative, tracking audits, paid media audits, AI citation |
+| [Marketing Squad](docs/squads/marketing.md) | SEO audits, PPC strategy, social planning, content calendars, ad creative, tracking audits, paid media audits, AI citation |
 | [Sales Squad](docs/squads/sales.md) | Outbound prospecting, discovery prep, MEDDPICC qualification, proposal writing, pipeline review, account expansion |
 | [Design Squad](docs/squads/design.md) | Design systems, AI slop detection, UX research, brand consistency checks, AI image prompts |
 | [Project Squad](docs/squads/project.md) | Client kickoffs, sprint planning, status reports, A/B test tracking, feedback synthesis, weekly retros |
@@ -105,9 +108,9 @@ Solo Squad exists because none of those help me when I need to audit a client's 
 
 This is v1. Honest assessment of where you are.
 
-**Solid:** The engineering-sprint, sales-pipeline, and power-tools squads are based on workflows I use daily. The skill structures, the rules, and the deliverable formats are battle-tested. The marketplace catalog and plugin manifests follow Anthropic's official spec and validate cleanly.
+**Solid:** The engineering-squad, sales-squad, and security-squad are based on workflows I use daily. The skill structures, the rules, and the deliverable formats are battle-tested. The marketplace catalog and plugin manifests follow Anthropic's official spec and validate cleanly.
 
-**Rough:** The campaign-ops skills cover the right ground but deliverable formats will evolve as I run more real client audits through them. Hooks are minimal and will get smarter. The browser automation in `/browse` needs work to match what gstack offers. The agents currently use generic tool permissions and need tightening per role. There are no unit tests on the skill structures yet.
+**Rough:** The marketing-squad skills cover the right ground but deliverable formats will evolve as I run more real client audits through them. Hooks are minimal and will get smarter. The browser automation in `/browse` needs work to match what gstack offers. The agents currently use generic tool permissions and need tightening per role. There are no unit tests on the skill structures yet.
 
 If you find issues or have ideas, file them. I read every issue.
 
@@ -121,7 +124,7 @@ If you're on a Claude Pro or Max plan with included usage, this rarely matters. 
 
 ## Roadmap
 
-**v1.1 (next):** Expanded campaign-ops with keyword research and SERP analysis, MEDDPICC scoring as a standalone command, design system templates for design-studio, smarter hooks across all squads.
+**v1.1 (next):** Expanded marketing-squad with keyword research and SERP analysis, MEDDPICC scoring as a standalone command, design system templates for design-squad, smarter hooks across all squads.
 
 **v1.2:** Cross-squad orchestration (one client, all squads coordinated), per-command cost reporting, persistent client context across sessions.
 

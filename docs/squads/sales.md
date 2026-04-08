@@ -2,7 +2,7 @@
 
 Agency business development from first touch to renewal. Built for solo founders and small teams who handle their own pipeline.
 
-**Plugin name:** `sales-pipeline`
+**Plugin name:** `sales-squad`
 
 ## Skills
 

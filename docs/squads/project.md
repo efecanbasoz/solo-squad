@@ -2,7 +2,7 @@
 
 Multi-client project management and team operations. Built for agencies juggling several engagements at once.
 
-**Plugin name:** `project-command`
+**Plugin name:** `project-squad`
 
 ## Skills
 

@@ -1,61 +1,61 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "solo-squad",
-  "description": "A complete agency operating system for Claude Code. Engineering sprints, campaign ops, sales pipeline, design studio, and project management - all as slash commands.",
+  "description": "A complete agency operating system for Claude Code. Six specialist squads — engineering, marketing, sales, design, project management, and security — all as slash commands.",
   "owner": {
     "name": "Solo Squad",
     "email": "hello@sirkhet.com"
   },
   "metadata": {
     "description": "Combines the best of Superpowers, gstack, Compound Engineering, and Agency Agents into one unified plugin marketplace for digital agencies and solo builders.",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
     {
-      "name": "engineering-sprint",
-      "source": "./plugins/engineering-sprint",
+      "name": "engineering-squad",
+      "source": "./plugins/engineering-squad",
       "description": "Full engineering workflow: brainstorm, plan, build, review, QA, ship, and compound. TDD-first methodology with subagent-driven development, git worktree isolation, and multi-agent code review.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "development",
       "keywords": ["engineering", "tdd", "code-review", "worktrees", "subagent", "sprint"]
     },
     {
-      "name": "campaign-ops",
-      "source": "./plugins/campaign-ops",
-      "description": "Digital marketing campaign operations: SEO audits, PPC strategy, social media planning, content calendars, ad creative, tracking audits, paid media audits, and AI citation strategy.",
-      "version": "1.0.0",
+      "name": "marketing-squad",
+      "source": "./plugins/marketing-squad",
+      "description": "Digital marketing operations: SEO audits, PPC strategy, social media planning, content calendars, ad creative, tracking audits, paid media audits, and AI citation strategy.",
+      "version": "1.1.0",
       "category": "marketing",
       "keywords": ["seo", "ppc", "social-media", "content", "paid-media", "google-ads", "meta-ads"]
     },
     {
-      "name": "sales-pipeline",
-      "source": "./plugins/sales-pipeline",
+      "name": "sales-squad",
+      "source": "./plugins/sales-squad",
       "description": "Agency sales pipeline: outbound prospecting, discovery call prep, deal strategy with MEDDPICC, proposal writing, pipeline analysis, and account expansion planning.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "sales",
       "keywords": ["sales", "outbound", "discovery", "proposals", "pipeline", "account-management"]
     },
     {
-      "name": "design-studio",
-      "source": "./plugins/design-studio",
+      "name": "design-squad",
+      "source": "./plugins/design-squad",
       "description": "Design system creation, design review with AI slop detection, UX research planning, brand consistency checks, and AI image prompt engineering.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "design",
       "keywords": ["design", "ux", "brand", "design-system", "accessibility"]
     },
     {
-      "name": "project-command",
-      "source": "./plugins/project-command",
+      "name": "project-squad",
+      "source": "./plugins/project-squad",
       "description": "Multi-client project management: client kickoffs, sprint planning, status reports, experiment tracking, feedback synthesis, and team retrospectives.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "productivity",
       "keywords": ["project-management", "sprints", "status-reports", "retro", "clients"]
     },
     {
-      "name": "power-tools",
-      "source": "./plugins/power-tools",
+      "name": "security-squad",
+      "source": "./plugins/security-squad",
       "description": "Safety guardrails, security audits (OWASP/STRIDE), performance benchmarks, browser automation, cross-AI code review, and destructive command protection.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "development",
       "keywords": ["security", "performance", "browser", "safety", "guardrails"]
     }
