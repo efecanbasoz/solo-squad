@@ -345,14 +345,6 @@ On Claude Pro or Max with included usage, this rarely matters. On the API direct
 
 ---
 
-## Roadmap
-
-**v1.2 (current):** NEXUS orchestration, persistent client context, 60+ skills, enriched agents, context-aware hooks.
-
-**v2.0 (next):** Team mode for studios with 2-5 people. MCP-based client context with semantic search. Cross-plugin interoperability.
-
----
-
 ## Contributing
 
 Solo Squad accepts PRs for new skills, command improvements, agent refinements, and bug fixes. The fastest way to contribute is to add a skill in your domain. Each skill needs a `SKILL.md` with frontmatter, a numbered process, explicit rules, and defined deliverables. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
