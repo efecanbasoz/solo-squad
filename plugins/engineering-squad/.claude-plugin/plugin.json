@@ -1,7 +1,7 @@
 {
   "name": "engineering-squad",
-  "description": "Full engineering workflow: brainstorm, plan, build, review, QA, ship, and compound. TDD-first methodology with subagent-driven development and multi-agent code review.",
-  "version": "1.0.0",
+  "description": "Full engineering workflow: brainstorm, plan, build, review, QA, ship, compound, investigate, plus technical writing, DevOps pipelines, database optimization, workflow mapping, and developer advocacy. TDD-first with subagent-driven development.",
+  "version": "1.2.0",
   "author": {
     "name": "Solo Squad"
   },

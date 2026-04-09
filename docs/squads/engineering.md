@@ -26,6 +26,11 @@ You can run the whole thing as `/sprint`, or invoke each skill independently.
 | `/ship` | Sync main, run tests, audit coverage, update docs, push, and open a PR with a structured description. |
 | `/compound` | Capture learnings from the cycle. Codify patterns into templates, lint rules, and project knowledge. |
 | `/investigate` | Systematic debugging. No fixes without root cause analysis. Auto-freezes to the investigated module. |
+| `/technical-writing` | Technical documentation: API docs, architecture decision records, runbooks, and onboarding guides. |
+| `/devops-pipeline` | CI/CD pipeline design: GitHub Actions, deployment strategies, environment promotion, and rollback plans. |
+| `/database-optimization` | Database performance: query analysis, index strategy, schema design, migration planning, and capacity forecasting. |
+| `/workflow-mapping` | Map and optimize development workflows: identify bottlenecks, automate repetitive steps, and design efficient pipelines. |
+| `/developer-advocacy` | Developer advocacy content: tutorials, conference talks, demo apps, and developer experience improvements. |
 
 ## Commands (multi-skill workflows)
 
@@ -45,4 +50,4 @@ You can run the whole thing as `/sprint`, or invoke each skill independently.
 
 ## Hooks
 
-After every file write or edit, a hook reminds you to write the test before the code if you haven't. TDD is non-negotiable in this squad.
+Context-aware shell script that checks file type, path, and content before firing. Reminds you to write the test before the code if you haven't. TDD is non-negotiable in this squad.

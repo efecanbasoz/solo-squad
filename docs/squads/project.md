@@ -14,6 +14,12 @@ Multi-client project management and team operations. Built for agencies juggling
 | `/experiment-track` | A/B test management: hypothesis documentation, test design, significance checks, result synthesis. |
 | `/feedback-synthesis` | Turn raw feedback into insights: theme extraction, severity scoring, pattern identification. |
 | `/retro` | Team retrospective: metrics review, per-person breakdown, wins, problems, action items. |
+| `/orchestrate` | NEXUS cross-squad orchestration: coordinate multi-squad pipelines with Full, Sprint, or Micro operating modes. |
+| `/client-context` | Persistent client intelligence: init, load, save, list. Maintains company profile, brand, history, and active projects across sessions. |
+| `/executive-summary` | Generate executive summaries: high-level progress, key decisions, risks, and recommendations for stakeholders. |
+| `/product-strategy` | Product strategy: market analysis, competitive positioning, feature prioritization, and go-to-market planning. |
+| `/analytics-reporting` | Analytics reporting: KPI dashboards, trend analysis, attribution modeling, and data-driven recommendations. |
+| `/document-generation` | Document generation: SOWs, proposals, reports, and presentations from templates with project data. |
 
 ## Commands
 
@@ -28,7 +34,8 @@ Multi-client project management and team operations. Built for agencies juggling
 | Agent | Role |
 |-------|------|
 | Studio Producer | Multi-project orchestrator. Capacity, timelines, cross-project dependencies. |
+| Orchestrator | NEXUS cross-squad pipeline manager. Routes work between squads, enforces quality gates, manages handoffs. |
 
 ## Hooks
 
-After every bash command, a hook suggests logging the action for the sprint retro so context isn't lost.
+Context-aware shell script that checks file type, path, and content before firing. Suggests logging actions for the sprint retro so context isn't lost.

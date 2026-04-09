@@ -8,9 +8,9 @@ Design systems, design reviews, UX research, and brand consistency. Built for ag
 
 | Skill | What it does |
 |-------|--------------|
-| `/design-system` | Build a complete design system: tokens, component library, pattern library, documentation. |
+| `/design-system` | Build a complete design system with starter templates (SaaS, marketing site, e-commerce): tokens, component library, pattern library, documentation. |
 | `/design-review` | Visual audit with AI slop detection. Score 0-10 on hierarchy, consistency, accessibility, usability, craft. Fix issues. |
-| `/ux-research` | Research planning: study design, participant criteria, interview scripts, analysis frameworks. |
+| `/ux-research` | UX research with execution methodology: study design, participant recruitment, facilitation scripts, analysis frameworks, and usability testing. |
 | `/brand-check` | Brand consistency audit: exact color matching, typography, voice/tone, logo usage across deliverables. |
 | `/image-prompts` | AI image prompt engineering for Midjourney, DALL-E, Flux. Optimized for each model's strengths. |
 
@@ -29,4 +29,4 @@ Design systems, design reviews, UX research, and brand consistency. Built for ag
 
 ## Hooks
 
-After every file write or edit, a hook reminds you to verify colors and typography match brand guidelines.
+Context-aware shell script that checks file type, path, and content before firing. Verifies colors and typography match brand guidelines.

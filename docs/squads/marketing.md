@@ -16,6 +16,12 @@ Everything a digital marketing team runs day-to-day. Built for agencies that wor
 | `/tracking-audit` | GTM container review, GA4 config, conversion tracking verification, CAPI setup, attribution analysis. |
 | `/paid-audit` | 200+ point paid media account audit. Scores structure, targeting, bidding, creative, tracking, competitive. |
 | `/ai-citation` | Audit brand visibility in ChatGPT, Claude, Gemini, Perplexity. AEO/GEO optimization plan. |
+| `/growth-hacking` | Growth experiments: viral loops, referral programs, activation funnels, retention hooks, and rapid experimentation frameworks. |
+| `/search-query-analysis` | Search query mining: intent clustering, opportunity scoring, cannibalization detection, and content gap mapping. |
+| `/paid-social` | Paid social strategy: Meta, TikTok, LinkedIn, Pinterest ad campaigns with audience targeting, creative frameworks, and budget allocation. |
+| `/programmatic-media` | Programmatic media buying: DSP strategy, audience segmentation, deal types, viewability standards, and brand safety. |
+| `/app-store-optimization` | ASO strategy: keyword optimization, creative testing, rating management, and conversion rate optimization for app stores. |
+| `/video-optimization` | Video content strategy: YouTube SEO, thumbnail optimization, retention analysis, and cross-platform video distribution. |
 
 ## Commands
 
@@ -35,4 +41,4 @@ Everything a digital marketing team runs day-to-day. Built for agencies that wor
 
 ## Hooks
 
-After every file write, a hook reminds you to verify UTM parameters and conversion tracking if the file looks like a landing page.
+Context-aware shell script that checks file type, path, and content before firing. Verifies UTM parameters and conversion tracking if the file looks like a landing page.

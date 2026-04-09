@@ -15,6 +15,8 @@ Safety guardrails, security audits, performance benchmarks, and cross-AI tooling
 | `/freeze` | Lock edits to one directory. Everything else is read-only. Prevents scope creep during debugging. |
 | `/guard` | Maximum safety: /careful + /freeze combined. For production work. |
 | `/codex-review` | Independent second-opinion code review. Cross-references with primary review findings. |
+| `/incident-response` | Incident response playbook: triage, containment, investigation, remediation, and post-mortem documentation. |
+| `/legal-compliance` | Legal compliance audit: GDPR, CCPA, KVKK, and other regulatory frameworks. Data mapping, consent flows, and policy generation. |
 
 ## Commands
 
@@ -31,4 +33,4 @@ Safety guardrails, security audits, performance benchmarks, and cross-AI tooling
 
 ## Hooks
 
-Before every bash command, a hook checks for destructive patterns when careful mode is active.
+Context-aware shell script that checks file type, path, and content before firing. Checks for destructive patterns when careful mode is active.

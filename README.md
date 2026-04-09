@@ -4,7 +4,7 @@
 
 You're alone. You're not.
 
-Solo Squad is a Claude Code plugin marketplace built for one person doing the work of a small agency. Engineering, marketing, sales, design, project management, and security - six squads, each with specialists who do one job well.
+Solo Squad is a Claude Code plugin marketplace built for one person doing the work of a small agency. Engineering, marketing, sales, design, project management, and security - 6 squads, 60+ skills, 13 agents, each with specialists who do one job well.
 
 I'm [Efecan](https://github.com/efecanbasoz). I run a digital marketing agency. I built Solo Squad because I was tired of switching between engineering tools, ad platform dashboards, sales spreadsheets, and design files all day. Now I run my whole agency through Claude Code. Solo Squad is what I use every day on real client work.
 
@@ -89,12 +89,12 @@ Each squad is a Claude Code plugin with skills, commands, agents, and hooks. Cli
 
 | Squad | What they do |
 |-------|--------------|
-| [Engineering Squad](docs/squads/engineering.md) | Brainstorm, plan, build with TDD, review, QA in a real browser, ship a PR, capture learnings |
-| [Marketing Squad](docs/squads/marketing.md) | SEO audits, PPC strategy, social planning, content calendars, ad creative, tracking audits, paid media audits, AI citation |
-| [Sales Squad](docs/squads/sales.md) | Outbound prospecting, discovery prep, MEDDPICC qualification, proposal writing, pipeline review, account expansion |
-| [Design Squad](docs/squads/design.md) | Design systems, AI slop detection, UX research, brand consistency checks, AI image prompts |
-| [Project Squad](docs/squads/project.md) | Client kickoffs, sprint planning, status reports, A/B test tracking, feedback synthesis, weekly retros |
-| [Security Squad](docs/squads/security.md) | OWASP + STRIDE audits, performance benchmarks, browser automation, safety guardrails, cross-AI code review |
+| [Engineering Squad](docs/squads/engineering.md) | Brainstorm, plan, build with TDD, review, QA in a real browser, ship a PR, capture learnings, technical writing, DevOps, database optimization, workflow mapping, developer advocacy |
+| [Marketing Squad](docs/squads/marketing.md) | SEO audits, PPC strategy, social planning, content calendars, ad creative, tracking audits, paid media audits, AI citation, growth hacking, paid social, search query analysis, programmatic media, ASO, video optimization |
+| [Sales Squad](docs/squads/sales.md) | Outbound prospecting, discovery prep, MEDDPICC qualification, proposal writing, pipeline review, account expansion, technical demos, Sales Engineer, MEDDPICC scoring |
+| [Design Squad](docs/squads/design.md) | Design systems with starter templates, AI slop detection, UX research with execution methodology, brand consistency checks, AI image prompts |
+| [Project Squad](docs/squads/project.md) | NEXUS orchestration, client context persistence, client kickoffs, sprint planning, status reports, executive summaries, product strategy, analytics, document generation, retros |
+| [Security Squad](docs/squads/security.md) | OWASP + STRIDE + supply chain audits, incident response, legal compliance, performance benchmarks with load testing, browser automation, safety guardrails, cross-AI code review |
 
 ## Why Solo Squad and not the alternatives
 
@@ -104,13 +104,13 @@ Three projects already do parts of this well, and you should know about them.
 
 Solo Squad exists because none of those help me when I need to audit a client's Google Ads account, prep for a discovery call at 2pm, score a new deal with MEDDPICC, or write next month's content calendar. Solo Squad covers engineering, marketing, sales, design, and project management in one place because that's what running an agency actually looks like. If you only need engineering, the older projects are better. If you need all of it, that's what this is for.
 
-## What's solid in v1, what's rough
+## What's solid in v1.2, what's rough
 
-This is v1. Honest assessment of where you are.
+This is v1.2. Honest assessment of where you are.
 
-**Solid:** The engineering-squad, sales-squad, and security-squad are based on workflows I use daily. The skill structures, the rules, and the deliverable formats are battle-tested. The marketplace catalog and plugin manifests follow Anthropic's official spec and validate cleanly.
+**Solid:** All six squads are based on workflows I use daily. 60+ skills, 13 agents, and context-aware hooks across the board. NEXUS orchestration coordinates multi-squad pipelines with three operating modes (Full, Sprint, Micro). Persistent client context carries intelligence across sessions. All 13 agents have been enriched with standardized templates covering Expertise, Decision Framework, Behavioral Directives, and Deliverables. The marketplace catalog and plugin manifests follow Anthropic's official spec and validate cleanly.
 
-**Rough:** The marketing-squad skills cover the right ground but deliverable formats will evolve as I run more real client audits through them. Hooks are minimal and will get smarter. The browser automation in `/browse` needs work to match what gstack offers. The agents currently use generic tool permissions and need tightening per role. There are no unit tests on the skill structures yet.
+**Rough:** The browser automation in `/browse` still needs work to match what gstack offers. There are no unit tests on the skill structures yet. Cross-squad orchestration is new and the handoff protocols will evolve with real multi-squad usage.
 
 If you find issues or have ideas, file them. I read every issue.
 
@@ -124,11 +124,11 @@ If you're on a Claude Pro or Max plan with included usage, this rarely matters. 
 
 ## Roadmap
 
-**v1.1 (next):** Expanded marketing-squad with keyword research and SERP analysis, MEDDPICC scoring as a standalone command, design system templates for design-squad, smarter hooks across all squads.
+**v1.1 (done, included in v1.2):** Expanded marketing-squad with keyword research and SERP analysis, MEDDPICC scoring as a standalone command, design system templates for design-squad, smarter hooks across all squads.
 
-**v1.2:** Cross-squad orchestration (one client, all squads coordinated), per-command cost reporting, persistent client context across sessions.
+**v1.2 (done):** NEXUS cross-squad orchestration with 3 operating modes, persistent client context across sessions, 24 new skills, 18 improved skills, enriched agents with standardized templates, context-aware smart hooks across all 6 squads.
 
-**v2.0:** Optional team mode for studios with 2-5 people sharing the same Solo Squad install.
+**v2.0:** Optional team mode for studios with 2-5 people sharing the same Solo Squad install. MCP-based client context with semantic search. Cross-plugin interoperability.
 
 ## Contributing
 
