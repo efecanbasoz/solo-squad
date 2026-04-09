@@ -2,11 +2,11 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": "Write",
+        "matcher": "Write|Edit",
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'PIPELINE: If this is a proposal or outreach template, consider logging it for reuse.'"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/smart-reminder.sh"
           }
         ]
       }

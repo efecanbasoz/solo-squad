@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'BRAND CHECK: Verify colors and typography match brand guidelines.'"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/smart-reminder.sh"
           }
         ]
       }
