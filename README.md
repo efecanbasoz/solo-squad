@@ -1,18 +1,96 @@
 # Solo Squad
 
-> A squad of specialists for the solo developer.
+> One developer. A full squad of specialists.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Claude Code Plugin](https://img.shields.io/badge/Claude_Code-Plugin-blueviolet)](https://docs.anthropic.com/en/docs/claude-code)
+[![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-blueviolet)](https://docs.anthropic.com/en/docs/claude-code)
 [![Codex CLI](https://img.shields.io/badge/Codex_CLI-Compatible-green)](https://github.com/openai/codex)
 [![OpenCode](https://img.shields.io/badge/OpenCode-Compatible-orange)](https://github.com/sst/opencode)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-**27 skills. 5 agents. 7 workflows. Three CLI platforms.**
+Solo Squad gives your AI coding agent **27 structured workflows** across coding, design, and security — so you stop prompting and start shipping.
 
-Solo Squad is a plugin for AI coding CLIs that turns one developer into a full squad. Coding, design, and security — each category has specialists who do one job well.
+No vague instructions. No "figure it out." Each skill is a battle-tested process with numbered steps, explicit rules, and defined deliverables. Your agent doesn't improvise; it follows the playbook.
 
-Works with **Claude Code** (primary), **Codex CLI**, and **OpenCode**.
+---
+
+## See it work
+
+### Ship a feature in one command
+
+```
+You: /sprint
+
+Solo Squad: Starting sprint. Phase 1: /brainstorm
+  What are you building and why?
+
+You: Real-time notifications for the dashboard. Users miss critical alerts.
+
+Solo Squad: Before we code — three questions:
+  1. WebSocket, SSE, or polling? (trade-offs below)
+  2. What's the simplest version that delivers value?
+  3. What are you intentionally NOT building?
+
+[5 min conversation — design doc produced]
+
+Solo Squad: Design doc saved. → /plan
+
+  12 tasks created (2-5 min each):
+  ├── #1  NotificationProvider context
+  ├── #2  WebSocket hook with reconnect
+  ├── #3  Toast component with severity levels
+  ├── ...
+  └── #12 E2E test: notification lifecycle
+
+  Continue to /build? [y/N]
+
+You: y
+
+[Subagents execute each task with TDD — 25 min]
+
+Solo Squad: Build complete. 12/12 tasks, 94% coverage.
+  → /review
+
+  Multi-lens review:
+    BLOCKER: Race condition in WebSocket reconnect (auto-fixed)
+    SUGGESTION: Extract toast queue into custom hook
+    NIT: Inconsistent error message casing
+
+  → /ship
+
+  ✓ Tests passing (47/47)
+  ✓ Coverage: 94% (threshold: 80%)
+  ✓ PR opened: feat(notifications): add real-time alert system
+```
+
+**One command. Idea to shipped PR. Every step has a quality gate.**
+
+### Catch what CI misses
+
+```
+You: /security-scan
+
+Solo Squad:
+  CRITICAL  SQL injection in /api/users?search= — parameterize query
+  HIGH      No rate limiting on /api/auth/login — add express-rate-limit
+  MEDIUM    jsonwebtoken@8.5.1 has CVE-2022-23529 — upgrade to 9.x
+
+  3 findings (8/10+ confidence). Auto-fix available for 2. Proceed? [y/N]
+```
+
+### Get a design review that actually helps
+
+```
+You: /design-review
+
+Solo Squad:
+  Visual Quality:    7/10  — spacing inconsistent between card variants
+  Consistency:       5/10  — three different border-radius values used
+  Accessibility:     6/10  — contrast ratio 3.2:1 on muted text (need 4.5:1)
+  AI Slop Detection: CLEAN — no generic stock patterns detected
+
+  Top fix: Unify border-radius to design token --radius-md
+  Before/after diff generated.
+```
 
 ---
 
@@ -33,198 +111,153 @@ ln -s ~/.codex/solo-squad/skills ~/.agents/skills/solo-squad
 
 ### OpenCode
 
-Add to your `opencode.json`:
-
 ```json
 {
   "plugin": ["solo-squad@git+https://github.com/efecanbasoz/solo-squad.git"]
 }
 ```
 
+30 seconds. No dependencies. No build step. Pure markdown + shell scripts.
+
 ---
 
-## What you get
+## What's inside
 
-### Coding — 13 skills
+### Coding — 13 skills, 3 agents
 
-| Skill | What it does |
-|-------|-------------|
-| `/brainstorm` | Socratic questioning, alternatives, design doc |
-| `/plan` | Step-by-step implementation plan with file paths |
-| `/build` | Subagent-driven development with TDD |
-| `/review` | Multi-lens code review (BLOCKER/SUGGESTION/NIT) |
-| `/qa` | Real browser testing, bug fixing, regression tests |
-| `/ship` | Tests, coverage audit, PR, deploy |
-| `/compound` | Capture learnings, codify patterns |
-| `/investigate` | Root-cause debugging with hypothesis logging |
-| `/technical-writing` | README, API docs, migration guides |
-| `/devops-pipeline` | CI/CD, IaC, zero-downtime deploys |
-| `/database-optimization` | Query plans, indexing, N+1 detection |
-| `/workflow-mapping` | System workflows, failure modes, handoffs |
-| `/developer-advocacy` | DX audits, tutorials, sample apps |
+The full lifecycle from idea to shipped PR.
 
-### Design — 5 skills
+| Skill | Your specialist |
+|-------|----------------|
+| `/brainstorm` | Product partner who challenges your assumptions |
+| `/plan` | Architect who breaks work into 2-5 min tasks with file paths |
+| `/build` | Lead engineer dispatching subagents with TDD enforcement |
+| `/review` | Senior reviewer classifying BLOCKER / SUGGESTION / NIT |
+| `/qa` | QA lead running real browser tests, filing bugs, writing regression tests |
+| `/ship` | Release engineer: tests, coverage audit, PR, verify CI |
+| `/compound` | Knowledge curator capturing patterns for next time |
+| `/investigate` | Debugger who traces data flow and logs hypotheses |
+| `/technical-writing` | Tech writer: README, API docs, migration guides |
+| `/devops-pipeline` | DevOps engineer: CI/CD, IaC, zero-downtime deploys |
+| `/database-optimization` | DBA: query plans, indexing, N+1 detection |
+| `/workflow-mapping` | Systems analyst: happy paths, failure modes, handoffs |
+| `/developer-advocacy` | DevRel: DX audits, tutorials, sample apps |
 
-| Skill | What it does |
-|-------|-------------|
-| `/design-system` | Tokens, components, patterns + starter templates |
-| `/design-review` | AI slop detection, 0-10 scoring, before/after fixes |
-| `/ux-research` | Study design through execution with analysis frameworks |
-| `/brand-check` | Exact color/font matching, reverse-engineering guidelines |
-| `/image-prompts` | Midjourney, DALL-E, Flux prompts with photography reference |
+**Agents:** Architect (designs, never implements) · Tester (edge cases, screenshot evidence) · Debugger (read-only investigator)
 
-### Security — 9 skills
+### Design — 5 skills, 1 agent
 
-| Skill | What it does |
-|-------|-------------|
-| `/cso` | OWASP + STRIDE + supply chain + zero-trust audit |
-| `/benchmark` | Core Web Vitals, load/stress testing, capacity planning |
-| `/incident-response` | SEV classification, post-mortems, runbooks |
-| `/legal-compliance` | GDPR, CCPA, KVKK, HIPAA checks |
-| `/browse` | Real Chromium browser automation |
-| `/careful` | Destructive command warnings |
-| `/freeze` | Edit scope lock |
-| `/guard` | Maximum safety mode |
-| `/codex-review` | Cross-AI independent code review |
+| Skill | Your specialist |
+|-------|----------------|
+| `/design-system` | Design lead building tokens, components, patterns from scratch |
+| `/design-review` | Critic with AI slop detection and 0-10 scoring |
+| `/ux-research` | Researcher: test scripts, personas, journey maps |
+| `/brand-check` | Brand guardian: color/font matching, guideline reverse-engineering |
+| `/image-prompts` | Art director: Midjourney, DALL-E, Flux prompts with photo reference |
+
+**Agent:** Design Critic (detects AI slop, scores craft, severity classification)
+
+### Security — 9 skills, 1 agent
+
+| Skill | Your specialist |
+|-------|----------------|
+| `/cso` | Security officer: OWASP + STRIDE + supply chain + zero-trust |
+| `/benchmark` | Performance engineer: Core Web Vitals, load testing, capacity planning |
+| `/incident-response` | Incident commander: SEV classification, post-mortems, runbooks |
+| `/legal-compliance` | Compliance officer: GDPR, CCPA, KVKK, HIPAA |
+| `/browse` | Browser automation: navigate, click, fill, screenshot, verify |
+| `/careful` | Safety net: warns before rm -rf, DROP TABLE, force-push |
+| `/freeze` | Scope lock: restrict edits to one directory |
+| `/guard` | Maximum safety: /careful + /freeze combined |
+| `/codex-review` | Second opinion: cross-AI independent code review |
+
+**Agent:** Sentinel (read-only security review, 8/10+ confidence gate)
 
 ### Workflow commands
 
-| Command | Flow |
-|---------|------|
+Chain skills into end-to-end pipelines:
+
+| Command | What happens |
+|---------|-------------|
 | `/sprint` | brainstorm → plan → build → review → qa → ship → compound |
 | `/hotfix` | investigate → fix → review → ship |
-| `/tdd` | write tests → implement → refactor |
+| `/tdd` | red → green → refactor (enforced) |
 | `/design-sprint` | research → design system → review → iterate |
 | `/asset-gen` | Generate AI image assets for a campaign |
 | `/security-scan` | OWASP + STRIDE + dependency audit |
 | `/lockdown` | Maximum safety mode for production work |
 
-### Agents
+---
 
-| Agent | Role |
-|-------|------|
-| **Architect** | System design, data modeling, ADRs — never implements |
-| **Tester** | Edge cases, coverage, test quality |
-| **Debugger** | Root cause analysis — read-only investigation |
-| **Critic** | Design quality, AI slop detection, craft scoring |
-| **Sentinel** | Security review with 8/10+ confidence gate |
+## How it works
+
+Solo Squad is not a prompt library. Each skill is a **structured process** — numbered steps, decision criteria, quality gates, and explicit deliverables. Your agent follows the playbook instead of improvising.
+
+```
+skills/
+├── brainstorm/SKILL.md     ← Role + Process + Rules + Deliverables
+├── plan/SKILL.md
+├── build/SKILL.md
+├── ...
+agents/
+├── architect.md            ← Persona + Expertise + Decision Framework
+├── tester.md
+├── ...
+commands/
+├── sprint.md               ← Skill chain with human approval gates
+├── hotfix.md
+├── ...
+hooks/
+├── tdd-reminder.sh         ← Fires when you write code without tests
+├── brand-check.sh          ← Fires when you edit CSS/SVG/assets
+├── destructive-warning.sh  ← Fires before rm -rf, DROP TABLE, etc.
+```
+
+Skills are written in **SKILL.md** — the universal format across Claude Code, Codex CLI, and OpenCode. Write once, run on any AI coding CLI.
 
 ---
 
-## See it work
-
-### A full engineering sprint
-
-```
-You: /sprint
-
-Solo Squad: Starting sprint sequence.
-  Phase 1: /brainstorm — refine the idea
-  Ready? [y/N]
-
-You: I want to add real-time notifications to the dashboard
-
-[brainstorm conversation — 5 min]
-
-Solo Squad: Design doc saved. Continue to /plan? [y/N]
-
-You: y
-
-[plan generated — 2 min]
-
-Solo Squad: 12 tasks created (2-5 min each).
-  Continue to /build? [y/N]
-
-You: y
-
-[subagent-driven build with TDD — 20 min]
-
-Solo Squad: Build complete. 12/12 tasks done, 94% test coverage.
-  Continue to /review? [y/N]
-```
-
-### Security audit before deploy
-
-```
-You: /security-scan
-
-Solo Squad: Running full security scan:
-  1. OWASP Top 10 check
-  2. STRIDE threat model
-  3. Dependency audit
-
-  Findings (8/10+ confidence only):
-
-  CRITICAL: SQL injection in /api/users (parameterize query)
-  HIGH: Missing rate limiting on /api/auth/login
-  MEDIUM: Outdated dependency jsonwebtoken@8.5.1 (CVE-2022-23529)
-
-  3 findings. Auto-fix available for 2. Proceed? [y/N]
-```
-
----
-
-## Multi-CLI compatibility
-
-Solo Squad skills are written in SKILL.md format — the universal standard across Claude Code, Codex CLI, and OpenCode.
+## Multi-CLI support
 
 | Feature | Claude Code | Codex CLI | OpenCode |
-|---------|-------------|-----------|----------|
-| Skills | Native | Native (via symlink) | Native (via plugin) |
-| Agents | Native | Reference only | Reference only |
-| Hooks | Native | SessionStart only | Via JS plugin |
+|---------|:-----------:|:---------:|:--------:|
+| Skills | Native | Native (symlink) | Native (plugin) |
+| Agents | Native | Reference | Reference |
+| Hooks | Full | SessionStart | Via JS plugin |
 | Commands | Native | Via skills | Via skills |
-| Instruction file | `CLAUDE.md` | `AGENTS.md` | `AGENTS.md` (fallback: `CLAUDE.md`) |
 
-Tool name differences between platforms are documented in `skills/using-solo-squad/references/`.
+Tool name differences are bridged automatically via reference docs in `skills/using-solo-squad/references/`.
 
 ---
 
-## Cost warning
+## Cost
 
-Solo Squad runs subagent-driven workflows. Token usage is higher than typical.
+Subagent workflows use more tokens than simple prompting.
 
 | Workflow | Typical cost |
 |----------|-------------|
-| Single skill (e.g., `/cso`) | < $1 |
+| Single skill | < $1 |
 | `/sprint` (full cycle) | $5-15 |
 | `/security-scan` | $2-4 |
 
-On Claude Pro/Max or Codex with included usage, this rarely matters.
+On Pro/Max/Team plans with included usage, this rarely matters.
 
 ---
 
-## Project structure
+## Built on
 
-```
-solo-squad/
-├── skills/          — 27 SKILL.md files (the core content)
-├── agents/          — 5 agent definitions
-├── commands/        — 7 workflow commands
-├── hooks/           — Runtime hooks + session bootstrap
-├── .claude-plugin/  — Claude Code manifest
-├── .codex/          — Codex CLI install guide
-├── .opencode/       — OpenCode ESM plugin
-├── CLAUDE.md        — Claude Code context
-└── AGENTS.md        — Codex/OpenCode context
-```
-
----
-
-## Built on the shoulders of giants
-
-- [obra/superpowers](https://github.com/obra/superpowers) — TDD methodology, subagent-driven development, multi-CLI architecture
-- [garrytan/gstack](https://github.com/garrytan/gstack) — Browser automation, security audits, host config system
-- [EveryInc/compound-engineering-plugin](https://github.com/EveryInc/compound-engineering-plugin) — Knowledge compounding philosophy
+- **[superpowers](https://github.com/obra/superpowers)** — TDD discipline, subagent-driven development, multi-CLI architecture
+- **[gstack](https://github.com/garrytan/gstack)** — Host config system, browser automation, safety guardrails
+- **[compound-engineering](https://github.com/EveryInc/compound-engineering-plugin)** — Knowledge compounding philosophy
 
 ---
 
 ## Contributing
 
-Solo Squad accepts PRs for new skills, improvements, and bug fixes. Each skill needs a `SKILL.md` with frontmatter, a numbered process, explicit rules, and defined deliverables. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+Add a skill in your domain. Each one needs a `SKILL.md` with frontmatter, numbered process, explicit rules, and defined deliverables. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
 ## License
 
-MIT. Use it, fork it, sell services on top of it.
+MIT
