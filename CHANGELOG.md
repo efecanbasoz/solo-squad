@@ -4,6 +4,45 @@ All notable changes to Solo Squad will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-04-15
+
+Major restructure: multi-CLI support, flattened architecture, focused scope.
+
+### Breaking Changes
+
+- **Structure flattened** — removed squad-per-plugin architecture. All skills, agents, and commands now live at root level (`skills/`, `agents/`, `commands/`).
+- **Marketplace removed** — single plugin manifest replaces the marketplace + per-squad plugin.json pattern.
+- **Squads removed from public release** — marketing, project, and sales squads moved to `.local/` (gitignore). Coding, design, and security remain.
+- **"engineering" renamed to "coding"** — reflects broader scope beyond traditional engineering.
+
+### Added
+
+- **Multi-CLI support** — Solo Squad now works on Claude Code, Codex CLI, and OpenCode:
+  - `.codex/INSTALL.md` — Codex CLI installation via symlink
+  - `.opencode/plugins/solo-squad.js` — OpenCode ESM plugin with skill discovery and session bootstrap
+  - `AGENTS.md` — instruction file for Codex and OpenCode (identical to CLAUDE.md)
+  - `package.json` — npm entry point for OpenCode plugin installation
+- **Bootstrap skill** (`skills/using-solo-squad/SKILL.md`) — loaded at session start, provides full skill/agent/command reference
+- **Tool mapping references** — platform-specific tool equivalence tables:
+  - `skills/using-solo-squad/references/codex-tools.md`
+  - `skills/using-solo-squad/references/opencode-tools.md`
+- **Platform-detecting session-start hook** — single bash script that outputs the correct JSON format for Claude Code, Codex, OpenCode, Cursor, and Copilot CLI
+- **Unified hooks** — merged 3 squad-specific hook configs into one `hooks/hooks.json` with SessionStart, PreToolUse, and PostToolUse events
+- `CLAUDE.md` — project context file for Claude Code
+
+### Changed
+
+- Skills, agents, and commands unchanged in content — only moved from `plugins/{squad}/` to root level
+- Hook scripts renamed for clarity: `tdd-reminder.sh`, `brand-check.sh`, `destructive-warning.sh`
+- Version bumped to 2.0.0 across all manifests
+
+### Removed
+
+- `.claude-plugin/marketplace.json` — no longer needed (single plugin)
+- Per-squad `.claude-plugin/plugin.json` files
+- Per-squad `hooks/hooks.json` files
+- `plugins/` directory structure
+
 ## [1.2.0] - 2026-04-08
 
 Major release: from skill collection to coordinated agency operating system.

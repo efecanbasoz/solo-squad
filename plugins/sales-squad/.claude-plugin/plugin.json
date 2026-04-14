@@ -1,7 +1,0 @@
-{
-  "name": "sales-squad",
-  "description": "Agency sales pipeline: outbound prospecting, discovery prep, deal strategy with MEDDPICC, proposals, pipeline review, account planning, technical demos, and Sales Engineer agent for pre-sales.",
-  "version": "1.2.0",
-  "author": { "name": "Solo Squad" },
-  "license": "MIT"
-}

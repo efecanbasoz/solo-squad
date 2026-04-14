@@ -1,0 +1,35 @@
+#!/bin/bash
+set -e
+
+# Solo Squad session bootstrap — detects platform and injects context
+# Supports: Claude Code, Codex CLI, OpenCode, Copilot CLI
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PLUGIN_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# Read the bootstrap skill content
+BOOTSTRAP_SKILL="$PLUGIN_ROOT/skills/using-solo-squad/SKILL.md"
+
+if [ ! -f "$BOOTSTRAP_SKILL" ]; then
+  exit 0
+fi
+
+# Extract content after frontmatter (skip --- blocks)
+SESSION_CONTEXT=$(awk 'BEGIN{skip=0} /^---$/{skip++; next} skip>=2{print}' "$BOOTSTRAP_SKILL")
+
+# Escape for JSON
+SESSION_CONTEXT=$(echo "$SESSION_CONTEXT" | jq -Rs .)
+# Remove outer quotes added by jq -Rs
+SESSION_CONTEXT="${SESSION_CONTEXT:1:${#SESSION_CONTEXT}-2}"
+
+# Detect platform and output the right JSON format
+if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
+  # Cursor
+  printf '{ "additional_context": "%s" }\n' "$SESSION_CONTEXT"
+elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+  # Claude Code
+  printf '{ "hookSpecificOutput": { "hookEventName": "SessionStart", "additionalContext": "%s" } }\n' "$SESSION_CONTEXT"
+else
+  # Codex CLI / Copilot CLI / default (SDK standard)
+  printf '{ "additionalContext": "%s" }\n' "$SESSION_CONTEXT"
+fi

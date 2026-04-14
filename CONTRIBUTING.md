@@ -1,6 +1,6 @@
 # Contributing to Solo Squad
 
-Thanks for considering a contribution. Solo Squad is built to be extended by anyone who runs an agency or ships solo and wants their workflows captured as Claude Code skills.
+Thanks for considering a contribution. Solo Squad is built to be extended by anyone who ships solo and wants their workflows captured as reusable skills.
 
 ## What's most useful
 
@@ -9,12 +9,12 @@ The highest-value contributions, in order:
 1. **New skills in your domain of expertise.** If you have a workflow you run weekly that isn't in Solo Squad, that's the best thing you can add. Real workflows beat theoretical ones.
 2. **Improvements to existing skills.** Sharper rules, better deliverable formats, more concrete process steps.
 3. **New commands** that chain existing skills into multi-step workflows.
-4. **Bug fixes** in plugin manifests, hooks, or skill structures.
+4. **Bug fixes** in manifests, hooks, or skill structures.
 5. **Better docs** with real-world examples of using a skill on actual work.
 
 ## How to add a new skill
 
-A skill is a `SKILL.md` file inside `plugins/<squad>/skills/<skill-name>/`.
+A skill is a `SKILL.md` file inside `skills/<skill-name>/`.
 
 Required structure:
 
@@ -40,52 +40,49 @@ You are a [role]. [One sentence about what you do.]
 ```
 
 Required elements:
-- Frontmatter with a `description` field. This is what Claude uses to know when to invoke the skill.
+- Frontmatter with a `description` field. This is what the AI uses to know when to invoke the skill.
 - A clear role definition (you are a senior X who does Y).
 - A numbered process the skill follows.
 - Explicit rules that constrain behavior.
 - A defined deliverable format.
 
-Match the format of any existing skill in the same squad. Look at `plugins/engineering-squad/skills/brainstorm/SKILL.md` for a strong reference.
+Look at `skills/brainstorm/SKILL.md` for a strong reference.
 
 ## How to add a new command
 
-Commands chain multiple skills into one workflow. They live in `plugins/<squad>/commands/`.
+Commands chain multiple skills into one workflow. They live in `commands/`.
 
 ```
 ---
 description: "What this command accomplishes in one sentence."
 ---
 
-[The instructions Claude follows when the command is invoked]
+[The instructions the AI follows when the command is invoked]
 ```
 
 Commands should make sense as user-facing slash commands. If the workflow is short, just add it as a skill instead.
 
-## How to add a new plugin (squad)
+## Multi-CLI compatibility
 
-If you want to add a whole new squad, you'll need:
+Solo Squad works across Claude Code, Codex CLI, and OpenCode. When writing skills:
 
-1. A new directory: `plugins/your-squad-name/`
-2. A plugin manifest: `plugins/your-squad-name/.claude-plugin/plugin.json`
-3. At least 3 skills in `plugins/your-squad-name/skills/`
-4. An entry in the marketplace catalog at `.claude-plugin/marketplace.json`
-5. A docs file at `docs/squads/your-squad-name.md`
-
-Open an issue first to discuss whether the squad fits Solo Squad's scope. Solo Squad is opinionated about staying focused on solo operators running multi-functional businesses. Specialty squads (game dev, blockchain, embedded) are better as separate plugins.
+- Use Claude Code tool names as the canonical reference (Read, Write, Edit, Bash, Agent, etc.)
+- Tool mapping references in `skills/using-solo-squad/references/` bridge to other platforms
+- Avoid platform-specific features that only work on one CLI
+- Test on Claude Code at minimum; cross-CLI testing is appreciated but not required
 
 ## PR process
 
 1. Fork the repo
 2. Create a branch: `git checkout -b add-skill-name` or `fix-issue-123`
 3. Make your changes
-4. Test locally: `/plugin marketplace add ./solo-squad` then install your plugin
+4. Test locally by installing the plugin on your CLI of choice
 5. Verify the skill triggers correctly with realistic input
 6. Open a PR with a clear description of what you changed and why
 
 ## What I won't accept
 
-- Skills that just rephrase what Claude already does well without added structure
+- Skills that just rephrase what the AI already does well without added structure
 - Commands that don't actually save the user time vs invoking skills directly
 - Marketing copy or "personality" that doesn't translate to better outputs
 - Anything that requires external paid services without a clear note saying so

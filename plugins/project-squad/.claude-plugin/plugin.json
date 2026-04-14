@@ -1,7 +1,0 @@
-{
-  "name": "project-squad",
-  "description": "Multi-client project management with NEXUS cross-squad orchestration, client context persistence, executive summaries, product strategy, analytics reporting, document generation, sprint planning, status reports, and retrospectives.",
-  "version": "1.2.0",
-  "author": { "name": "Solo Squad" },
-  "license": "MIT"
-}

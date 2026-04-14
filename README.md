@@ -1,149 +1,51 @@
 # Solo Squad
 
-> A squad of specialists for the solo operator.
+> A squad of specialists for the solo developer.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude_Code-Plugin-blueviolet)](https://docs.anthropic.com/en/docs/claude-code)
+[![Codex CLI](https://img.shields.io/badge/Codex_CLI-Compatible-green)](https://github.com/openai/codex)
+[![OpenCode](https://img.shields.io/badge/OpenCode-Compatible-orange)](https://github.com/sst/opencode)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-**6 squads. 60+ skills. 13 agents. One operator.**
+**27 skills. 5 agents. 7 workflows. Three CLI platforms.**
 
-Solo Squad is a Claude Code plugin marketplace that turns one person into a full agency. Engineering, marketing, sales, design, project management, and security — each squad has specialists who do one job well, and NEXUS orchestrates them all on a single client engagement.
+Solo Squad is a plugin for AI coding CLIs that turns one developer into a full squad. Coding, design, and security — each category has specialists who do one job well.
 
----
-
-## How it works
-
-```
-You have an idea or a client request
-        │
-        ▼
-┌─────────────────────────────────────────────────────┐
-│                    /orchestrate                      │
-│                                                      │
-│   NEXUS-Full         NEXUS-Sprint      NEXUS-Micro   │
-│   (4-12 weeks)       (2-6 weeks)       (1-5 days)   │
-│                                                      │
-│   Discovery          Discover+Plan     Scope         │
-│   Strategy           Build+Review      Build         │
-│   Foundation         Harden+Ship       Ship          │
-│   Build              Launch                          │
-│   Hardening                                          │
-│   Launch                                             │
-│   Operate                                            │
-└─────────────────────┬───────────────────────────────┘
-                      │
-        ┌─────────────┼─────────────┐
-        ▼             ▼             ▼
-  Engineering    Marketing     Design
-  Sales          Project       Security
-```
-
-Each squad contributes its skills at the right phase. Quality gates between phases prevent broken work from advancing. Handoff protocols preserve context so nothing gets lost.
+Works with **Claude Code** (primary), **Codex CLI**, and **OpenCode**.
 
 ---
 
 ## Install
 
-```
-/plugin marketplace add efecanbasoz/solo-squad
-/plugin install engineering-squad@solo-squad marketing-squad@solo-squad sales-squad@solo-squad design-squad@solo-squad project-squad@solo-squad security-squad@solo-squad
-```
+### Claude Code
 
-Or install only what you need today:
-
-```
-/plugin marketplace add efecanbasoz/solo-squad
-/plugin install engineering-squad@solo-squad
+```bash
+/install-plugin efecanbasoz/solo-squad
 ```
 
----
+### Codex CLI
 
-## See it work
-
-### A full marketing audit in 14 minutes
-
-```
-You: /client-audit https://acmewidgets.com
-
-Solo Squad: Running full marketing audit. This dispatches:
-  /seo-audit + /tracking-audit + /paid-audit + /social-strategy + /ai-citation
-  Estimated time: 15-20 min. Estimated tokens: ~$2-4.
-  Continue? [y/N]
-
-You: y
-
-[14 minutes later]
-
-Solo Squad:
-
-  SEO Audit: 6.2/10
-    - Sitemap missing 47% of product pages
-    - 12 broken redirect chains
-    - LCP at 4.8s (target: under 2.5s)
-
-  Tracking Audit:
-    - Google Ads conversion firing 2x on thank-you page
-    - Meta Pixel missing on checkout step
-    - No CAPI for Meta — losing iOS attribution
-
-  Paid Audit: 142/200 (Grade C)
-    - Branded and non-branded mixed in same campaign
-    - Wasted spend estimate: $1,840/month on irrelevant search terms
-
-  Top 3 quick wins:
-    1. Fix Meta CAPI + remove duplicate Google conversion
-    2. Restructure paid campaigns + add negatives (~$1,800/mo recovered)
-    3. Fix sitemap + redirects (unblocks indexing)
-
-  Full report saved: ./reports/acmewidgets-audit.md
+```bash
+git clone https://github.com/efecanbasoz/solo-squad ~/.codex/solo-squad
+ln -s ~/.codex/solo-squad/skills ~/.agents/skills/solo-squad
 ```
 
-### NEXUS orchestrating a client website rebuild
+### OpenCode
 
-```
-You: /orchestrate
+Add to your `opencode.json`:
 
-Solo Squad: Select NEXUS mode:
-  1. Full (4-12 weeks) — complete lifecycle, all squads
-  2. Sprint (2-6 weeks) — compressed, focused scope
-  3. Micro (1-5 days) — rapid scope-build-ship
-
-You: 1
-
-Solo Squad: Loading client context for "acme-widgets"...
-  Company: Acme Widgets (e-commerce, Shopify Plus)
-  Last engagement: SEO audit (2026-03-15)
-  Active project: website rebuild
-
-  Pipeline: Discovery → Strategy → Foundation → Build → Hardening → Launch → Operate
-  Estimated skills: 25+ across 6 squads
-  Proceeding to Phase 0: Discovery. Continue? [y/N]
-
-You: y
-
-Solo Squad: [Phase 0: Discovery]
-  Dispatching: /brainstorm + /ux-research + /seo-audit
-  ...
-  Quality Gate: ✓ Problem validated, ✓ Success criteria defined, ✓ Risks identified
-  → Advancing to Phase 1: Strategy
+```json
+{
+  "plugin": ["solo-squad@git+https://github.com/efecanbasoz/solo-squad.git"]
+}
 ```
 
 ---
 
-## The six squads
+## What you get
 
-| Squad | Skills | Agents | Focus |
-|-------|--------|--------|-------|
-| [Engineering](docs/squads/engineering.md) | 13 | 3 | Build, test, ship, debug |
-| [Marketing](docs/squads/marketing.md) | 14 | 3 | SEO, PPC, social, content, growth |
-| [Design](docs/squads/design.md) | 5 | 1 | Systems, reviews, research, brand |
-| [Project](docs/squads/project.md) | 13 | 2 | NEXUS, client context, reporting |
-| [Sales](docs/squads/sales.md) | 7 | 3 | Pipeline, deals, demos, proposals |
-| [Security](docs/squads/security.md) | 9 | 1 | Audits, incidents, compliance |
-
-<details>
-<summary><strong>Engineering Squad</strong> — 13 skills, 3 agents</summary>
+### Coding — 13 skills
 
 | Skill | What it does |
 |-------|-------------|
@@ -161,91 +63,17 @@ Solo Squad: [Phase 0: Discovery]
 | `/workflow-mapping` | System workflows, failure modes, handoffs |
 | `/developer-advocacy` | DX audits, tutorials, sample apps |
 
-**Agents:** Architect (designs, never implements), Tester (edge cases, screenshot evidence), Debugger (read-only investigator)
-
-</details>
-
-<details>
-<summary><strong>Marketing Squad</strong> — 14 skills, 3 agents</summary>
+### Design — 5 skills
 
 | Skill | What it does |
 |-------|-------------|
-| `/seo-audit` | Technical audit, topical clusters, SERP features |
-| `/ppc-strategy` | Campaign architecture, bidding, audiences |
-| `/social-strategy` | Cross-platform organic with algorithm mechanics |
-| `/content-plan` | Editorial calendar, repurposing framework |
-| `/ad-creative` | RSA, Meta copy, Performance Max assets |
-| `/tracking-audit` | GTM, GA4, CAPI, attribution models |
-| `/paid-audit` | 200+ points, severity-rated with financial impact |
-| `/ai-citation` | Brand visibility in ChatGPT, Claude, Gemini, Perplexity |
-| `/growth-hacking` | Funnel optimization, viral loops, CAC/LTV |
-| `/search-query-analysis` | Query mining, negative keywords, waste elimination |
-| `/paid-social` | Meta, LinkedIn, TikTok, Pinterest paid campaigns |
-| `/programmatic-media` | GDN, DV360, ABM display |
-| `/app-store-optimization` | ASO for iOS and Google Play |
-| `/video-optimization` | YouTube SEO, retention, thumbnails |
-
-**Agents:** SEO Analyst (crawl budgets, topical authority), Media Buyer (ROAS, incrementality), Content Strategist (distribution-first)
-
-</details>
-
-<details>
-<summary><strong>Design Squad</strong> — 5 skills, 1 agent</summary>
-
-| Skill | What it does |
-|-------|-------------|
-| `/design-system` | Tokens, components, patterns + starter templates (SaaS, marketing, e-commerce) |
+| `/design-system` | Tokens, components, patterns + starter templates |
 | `/design-review` | AI slop detection, 0-10 scoring, before/after fixes |
 | `/ux-research` | Study design through execution with analysis frameworks |
-| `/brand-check` | Exact color/font matching, reverse-engineering when no guidelines exist |
+| `/brand-check` | Exact color/font matching, reverse-engineering guidelines |
 | `/image-prompts` | Midjourney, DALL-E, Flux prompts with photography reference |
 
-**Agent:** Design Critic (detects AI slop, scores craft, severity classification)
-
-</details>
-
-<details>
-<summary><strong>Project Squad</strong> — 13 skills, 2 agents</summary>
-
-| Skill | What it does |
-|-------|-------------|
-| `/nexus-full` | 7-phase pipeline with quality gates |
-| `/nexus-sprint` | Compressed 4-phase pipeline |
-| `/nexus-micro` | Rapid scope-build-ship |
-| `/client-context` | Persistent client profiles across sessions |
-| `/executive-summary` | C-suite briefings, SCQA framework |
-| `/product-strategy` | Discovery, roadmap, GTM, OKRs |
-| `/analytics-reporting` | Dashboards, KPIs, attribution |
-| `/document-generation` | PDF, PPTX, DOCX automation |
-| `/client-kickoff` | Onboarding, charter, communication plan |
-| `/sprint-plan` | Multi-client capacity and prioritization |
-| `/status-report` | KPI trends, milestones, action items |
-| `/experiment-track` | A/B tests, hypothesis tracking |
-| `/feedback-synthesis` | Theme extraction, priority scoring |
-
-**Agents:** Orchestrator (NEXUS pipeline manager), Studio Producer (capacity, timelines, dependencies)
-
-</details>
-
-<details>
-<summary><strong>Sales Squad</strong> — 7 skills, 3 agents</summary>
-
-| Skill | What it does |
-|-------|-------------|
-| `/outbound` | Signal-based prospecting, multi-channel sequences |
-| `/discovery-prep` | SPIN/Gap/Sandler frameworks, gap quantification |
-| `/deal-strategy` | MEDDPICC scoring, competitive tactics, ghosting |
-| `/proposal` | Win themes, SCQA executive summary, pricing |
-| `/pipeline-review` | Velocity, conversion, risk-adjusted forecast |
-| `/account-plan` | Land-and-expand, QBR prep, renewal strategy |
-| `/technical-demo` | Demo engineering, POC scoping, battlecards |
-
-**Agents:** Closer (BATNA/ZOPA, walk-away criteria), Researcher (10-min prospecting), Sales Engineer (demos, POCs)
-
-</details>
-
-<details>
-<summary><strong>Security Squad</strong> — 9 skills, 1 agent</summary>
+### Security — 9 skills
 
 | Skill | What it does |
 |-------|-------------|
@@ -259,104 +87,141 @@ Solo Squad: [Phase 0: Discovery]
 | `/guard` | Maximum safety mode |
 | `/codex-review` | Cross-AI independent code review |
 
-**Agent:** Sentinel (read-only security review, 8/10+ confidence gate)
+### Workflow commands
 
-</details>
+| Command | Flow |
+|---------|------|
+| `/sprint` | brainstorm → plan → build → review → qa → ship → compound |
+| `/hotfix` | investigate → fix → review → ship |
+| `/tdd` | write tests → implement → refactor |
+| `/design-sprint` | research → design system → review → iterate |
+| `/asset-gen` | Generate AI image assets for a campaign |
+| `/security-scan` | OWASP + STRIDE + dependency audit |
+| `/lockdown` | Maximum safety mode for production work |
+
+### Agents
+
+| Agent | Role |
+|-------|------|
+| **Architect** | System design, data modeling, ADRs — never implements |
+| **Tester** | Edge cases, coverage, test quality |
+| **Debugger** | Root cause analysis — read-only investigation |
+| **Critic** | Design quality, AI slop detection, craft scoring |
+| **Sentinel** | Security review with 8/10+ confidence gate |
 
 ---
 
-## NEXUS Orchestration
+## See it work
 
-NEXUS coordinates all six squads on a single engagement. Three operating modes, four scenario runbooks.
-
-| Mode | Duration | Use when |
-|------|----------|----------|
-| **Full** | 4-12 weeks | Major projects, new client engagements |
-| **Sprint** | 2-6 weeks | Focused projects with clear scope |
-| **Micro** | 1-5 days | Urgent tasks, hotfixes, incidents |
-
-**Quality gates** between each phase prevent broken work from advancing. **Handoff protocols** preserve context across phase boundaries. **Scenario runbooks** pre-configure the pipeline for common situations:
-
-1. **Client Website Rebuild** — Full mode, all squads
-2. **New Feature Sprint** — Full mode, engineering + design
-3. **Marketing Campaign** — Sprint mode, marketing + design + project
-4. **Production Incident** — Micro mode, engineering + security
-
----
-
-## Client Context
-
-Persistent client intelligence that carries across sessions. Initialize once, load at the start of every session.
+### A full engineering sprint
 
 ```
-/client-context init acme-widgets    # create profile
-/client-context load acme-widgets    # load into session
-/client-context save                 # update after work
+You: /sprint
+
+Solo Squad: Starting sprint sequence.
+  Phase 1: /brainstorm — refine the idea
+  Ready? [y/N]
+
+You: I want to add real-time notifications to the dashboard
+
+[brainstorm conversation — 5 min]
+
+Solo Squad: Design doc saved. Continue to /plan? [y/N]
+
+You: y
+
+[plan generated — 2 min]
+
+Solo Squad: 12 tasks created (2-5 min each).
+  Continue to /build? [y/N]
+
+You: y
+
+[subagent-driven build with TDD — 20 min]
+
+Solo Squad: Build complete. 12/12 tasks done, 94% test coverage.
+  Continue to /review? [y/N]
 ```
 
-Four files per client: company profile, brand guidelines, engagement history, active projects. Every skill benefits from loaded context — the SEO analyst knows the industry, the proposal writer knows past engagements, the orchestrator knows current project state.
+### Security audit before deploy
+
+```
+You: /security-scan
+
+Solo Squad: Running full security scan:
+  1. OWASP Top 10 check
+  2. STRIDE threat model
+  3. Dependency audit
+
+  Findings (8/10+ confidence only):
+
+  CRITICAL: SQL injection in /api/users (parameterize query)
+  HIGH: Missing rate limiting on /api/auth/login
+  MEDIUM: Outdated dependency jsonwebtoken@8.5.1 (CVE-2022-23529)
+
+  3 findings. Auto-fix available for 2. Proceed? [y/N]
+```
 
 ---
 
-## Real-world use cases
+## Multi-CLI compatibility
 
-**Account takeover (agency):** New client signs. Run `/client-context init` → `/client-audit` → `/proposal` with findings. Day one: you have a scored audit, an action plan, and a proposal. That used to take a week.
+Solo Squad skills are written in SKILL.md format — the universal standard across Claude Code, Codex CLI, and OpenCode.
 
-**Feature sprint (product):** PM writes a spec. Run `/orchestrate` in Sprint mode → Discovery+Plan → Build+Review → Harden+Ship. Engineering, design, and security squads coordinate through quality gates. Two weeks, not six.
+| Feature | Claude Code | Codex CLI | OpenCode |
+|---------|-------------|-----------|----------|
+| Skills | Native | Native (via symlink) | Native (via plugin) |
+| Agents | Native | Reference only | Reference only |
+| Hooks | Native | SessionStart only | Via JS plugin |
+| Commands | Native | Via skills | Via skills |
+| Instruction file | `CLAUDE.md` | `AGENTS.md` | `AGENTS.md` (fallback: `CLAUDE.md`) |
 
-**Monthly reporting (ongoing):** Load client context → `/status-report` + `/analytics-reporting` + `/experiment-track`. Cross-channel performance, KPI trends, experiment results, and recommendations — all in one pass.
-
-**Emergency (production):** Something breaks. `/orchestrate` in Micro mode → `/investigate` → fix → `/incident-response` post-mortem. Service restored, root cause documented, runbook created.
-
-**Deal qualification (sales):** Discovery call at 2pm. Run `/prep-call` for research and agenda → after the call, `/meddpicc` for qualification scoring → `/deal-strategy` for the win plan. Pipeline stays clean.
-
----
-
-## Why Solo Squad
-
-Three projects already do parts of this well.
-
-[Superpowers](https://github.com/obra/superpowers) has the most disciplined engineering methodology. [gstack](https://github.com/garrytan/gstack) has the most feature-complete dev tools. [Compound Engineering](https://github.com/EveryInc/compound-engineering-plugin) has the best knowledge-capture philosophy.
-
-Solo Squad exists because none of them help when you need to audit a client's Google Ads account at 10am, prep for a discovery call at 2pm, score a deal with MEDDPICC at 4pm, and write next month's content calendar before end of day. **If you only need engineering, the older projects are better. If you run an agency solo, this is what that looks like.**
-
----
-
-## What's solid, what's rough
-
-**Solid:** All six squads are battle-tested on real client work. **60+ skills** with detailed processes and deliverables. **13 enriched agents** with standardized decision frameworks and behavioral directives. **NEXUS orchestration** coordinates multi-squad pipelines with quality gates. **Context-aware hooks** that only fire when relevant. **Persistent client context** across sessions.
-
-**Rough:** Browser automation in `/browse` needs work to match gstack. No unit tests on skill structures yet. NEXUS handoff protocols will evolve with real multi-squad usage. Some marketing skill deliverable formats are still maturing.
+Tool name differences between platforms are documented in `skills/using-solo-squad/references/`.
 
 ---
 
 ## Cost warning
 
-Solo Squad runs subagent-driven workflows. Token usage is higher than typical Claude Code.
+Solo Squad runs subagent-driven workflows. Token usage is higher than typical.
 
 | Workflow | Typical cost |
 |----------|-------------|
-| Single skill (e.g., `/seo-audit`) | < $1 |
-| `/client-audit` (5 skills) | $2-4 |
+| Single skill (e.g., `/cso`) | < $1 |
 | `/sprint` (full cycle) | $5-15 |
-| NEXUS-Full (multi-phase) | $15-50+ |
+| `/security-scan` | $2-4 |
 
-On Claude Pro or Max with included usage, this rarely matters. On the API directly, watch your bill the first week.
+On Claude Pro/Max or Codex with included usage, this rarely matters.
 
 ---
 
-## Contributing
+## Project structure
 
-Solo Squad accepts PRs for new skills, command improvements, agent refinements, and bug fixes. The fastest way to contribute is to add a skill in your domain. Each skill needs a `SKILL.md` with frontmatter, a numbered process, explicit rules, and defined deliverables. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+```
+solo-squad/
+├── skills/          — 27 SKILL.md files (the core content)
+├── agents/          — 5 agent definitions
+├── commands/        — 7 workflow commands
+├── hooks/           — Runtime hooks + session bootstrap
+├── .claude-plugin/  — Claude Code manifest
+├── .codex/          — Codex CLI install guide
+├── .opencode/       — OpenCode ESM plugin
+├── CLAUDE.md        — Claude Code context
+└── AGENTS.md        — Codex/OpenCode context
+```
 
 ---
 
 ## Built on the shoulders of giants
 
-- [obra/superpowers](https://github.com/obra/superpowers) by Jesse Vincent — TDD methodology, subagent-driven development, systematic debugging
-- [garrytan/gstack](https://github.com/garrytan/gstack) by Garry Tan — Browser automation, security audits, deploy pipelines, safety guardrails
-- [EveryInc/compound-engineering-plugin](https://github.com/EveryInc/compound-engineering-plugin) by Every — Knowledge compounding philosophy, cross-platform converters
-- [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) by Mike Sitarzewski — 200+ specialist agent personas across 12 divisions, NEXUS orchestration concepts
+- [obra/superpowers](https://github.com/obra/superpowers) — TDD methodology, subagent-driven development, multi-CLI architecture
+- [garrytan/gstack](https://github.com/garrytan/gstack) — Browser automation, security audits, host config system
+- [EveryInc/compound-engineering-plugin](https://github.com/EveryInc/compound-engineering-plugin) — Knowledge compounding philosophy
+
+---
+
+## Contributing
+
+Solo Squad accepts PRs for new skills, improvements, and bug fixes. Each skill needs a `SKILL.md` with frontmatter, a numbered process, explicit rules, and defined deliverables. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ---
 
