@@ -1,14 +1,18 @@
 # Solo Squad
 
-Solo Squad is a plugin for AI coding CLIs that provides 27 skills across coding, design, and security workflows.
+Solo Squad is a plugin for AI coding CLIs that provides 27 skills across coding, design, and security workflows. Works on Claude Code (primary), Codex CLI, and OpenCode.
 
 ## Structure
 
 ```
-skills/       — 27 SKILL.md files (the core content)
-agents/       — 5 agent definitions (Architect, Tester, Debugger, Critic, Sentinel)
-commands/     — 7 workflow commands (sprint, hotfix, tdd, etc.)
-hooks/        — Runtime hooks (TDD reminder, brand check, destructive warning)
+skills/          — 27 SKILL.md files (the core content)
+agents/          — 5 agent definitions (Architect, Tester, Debugger, Critic, Sentinel)
+commands/        — 7 workflow commands (sprint, hotfix, tdd, etc.)
+hooks/           — Runtime hooks + platform-detecting session-start
+.claude-plugin/  — Claude Code plugin manifest
+.codex/          — Codex CLI install guide
+.opencode/       — OpenCode ESM plugin
+.local/          — Gitignored squads (marketing, project, sales) for future use
 ```
 
 ## Skill Format
@@ -25,9 +29,17 @@ Agents are `.md` files with frontmatter (`name`, `description`, `model`, `tools`
 - **Design**: design-system, design-review, ux-research, brand-check, image-prompts
 - **Security**: cso, benchmark, browse, careful, codex-review, freeze, guard, incident-response, legal-compliance
 
+## Multi-CLI Rules
+
+- Use Claude Code tool names as canonical (Read, Write, Edit, Bash, Agent)
+- Never add platform-specific logic inside SKILL.md files
+- Tool mapping references live at `skills/using-solo-squad/references/`
+- CLAUDE.md and AGENTS.md must stay identical in content
+- Session-start hook detects platform via env vars — don't hardcode platform checks in skills
+
 ## Development
 
 - All files must be in English
 - Commit format: `feat(scope):`, `fix(scope):`, `docs:`, `chore:`
-- Test with: `npm test`
 - No runtime dependencies — pure markdown + shell scripts
+- Version bump: `./scripts/bump-version.sh <version>` (updates package.json + plugin.json)
