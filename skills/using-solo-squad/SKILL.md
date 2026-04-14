@@ -74,4 +74,4 @@ You have access to Solo Squad — a collection of coding, design, and security s
 
 ## Platform Compatibility
 
-Solo Squad skills work across Claude Code, Codex CLI, and OpenCode. If you are running on a non-Claude-Code platform, check the tool mapping references at `skills/using-solo-squad/references/` for equivalent tool names.
+Solo Squad skills work across Claude Code, Codex CLI, OpenCode, Cursor, Gemini CLI, and Copilot CLI. If you are running on a non-Claude-Code platform, check the tool mapping references at `skills/using-solo-squad/references/` for equivalent tool names.

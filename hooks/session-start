@@ -26,6 +26,9 @@ SESSION_CONTEXT="${SESSION_CONTEXT:1:${#SESSION_CONTEXT}-2}"
 if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
   # Cursor
   printf '{ "additional_context": "%s" }\n' "$SESSION_CONTEXT"
+elif [ -n "${GEMINI_EXTENSION_ROOT:-}" ]; then
+  # Gemini CLI
+  printf '{ "additionalContext": "%s" }\n' "$SESSION_CONTEXT"
 elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
   # Claude Code
   printf '{ "hookSpecificOutput": { "hookEventName": "SessionStart", "additionalContext": "%s" } }\n' "$SESSION_CONTEXT"

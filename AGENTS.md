@@ -1,6 +1,6 @@
 # Solo Squad
 
-Solo Squad is a plugin for AI coding CLIs that provides 27 skills across coding, design, and security workflows. Works on Claude Code (primary), Codex CLI, and OpenCode.
+Solo Squad is a plugin for AI coding CLIs that provides 27 skills across coding, design, and security workflows. Works on Claude Code (primary), Codex CLI, OpenCode, Cursor, Gemini CLI, and Copilot CLI.
 
 ## Structure
 
@@ -8,10 +8,14 @@ Solo Squad is a plugin for AI coding CLIs that provides 27 skills across coding,
 skills/          — 27 SKILL.md files (the core content)
 agents/          — 5 agent definitions (Architect, Tester, Debugger, Critic, Sentinel)
 commands/        — 7 workflow commands (sprint, hotfix, tdd, etc.)
-hooks/           — Runtime hooks + platform-detecting session-start
-.claude-plugin/  — Claude Code plugin manifest
+hooks/           — Runtime hooks + platform-detecting session-start + Windows wrapper
+.claude-plugin/  — Claude Code plugin manifest + marketplace
+.cursor-plugin/  — Cursor plugin manifest
 .codex/          — Codex CLI install guide
 .opencode/       — OpenCode ESM plugin
+GEMINI.md        — Gemini CLI context file
+gemini-extension.json — Gemini CLI extension manifest
+AGENTS.md        — Codex/Copilot shared context
 .local/          — Gitignored squads (marketing, project, sales) for future use
 ```
 

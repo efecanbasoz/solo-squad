@@ -6,10 +6,129 @@
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-blueviolet)](https://docs.anthropic.com/en/docs/claude-code)
 [![Codex CLI](https://img.shields.io/badge/Codex_CLI-Compatible-green)](https://github.com/openai/codex)
 [![OpenCode](https://img.shields.io/badge/OpenCode-Compatible-orange)](https://github.com/sst/opencode)
+[![Cursor](https://img.shields.io/badge/Cursor-Compatible-blue)](https://cursor.com)
+[![Gemini CLI](https://img.shields.io/badge/Gemini_CLI-Compatible-yellow)](https://github.com/google-gemini/gemini-cli)
+[![Copilot CLI](https://img.shields.io/badge/Copilot_CLI-Compatible-lightgrey)](https://githubnext.com/projects/copilot-cli)
 
-Solo Squad gives your AI coding agent **27 structured workflows** across coding, design, and security — so you stop prompting and start shipping.
+**27 structured workflows** across coding, design, and security for any AI coding CLI. No vague instructions — each skill is a battle-tested process with numbered steps, quality gates, and defined deliverables.
 
-No vague instructions. No "figure it out." Each skill is a battle-tested process with numbered steps, explicit rules, and defined deliverables. Your agent doesn't improvise; it follows the playbook.
+---
+
+## Install
+
+No dependencies. No build step. Pure markdown + shell scripts.
+
+### Claude Code
+
+Add the Solo Squad marketplace, then install:
+
+```bash
+claude plugins marketplace add https://github.com/efecanbasoz/solo-squad
+claude plugins install solo-squad
+```
+
+Reload to activate:
+
+```
+/reload-plugins
+```
+
+### Codex CLI
+
+Clone and symlink so Codex auto-discovers skills at startup:
+
+```bash
+git clone https://github.com/efecanbasoz/solo-squad ~/.codex/solo-squad
+mkdir -p ~/.agents/skills
+ln -s ~/.codex/solo-squad/skills ~/.agents/skills/solo-squad
+```
+
+<details>
+<summary>Windows (PowerShell)</summary>
+
+```powershell
+git clone https://github.com/efecanbasoz/solo-squad "$env:USERPROFILE\.codex\solo-squad"
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.agents\skills"
+cmd /c mklink /J "$env:USERPROFILE\.agents\skills\solo-squad" "$env:USERPROFILE\.codex\solo-squad\skills"
+```
+
+</details>
+
+To enable subagent dispatch for skills like `/build` and `/sprint`, add to `~/.codex/config.toml`:
+
+```toml
+[features]
+multi_agent = true
+```
+
+### OpenCode
+
+Add to your `opencode.json`:
+
+```json
+{
+  "plugins": ["solo-squad@git+https://github.com/efecanbasoz/solo-squad.git"]
+}
+```
+
+The JS plugin at `.opencode/plugins/solo-squad.js` registers skills automatically and injects session context on first message.
+
+### Cursor
+
+Install from the agent chat:
+
+```
+/install-plugin efecanbasoz/solo-squad
+```
+
+Skills, agents, commands, and hooks are discovered from `.cursor-plugin/plugin.json`.
+
+### Gemini CLI
+
+Install as a Gemini extension:
+
+```bash
+gemini extensions install https://github.com/efecanbasoz/solo-squad
+```
+
+`GEMINI.md` and `gemini-extension.json` at the repo root provide context and tool mapping.
+
+> **Note:** Gemini CLI does not support subagents. Skills that dispatch agents fall back to sequential execution.
+
+### Copilot CLI
+
+Add the marketplace and install:
+
+```bash
+copilot plugins marketplace add efecanbasoz/solo-squad
+copilot plugins install solo-squad
+```
+
+Copilot uses the same `.claude-plugin/` manifest and shares full hook support.
+
+### Updating
+
+Each platform picks up updates differently:
+
+| Platform | Update command |
+|----------|---------------|
+| Claude Code | `claude plugins update solo-squad` |
+| Codex CLI | `cd ~/.codex/solo-squad && git pull` |
+| OpenCode | Remove + re-add in `opencode.json` (auto-fetches latest) |
+| Cursor | `/update-plugin solo-squad` |
+| Gemini CLI | `gemini extensions update solo-squad` |
+| Copilot CLI | `copilot plugins update solo-squad` |
+
+### Uninstalling
+
+| Platform | Uninstall command |
+|----------|------------------|
+| Claude Code | `claude plugins uninstall solo-squad` |
+| Codex CLI | `rm ~/.agents/skills/solo-squad && rm -rf ~/.codex/solo-squad` |
+| OpenCode | Remove from `opencode.json` |
+| Cursor | `/remove-plugin solo-squad` |
+| Gemini CLI | `gemini extensions uninstall solo-squad` |
+| Copilot CLI | `copilot plugins uninstall solo-squad` |
 
 ---
 
@@ -62,8 +181,6 @@ Solo Squad: Build complete. 12/12 tasks, 94% coverage.
   ✓ PR opened: feat(notifications): add real-time alert system
 ```
 
-**One command. Idea to shipped PR. Every step has a quality gate.**
-
 ### Catch what CI misses
 
 ```
@@ -94,38 +211,9 @@ Solo Squad:
 
 ---
 
-## Install
-
-### Claude Code
-
-```bash
-/install-plugin efecanbasoz/solo-squad
-```
-
-### Codex CLI
-
-```bash
-git clone https://github.com/efecanbasoz/solo-squad ~/.codex/solo-squad
-ln -s ~/.codex/solo-squad/skills ~/.agents/skills/solo-squad
-```
-
-### OpenCode
-
-```json
-{
-  "plugin": ["solo-squad@git+https://github.com/efecanbasoz/solo-squad.git"]
-}
-```
-
-30 seconds. No dependencies. No build step. Pure markdown + shell scripts.
-
----
-
 ## What's inside
 
 ### Coding — 13 skills, 3 agents
-
-The full lifecycle from idea to shipped PR.
 
 | Skill | Your specialist |
 |-------|----------------|
@@ -191,7 +279,7 @@ Chain skills into end-to-end pipelines:
 
 ## How it works
 
-Solo Squad is not a prompt library. Each skill is a **structured process** — numbered steps, decision criteria, quality gates, and explicit deliverables. Your agent follows the playbook instead of improvising.
+Each skill is a **structured process** — numbered steps, decision criteria, quality gates, and explicit deliverables. Your agent follows the playbook instead of improvising.
 
 ```
 skills/
@@ -213,18 +301,18 @@ hooks/
 ├── destructive-warning.sh  ← Fires before rm -rf, DROP TABLE, etc.
 ```
 
-Skills are written in **SKILL.md** — the universal format across Claude Code, Codex CLI, and OpenCode. Write once, run on any AI coding CLI.
+Skills are written in **SKILL.md** — the universal format across all supported CLIs. Write once, run anywhere.
 
 ---
 
 ## Multi-CLI support
 
-| Feature | Claude Code | Codex CLI | OpenCode |
-|---------|:-----------:|:---------:|:--------:|
-| Skills | Native | Native (symlink) | Native (plugin) |
-| Agents | Native | Reference | Reference |
-| Hooks | Full | SessionStart | Via JS plugin |
-| Commands | Native | Via skills | Via skills |
+| Feature | Claude Code | Codex CLI | OpenCode | Cursor | Gemini CLI | Copilot CLI |
+|---------|:-----------:|:---------:|:--------:|:------:|:----------:|:-----------:|
+| Skills | Native | Native (symlink) | Native (plugin) | Native | Native | Native |
+| Agents | Native | With `multi_agent` | Reference | Native | Reference | Native |
+| Hooks | Full | SessionStart | Via JS plugin | Full | SessionStart | Full |
+| Commands | Native | Via skills | Via skills | Native | Via skills | Native |
 
 Tool name differences are bridged automatically via reference docs in `skills/using-solo-squad/references/`.
 
