@@ -1,0 +1,33 @@
+{
+  "name": "solo-squad",
+  "owner": {
+    "name": "Solo Squad",
+    "email": "hello@sirkhet.com"
+  },
+  "plugins": [
+    {
+      "name": "solo-squad",
+      "source": "./",
+      "description": "Turn one developer into a full squad. 27 skills across coding, design & security — with multi-agent workflows, TDD enforcement, and safety guardrails.",
+      "version": "2.0.0",
+      "author": {
+        "name": "Solo Squad",
+        "email": "hello@sirkhet.com"
+      },
+      "repository": "https://github.com/efecanbasoz/solo-squad",
+      "license": "MIT",
+      "keywords": [
+        "coding",
+        "design",
+        "security",
+        "tdd",
+        "code-review",
+        "subagent",
+        "sprint",
+        "design-system",
+        "owasp",
+        "guardrails"
+      ]
+    }
+  ]
+}
