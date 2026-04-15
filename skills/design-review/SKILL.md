@@ -1,4 +1,5 @@
 ---
+name: design-review
 description: "Design audit with AI slop detection: rate visual quality, consistency, accessibility, and usability. Score each dimension 0-10 with actionable fixes."
 ---
 

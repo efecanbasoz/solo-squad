@@ -63,15 +63,21 @@ multi_agent = true
 
 ### OpenCode
 
-Add to your `opencode.json`:
+Install with the OpenCode CLI:
+
+```bash
+opencode plugin "solo-squad@git+https://github.com/efecanbasoz/solo-squad.git" --global
+```
+
+Or add it manually to your `opencode.json`:
 
 ```json
 {
-  "plugins": ["solo-squad@git+https://github.com/efecanbasoz/solo-squad.git"]
+  "plugin": ["solo-squad@git+https://github.com/efecanbasoz/solo-squad.git"]
 }
 ```
 
-The JS plugin at `.opencode/plugins/solo-squad.js` registers skills automatically and injects session context on first message.
+The JS plugin at `.opencode/plugins/solo-squad.js` registers skills, workflow commands, and subagents automatically, then injects session context on the first user message.
 
 ### Cursor
 
@@ -301,7 +307,7 @@ hooks/
 ├── destructive-warning.sh  ← Fires before rm -rf, DROP TABLE, etc.
 ```
 
-Skills are written in **SKILL.md** — the universal format across all supported CLIs. Write once, run anywhere.
+Skills are written in **SKILL.md** with `name` and `description` frontmatter — the universal format across all supported CLIs. Write once, run anywhere.
 
 ---
 
@@ -310,9 +316,9 @@ Skills are written in **SKILL.md** — the universal format across all supported
 | Feature | Claude Code | Codex CLI | OpenCode | Cursor | Gemini CLI | Copilot CLI |
 |---------|:-----------:|:---------:|:--------:|:------:|:----------:|:-----------:|
 | Skills | Native | Native (symlink) | Native (plugin) | Native | Native | Native |
-| Agents | Native | With `multi_agent` | Reference | Native | Reference | Native |
+| Agents | Native | With `multi_agent` | Native (plugin) | Native | Reference | Native |
 | Hooks | Full | SessionStart | Via JS plugin | Full | SessionStart | Full |
-| Commands | Native | Via skills | Via skills | Native | Via skills | Native |
+| Commands | Native | Via skills | Native (plugin) | Native | Via skills | Native |
 
 Tool name differences are bridged automatically via reference docs in `skills/using-solo-squad/references/`.
 

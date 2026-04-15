@@ -1,4 +1,5 @@
 ---
+name: guard
 description: "Maximum safety mode: combines /careful (destructive command warnings) and /freeze (edit scope lock) in one command."
 ---
 

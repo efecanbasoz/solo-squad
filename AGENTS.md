@@ -21,7 +21,7 @@ AGENTS.md        — Codex/Copilot shared context
 
 ## Skill Format
 
-Every skill is a `SKILL.md` file with YAML frontmatter (`description` field) followed by markdown instructions. Skills are self-contained — each file has everything the agent needs to execute that workflow.
+Every skill is a `SKILL.md` file with YAML frontmatter (`name` and `description`) followed by markdown instructions. `name` should match the folder name. Skills are self-contained — each file has everything the agent needs to execute that workflow.
 
 ## Agent Format
 

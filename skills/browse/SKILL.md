@@ -1,4 +1,5 @@
 ---
+name: browse
 description: "Give the agent eyes with a real Chromium browser. Navigate pages, click elements, fill forms, take screenshots, and verify visual output."
 ---
 

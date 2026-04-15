@@ -1,4 +1,5 @@
 ---
+name: freeze
 description: "Edit lock: restrict file edits to a specific directory. Prevents accidental changes outside scope while debugging or doing focused work."
 ---
 

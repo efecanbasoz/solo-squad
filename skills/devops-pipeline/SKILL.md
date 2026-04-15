@@ -1,4 +1,5 @@
 ---
+name: devops-pipeline
 description: "CI/CD pipeline design, infrastructure as code, container orchestration, and zero-downtime deployment strategies."
 ---
 

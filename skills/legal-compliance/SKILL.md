@@ -1,4 +1,5 @@
 ---
+name: legal-compliance
 description: "Regulatory compliance checking: GDPR, CCPA, KVKK, HIPAA. Privacy policy review, consent management, data handling procedures."
 ---
 

@@ -1,4 +1,5 @@
 ---
+name: workflow-mapping
 description: "Complete workflow documentation: happy paths, branch conditions, failure modes, recovery paths, and handoff contracts."
 ---
 

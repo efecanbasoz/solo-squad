@@ -1,4 +1,5 @@
 ---
+name: qa
 description: "Test your app by opening a real browser, clicking through flows, finding bugs, fixing them with atomic commits, and generating regression tests for every fix."
 ---
 

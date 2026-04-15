@@ -1,4 +1,5 @@
 ---
+name: build
 description: "Execute an implementation plan using subagent-driven development. Dispatches fresh agents per task with two-stage review, enforces TDD red/green/refactor, and uses git worktrees for isolation."
 ---
 

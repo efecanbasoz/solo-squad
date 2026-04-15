@@ -1,4 +1,5 @@
 ---
+name: developer-advocacy
 description: "Developer community building, DX auditing, technical content creation, sample apps, and SDK documentation."
 ---
 

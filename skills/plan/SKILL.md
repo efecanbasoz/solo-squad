@@ -1,4 +1,5 @@
 ---
+name: plan
 description: "Turn a design doc or detailed idea into a step-by-step implementation plan. Breaks work into bite-sized tasks (2-5 min each) with exact file paths, verification steps, and test requirements."
 ---
 

@@ -1,4 +1,5 @@
 ---
+name: benchmark
 description: "Performance benchmarking: baseline page load times, Core Web Vitals, resource sizes. Compare before/after on every PR."
 ---
 

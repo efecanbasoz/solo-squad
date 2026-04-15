@@ -1,4 +1,5 @@
 ---
+name: ux-research
 description: "UX research planning: user testing scripts, survey design, persona development, journey mapping, and usability test analysis."
 ---
 

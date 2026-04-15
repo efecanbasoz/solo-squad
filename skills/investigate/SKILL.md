@@ -1,4 +1,5 @@
 ---
+name: investigate
 description: "Systematic root-cause debugging. No fixes without investigation. Traces data flow, tests hypotheses, stops after 3 failed attempts."
 ---
 

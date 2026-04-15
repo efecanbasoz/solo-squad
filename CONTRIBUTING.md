@@ -20,6 +20,7 @@ Required structure:
 
 ```
 ---
+name: "skill-name"
 description: "One sentence describing what this skill does and when to use it."
 ---
 
@@ -40,7 +41,7 @@ You are a [role]. [One sentence about what you do.]
 ```
 
 Required elements:
-- Frontmatter with a `description` field. This is what the AI uses to know when to invoke the skill.
+- Frontmatter with `name` and `description` fields. `name` should match the folder name so every supported CLI can discover the skill consistently.
 - A clear role definition (you are a senior X who does Y).
 - A numbered process the skill follows.
 - Explicit rules that constrain behavior.

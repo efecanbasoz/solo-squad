@@ -1,4 +1,5 @@
 ---
+name: incident-response
 description: "Production incident management: severity classification, structured response, blameless post-mortems, runbook creation."
 ---
 

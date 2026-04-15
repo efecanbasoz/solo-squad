@@ -1,4 +1,5 @@
 ---
+name: review
 description: "Multi-agent code review that finds bugs passing CI but breaking production. Auto-fixes obvious issues, flags completeness gaps, and rates review readiness."
 ---
 

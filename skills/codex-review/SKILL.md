@@ -1,4 +1,5 @@
 ---
+name: codex-review
 description: "Cross-AI code review: get an independent second opinion on your diff from a different perspective. Compare findings between reviewers."
 ---
 

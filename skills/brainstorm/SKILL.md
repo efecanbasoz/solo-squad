@@ -1,4 +1,5 @@
 ---
+name: brainstorm
 description: "Start here for any new engineering work. Refines rough ideas through Socratic questioning, explores alternatives, challenges premises, and produces a design document that feeds into /plan."
 ---
 

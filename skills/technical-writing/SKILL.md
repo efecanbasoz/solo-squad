@@ -1,4 +1,5 @@
 ---
+name: technical-writing
 description: "README files, API references, migration guides, and developer documentation. Docs-as-code approach."
 ---
 

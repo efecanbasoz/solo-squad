@@ -1,4 +1,5 @@
 ---
+name: using-solo-squad
 description: "Loaded at session start. Provides an overview of all Solo Squad skills, agents, and commands so you can route requests to the right tool."
 ---
 

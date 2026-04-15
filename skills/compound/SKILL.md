@@ -1,4 +1,5 @@
 ---
+name: compound
 description: "After every sprint cycle, capture learnings and codify patterns so future work gets easier. The knowledge flywheel that makes the system compound."
 ---
 

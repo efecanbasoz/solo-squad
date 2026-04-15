@@ -1,4 +1,5 @@
 ---
+name: database-optimization
 description: "Query optimization, indexing strategies, schema design review, and performance tuning for PostgreSQL, MySQL, and Supabase."
 ---
 

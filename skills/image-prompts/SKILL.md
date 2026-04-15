@@ -1,4 +1,5 @@
 ---
+name: image-prompts
 description: "Generate optimized AI image prompts for Midjourney, DALL-E, Stable Diffusion, and Flux. Photography direction, style references, and iterative refinement."
 ---
 

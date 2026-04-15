@@ -1,4 +1,5 @@
 ---
+name: brand-check
 description: "Brand consistency audit: check deliverables against brand guidelines for color usage, typography, voice and tone, logo placement, and visual style."
 ---
 
