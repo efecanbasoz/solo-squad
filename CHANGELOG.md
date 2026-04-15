@@ -6,27 +6,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [2.0.0] - 2026-04-15
 
-Major restructure: multi-CLI support, flattened architecture, focused scope.
+Major restructure: 6-platform multi-CLI support, flattened architecture, focused scope.
 
 ### Breaking Changes
 
 - **Structure flattened** — removed squad-per-plugin architecture. All skills, agents, and commands now live at root level (`skills/`, `agents/`, `commands/`).
-- **Marketplace removed** — single plugin manifest replaces the marketplace + per-squad plugin.json pattern.
-- **Squads removed from public release** — marketing, project, and sales squads moved to `.local/` (gitignore). Coding, design, and security remain.
+- **Squads removed from public release** — marketing, project, and sales squads moved to `.local/` (gitignored). Coding, design, and security remain.
 - **"engineering" renamed to "coding"** — reflects broader scope beyond traditional engineering.
 
 ### Added
 
-- **Multi-CLI support** — Solo Squad now works on Claude Code, Codex CLI, and OpenCode:
-  - `.codex/INSTALL.md` — Codex CLI installation via symlink
-  - `.opencode/plugins/solo-squad.js` — OpenCode ESM plugin with skill discovery and session bootstrap
-  - `AGENTS.md` — instruction file for Codex and OpenCode (identical to CLAUDE.md)
+- **Multi-CLI support** — Solo Squad now works on 6 platforms:
+  - **Claude Code**: `.claude-plugin/plugin.json` + `marketplace.json` for native plugin install
+  - **Codex CLI**: `.codex/INSTALL.md` — clone + symlink, with Windows junction support
+  - **OpenCode**: `.opencode/plugins/solo-squad.js` — ESM plugin with skill discovery and session bootstrap
+  - **Cursor**: `.cursor-plugin/plugin.json` — native plugin with skills, agents, commands, hooks
+  - **Gemini CLI**: `GEMINI.md` + `gemini-extension.json` — native extension
+  - **Copilot CLI**: shares `.claude-plugin/` manifest, native plugin install
+  - `AGENTS.md` — shared instruction file for Codex and Copilot (identical to CLAUDE.md)
   - `package.json` — npm entry point for OpenCode plugin installation
-- **Bootstrap skill** (`skills/using-solo-squad/SKILL.md`) — loaded at session start, provides full skill/agent/command reference
-- **Tool mapping references** — platform-specific tool equivalence tables:
+- **Tool mapping references** for each platform:
   - `skills/using-solo-squad/references/codex-tools.md`
   - `skills/using-solo-squad/references/opencode-tools.md`
-- **Platform-detecting session-start hook** — single bash script that outputs the correct JSON format for Claude Code, Codex, OpenCode, Cursor, and Copilot CLI
+  - `skills/using-solo-squad/references/gemini-tools.md`
+  - `skills/using-solo-squad/references/copilot-tools.md`
+- **Bootstrap skill** (`skills/using-solo-squad/SKILL.md`) — loaded at session start, provides full skill/agent/command reference
+- **Platform-detecting session-start hook** — single bash script that outputs the correct JSON format for Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and Copilot CLI
+- **Windows support** — `hooks/run-hook.cmd` polyglot wrapper (batch + bash), Windows install instructions for Codex CLI
+- **Cursor hooks** — `hooks/hooks-cursor.json` with `CURSOR_PLUGIN_ROOT` paths
 - **Unified hooks** — merged 3 squad-specific hook configs into one `hooks/hooks.json` with SessionStart, PreToolUse, and PostToolUse events
 - `CLAUDE.md` — project context file for Claude Code
 
@@ -34,11 +41,10 @@ Major restructure: multi-CLI support, flattened architecture, focused scope.
 
 - Skills, agents, and commands unchanged in content — only moved from `plugins/{squad}/` to root level
 - Hook scripts renamed for clarity: `tdd-reminder.sh`, `brand-check.sh`, `destructive-warning.sh`
-- Version bumped to 2.0.0 across all manifests
+- `scripts/bump-version.sh` now updates all 5 manifest files (package.json, plugin.json, marketplace.json, cursor plugin.json, gemini-extension.json)
 
 ### Removed
 
-- `.claude-plugin/marketplace.json` — no longer needed (single plugin)
 - Per-squad `.claude-plugin/plugin.json` files
 - Per-squad `hooks/hooks.json` files
 - `plugins/` directory structure
@@ -72,11 +78,10 @@ Major release: from skill collection to coordinated agency operating system.
 ### Changed
 
 - **All 13 agents enriched** with standard template: Expertise, Decision Framework, Behavioral Directives, Deliverables sections
-- **18 existing skills improved** with Agency Agents insights:
+- **18 existing skills improved** with deeper process definitions:
   - review: BLOCKER/SUGGESTION/NIT classification, single-pass rule
   - investigate: hypothesis logging, escalation path
   - build: two-stage review detail, commit standards
-  - ai-citation: entity clarity audit, citation pattern tracking
   - seo-audit: topical clusters, SERP features, cannibalization detection
   - social-strategy: per-platform algorithm mechanics
   - paid-audit: severity ratings with financial impact projections
@@ -84,15 +89,15 @@ Major release: from skill collection to coordinated agency operating system.
   - ux-research: execution steps (recruit, facilitate, analyze)
   - brand-check: no-guidelines reverse-engineering path
   - image-prompts: photography technical reference
-  - deal-strategy: competitive tactics, Challenger reframes, ghosting
+  - deal-strategy: competitive tactics, reframes, ghosting recovery
   - discovery-prep: current-state mapping, gap quantification
   - proposal: SCQA executive summary craft
   - feedback-synthesis: quantification framework
   - status-report: trend arrows, client/team action separation
   - cso: supply chain security, zero-trust checklist
   - benchmark: load/stress/endurance testing, capacity planning
-- **Smart hooks** — all 6 squads upgraded from generic reminders to context-aware shell scripts that check file type, path, and content before firing
-- **Version bumped** to 1.2.0 across all manifests
+  - ai-citation: entity clarity audit, citation pattern tracking
+- **Smart hooks** — all squads upgraded from generic reminders to context-aware shell scripts that check file type, path, and content before firing
 
 ## [1.0.0] - 2026-04-07
 
@@ -131,8 +136,7 @@ Initial release.
 
 ### Known limitations
 
-- Browser automation in `/browse` is minimal compared to gstack equivalents
+- Browser automation in `/browse` is minimal compared to dedicated headless browser tools
 - Hooks fire generic reminders rather than context-aware suggestions
 - Agent tool permissions are generic and need tightening per role
 - No unit tests on skill structures yet
-- Campaign-ops deliverable formats will evolve based on real client audit feedback
