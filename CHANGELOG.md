@@ -4,6 +4,21 @@ All notable changes to Solo Squad will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2026-04-15
+
+Patch release focused on restoring OpenCode compatibility without changing Claude Code or Codex behavior.
+
+### Fixed
+
+- **OpenCode plugin compatibility** — updated `.opencode/plugins/solo-squad.js` to the current OpenCode server plugin API so the plugin loads correctly again
+- **Skill discovery on OpenCode** — added `name` frontmatter to all shared `SKILL.md` files so OpenCode can register every skill while keeping the same files usable across other CLIs
+- **OpenCode commands and subagents** — the plugin now registers workflow commands from `commands/` and subagents from `agents/` during config injection
+- **OpenCode docs and install examples** — corrected the `plugin` config key, current tool mappings, and local install examples in the README and reference docs
+
+### Changed
+
+- Updated contribution and shared context docs to document the cross-CLI `name` + `description` skill frontmatter convention
+
 ## [2.0.0] - 2026-04-15
 
 Major restructure: 6-platform multi-CLI support, flattened architecture, focused scope.

@@ -9,7 +9,7 @@
       "name": "solo-squad",
       "source": "./",
       "description": "Turn one developer into a full squad. 27 skills across coding, design & security — with multi-agent workflows, TDD enforcement, and safety guardrails.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "Solo Squad",
         "email": "hello@sirkhet.com"
