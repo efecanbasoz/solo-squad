@@ -166,9 +166,20 @@ Solo Squad: Design doc saved. → /plan
   ├── ...
   └── #12 E2E test: notification lifecycle
 
-  Continue to /build? [y/N]
+  Continue to /autoplan? [y/N]
 
 You: y
+
+Solo Squad:
+  === AUTOPLAN VERDICT ===
+  Overall: PROCEED
+
+  CEO:    CLEAR — Scope matches the user problem
+  Design: PASS  — Main UI flow is covered
+  Eng:    CLEAR — Data flow and reconnect edge cases are explicit
+  DevEx:  PASS  — Local verification path is straightforward
+
+  → /build
 
 [Subagents execute each task with TDD — 25 min]
 
@@ -180,11 +191,33 @@ Solo Squad: Build complete. 12/12 tasks, 94% coverage.
     SUGGESTION: Extract toast queue into custom hook
     NIT: Inconsistent error message casing
 
+  → /polish-beta
+
+  ⏸ POLISH #1 — docs/notifications.md:42
+  Current:  "Alerts are send instantly"
+  Proposed: "Alerts are sent instantly"
+  Reply: apply
+
+You: apply
+
+Solo Squad:
+  ✓ Polish applied
   → /ship
 
   ✓ Tests passing (47/47)
   ✓ Coverage: 94% (threshold: 80%)
   ✓ PR opened: feat(notifications): add real-time alert system
+
+[Review approved]
+
+Solo Squad:
+  → /land-and-deploy
+
+  ✓ Merge complete
+  ✓ Deploy ready: https://example.vercel.app
+  ✓ Canary: PROCEED
+  ✓ Docs synced: CHANGELOG.md, README.md
+  → /compound
 ```
 
 ### Catch what CI misses
