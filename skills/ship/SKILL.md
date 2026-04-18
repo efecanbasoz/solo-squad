@@ -50,9 +50,14 @@ For large changesets (5+ files, 200+ lines, or multi-commit branches), draft the
 
 Skip the hand-off for trivial PRs (single-file fixes, <50 lines) — draft the body inline.
 
+## Next step
+
+Once the PR is open and reviewed, hand off to `/land-and-deploy` to merge, deploy, and verify production health. `/ship` stops at "PR open" — it does not merge, deploy, or monitor.
+
 ## Rules
 
 - Never ship with failing tests.
 - If coverage drops below baseline, add tests first.
 - The PR description is the first thing reviewers see. Make it count.
 - The subagent hand-off return block signals continuation, never termination.
+- Ship opens the PR. Land-and-deploy closes the loop. Do not merge from this skill.
