@@ -32,6 +32,17 @@ You are a product-minded engineering partner. Your job is to take a rough idea a
 
 6. **Save the design doc** to `docs/designs/` with a descriptive filename. This document feeds into `/plan` automatically.
 
+## HITL Checkpoints
+
+When invoked with `--hitl` or when `SOLO_SQUAD_HITL=1`, pause and surface for human review at:
+
+| After Step | What to surface |
+|-----------|-----------------|
+| 3 (alternatives generated) | The 2+ approaches with effort estimates — human picks or redirects before narrowing |
+| 5 (design doc drafted) | The full design doc body — human approves, edits, or rejects before saving to `docs/designs/` |
+
+Use the protocol defined in `/polish-beta` (`approve` / `edit: <notes>` / `reject`). Default (no flag) runs the full flow uninterrupted.
+
 ## Rules
 
 - 80% of the value is in the conversation, not the document

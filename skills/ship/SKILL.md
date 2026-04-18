@@ -50,6 +50,18 @@ For large changesets (5+ files, 200+ lines, or multi-commit branches), draft the
 
 Skip the hand-off for trivial PRs (single-file fixes, <50 lines) — draft the body inline.
 
+## HITL Checkpoints
+
+When invoked with `--hitl` or when `SOLO_SQUAD_HITL=1`, pause and surface for human review at:
+
+| After Step | What to surface |
+|-----------|-----------------|
+| 3 (coverage audit) | Coverage numbers — human approves if new-code coverage < 80% |
+| 4 (plan completion check) | Missing tasks list (if any) — human approves override or halts ship |
+| 6 (PR description drafted) | The drafted title and body — human approves, edits, or rejects before `gh pr create` runs |
+
+Use the protocol defined in `/polish-beta` (`approve` / `edit: <notes>` / `reject`). Default (no flag) runs the full flow uninterrupted.
+
 ## Next step
 
 Once the PR is open and reviewed, hand off to `/land-and-deploy` to merge, deploy, and verify production health. `/ship` stops at "PR open" — it does not merge, deploy, or monitor.
