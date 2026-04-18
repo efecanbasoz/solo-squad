@@ -1,4 +1,5 @@
 ---
+name: plan-devex-review
 description: "Developer experience lens on a plan: how will this feel to build, run locally, and debug? Reviews onboarding, daily-work, and debugging modes with friction points and remedies."
 ---
 

@@ -1,4 +1,5 @@
 ---
+name: land-and-deploy
 description: "Merge the PR, trigger the deploy, and verify production health end-to-end. The bridge between /ship and a confirmed live release."
 ---
 
