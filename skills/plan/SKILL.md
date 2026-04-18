@@ -47,3 +47,14 @@ If a design doc exists, run three review lenses automatically:
 - **Scope review**: Is anything missing? Is anything unnecessary?
 - **Risk review**: What's the riskiest task? What fails first?
 - **Test review**: Is every behavior covered by a test?
+
+## HITL Checkpoints
+
+When invoked with `--hitl` or when `SOLO_SQUAD_HITL=1`, pause and surface for human review at:
+
+| After Step | What to surface |
+|-----------|-----------------|
+| 2 (architecture drawn) | The data flow diagram + state machines + test strategy — human approves before task breakdown |
+| 4 (task list ordered) | The full task list with file paths and estimates — human approves, edits, or rejects before saving to `docs/plans/` |
+
+Use the protocol defined in `/polish-beta` (`approve` / `edit: <notes>` / `reject`). Default (no flag) runs the full flow uninterrupted.
