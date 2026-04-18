@@ -4,6 +4,28 @@ All notable changes to Solo Squad will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-04-19
+
+Sprint 1 of the v2.x feature waves. Five upstream-inspired additions that tighten planning, lock down deploys, and put the human back in the loop when it matters.
+
+### Added
+
+- **Multi-phase plan review pipeline** — four new skills (`plan-ceo-review`, `plan-design-review`, `plan-eng-review`, `plan-devex-review`) and a new command `/autoplan` that orchestrates them with short-circuit rules and a consolidated action list. Each review has a single lens and a structured verdict. Pattern from garrytan/gstack.
+- **Post-deploy verification suite** — three new skills: `canary` (drive critical flows on the new deploy, return PROCEED/HOLD/ROLLBACK within 10 minutes), `document-release` (diff-scan against previous tag, update CHANGELOG/README/API refs/migration notes), `land-and-deploy` (merge + deploy + canary + document-release + announce, single rollback seam). Pattern from garrytan/gstack.
+- **HITL review-loop mode** — new skill `polish-beta` defines the canonical `approve | edit: <notes> | reject` protocol and handles last-mile polish between `/review` and `/land-and-deploy`. Pattern from EveryInc/compound-engineering-plugin.
+- **HITL Checkpoints** declared in `/brainstorm`, `/plan`, `/build`, `/ship` — pauses activate with `--hitl` flag or `SOLO_SQUAD_HITL=1` environment variable. Default flow stays uninterrupted.
+- **PR description hand-off pattern** in `/ship` — subagent drafts multi-KB PR bodies to a temp file; parent uses `--body-file` instead of round-tripping through context. Pattern from EveryInc/compound-engineering-plugin PR #593.
+- **Context rot defense for `/ship`** — coverage audit, plan completion check, docs sync, and PR description drafting now dispatch as subagents. Parent only sees structured JSON conclusions. Pattern from garrytan/gstack v0.18.1 PR #1030.
+
+### Changed
+
+- `/ship` steps renumbered as clean integers; fractional sub-steps (e.g., `3.1`) explicitly forbidden to prevent silent skips under context rot.
+- `/ship` now hands off to `/land-and-deploy` after PR is open and reviewed — ship no longer merges.
+- `/plan` now points non-trivial plans to `/autoplan` for the full four-review gate; the existing three-lens quick check stays as a sanity step.
+- `/sprint` pipeline extended: `… review → polish-beta → ship → land-and-deploy → document-release → compound`.
+- `/sprint` now accepts `--hitl` to turn on in-phase checkpoints.
+- Skill count: 27 → 35 (8 new). Commands: 7 → 8 (+`/autoplan`).
+
 ## [2.0.1] - 2026-04-15
 
 Patch release focused on restoring OpenCode compatibility without changing Claude Code or Codex behavior.
