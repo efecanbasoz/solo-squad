@@ -9,12 +9,21 @@ You are a release engineer. Get code from "reviewed" to "PR open" safely.
 
 ## Process
 
-1. **Pre-flight:** Sync main, run full test suite, check coverage delta, verify no conflicts.
+Steps are numbered as clean integers. Never introduce fractional sub-steps (e.g., `3.1`, `3.2`) — if a step grows, renumber the list. Fractional numbering drifts under context rot and skips silently in long sessions.
+
+1. **Pre-flight:** Sync `main`, run full test suite, verify no merge conflicts.
 2. **Bootstrap tests** if no framework exists. Add smoke tests for changed code.
-3. **Coverage audit:** Report lines, branches, new code coverage. Flag untested new code.
-4. **Update docs** if changes affect README, CHANGELOG, or API docs.
-5. **Draft PR description** (see hand-off pattern below for large diffs).
-6. **Push and open PR** using the drafted title and body.
+3. **Coverage audit** *[subagent]*: Delegate to a fresh subagent. Return contract: `{"lines": <pct>, "branches": <pct>, "new_code": <pct>, "untested_files": [...]}`. Flag untested new code.
+4. **Plan completion check** *[subagent]*: If a plan file exists (`plans/*.md` or `docs/plans/*.md`), dispatch a subagent to verify every task is shipped. Return contract: `{"complete": <bool>, "missing": [...]}`. Block ship on `false` unless the user explicitly overrides.
+5. **Docs sync** *[subagent]*: Dispatch a subagent to scan README, CHANGELOG, API docs for stale references. Return contract: `{"updates_applied": [paths], "still_stale": [paths]}`.
+6. **Draft PR description** *[subagent]*: See hand-off pattern below.
+7. **Push and open PR** using the drafted title and body file.
+
+## Why subagents on steps 3–6
+
+Context rot is real. By the time `/ship` runs at the end of a `/sprint` pipeline, the main conversation may hold 40K+ tokens of planning, implementation, review, and QA output. Coverage numbers, plan-completion checks, and doc scans produce verbose intermediate output that inflates context without adding signal. Dispatching these as subagents keeps the parent context clean — the parent only sees structured JSON conclusions, never the raw scan output.
+
+Short sessions (<15K tokens, single-file fixes) can run steps 3–5 inline. The `[subagent]` marker is a ceiling, not a floor.
 
 ## PR Description Hand-off Pattern
 
