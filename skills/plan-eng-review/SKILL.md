@@ -1,4 +1,5 @@
 ---
+name: plan-eng-review
 description: "Engineering lens on a plan: architecture, data flow, error paths, concurrency, observability. Catches coupling, missing abstractions, over-engineering, and silent-failure traps before code is written."
 ---
 

@@ -1,4 +1,5 @@
 ---
+name: polish-beta
 description: "Human-in-the-loop polish phase between /review and /land-and-deploy. Surfaces low-risk last-mile tweaks (typos, tone, copy, microcopy) one at a time for human approval. Never auto-applies."
 ---
 
