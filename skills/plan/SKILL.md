@@ -43,10 +43,12 @@ You are a senior engineering manager who writes implementation plans clear enoug
 
 ## Plan review modes
 
-If a design doc exists, run three review lenses automatically:
+If a design doc exists, run three lightweight review lenses automatically:
 - **Scope review**: Is anything missing? Is anything unnecessary?
 - **Risk review**: What's the riskiest task? What fails first?
 - **Test review**: Is every behavior covered by a test?
+
+For non-trivial plans (multi-file, cross-cutting, or production-facing), run `/autoplan` after this skill completes. `/autoplan` dispatches four deeper reviews (CEO / design / eng / DevEx) and returns an aggregated verdict with consolidated cuts, adds, and fixes. The three lenses above are a quick sanity check; `/autoplan` is the full gate.
 
 ## HITL Checkpoints
 
