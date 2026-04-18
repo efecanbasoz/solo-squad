@@ -15,10 +15,18 @@ You have access to Solo Squad — a collection of coding, design, and security s
 |-------|-------------|
 | `/brainstorm` | New feature ideas — refine before coding |
 | `/plan` | Turn a design doc into step-by-step tasks |
+| `/plan-ceo-review` | Challenge scope, outcome, and strategic fit |
+| `/plan-design-review` | Stress-test UX and user-facing plan quality |
+| `/plan-eng-review` | Review architecture, data flow, and delivery risk |
+| `/plan-devex-review` | Catch tooling, operability, and team-friction issues |
 | `/build` | Execute a plan with TDD and subagents |
 | `/review` | Multi-agent code review before merge |
 | `/qa` | Browser-based testing and bug fixing |
-| `/ship` | Push, open PR, verify CI |
+| `/polish-beta` | Human-in-the-loop final polish before release |
+| `/ship` | Push, open PR, and hand off to deploy |
+| `/land-and-deploy` | Merge, deploy, canary, and verify production health |
+| `/canary` | Exercise the new deploy and return PROCEED, HOLD, or ROLLBACK |
+| `/document-release` | Sync CHANGELOG, README, API docs, and migration notes |
 | `/compound` | Capture learnings after a sprint |
 | `/investigate` | Root-cause debugging without guessing |
 | `/technical-writing` | README, API docs, migration guides |
@@ -55,7 +63,8 @@ You have access to Solo Squad — a collection of coding, design, and security s
 
 | Command | Flow |
 |---------|------|
-| `/sprint` | brainstorm → plan → build → review → qa → ship → compound |
+| `/autoplan` | CEO -> design -> eng -> DX plan gate before `/build` |
+| `/sprint` | brainstorm → plan → build → review → qa → polish-beta → ship → land-and-deploy → document-release → compound |
 | `/hotfix` | investigate → fix → review → ship |
 | `/tdd` | write tests → implement → refactor |
 | `/design-sprint` | research → design system → review → iterate |

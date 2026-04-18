@@ -7,7 +7,7 @@ Solo Squad is a plugin for AI coding CLIs that provides 35 skills across coding,
 ```
 skills/          — 35 SKILL.md files (the core content)
 agents/          — 5 agent definitions (Architect, Tester, Debugger, Critic, Sentinel)
-commands/        — 7 workflow commands (sprint, hotfix, tdd, etc.)
+commands/        — 8 workflow commands (autoplan, sprint, hotfix, tdd, etc.)
 hooks/           — Runtime hooks + platform-detecting session-start + Windows wrapper
 .claude-plugin/  — Claude Code plugin manifest + marketplace
 .cursor-plugin/  — Cursor plugin manifest

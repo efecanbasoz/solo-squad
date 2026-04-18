@@ -10,7 +10,7 @@
 [![Gemini CLI](https://img.shields.io/badge/Gemini_CLI-Compatible-yellow)](https://github.com/google-gemini/gemini-cli)
 [![Copilot CLI](https://img.shields.io/badge/Copilot_CLI-Compatible-lightgrey)](https://githubnext.com/projects/copilot-cli)
 
-**27 structured workflows** across coding, design, and security for any AI coding CLI. No vague instructions — each skill is a battle-tested process with numbered steps, quality gates, and defined deliverables.
+**35 skills + 8 workflow commands** across coding, design, and security for any AI coding CLI. No vague instructions — each skill is a battle-tested process with numbered steps, quality gates, and defined deliverables.
 
 ---
 
@@ -219,16 +219,24 @@ Solo Squad:
 
 ## What's inside
 
-### Coding — 13 skills, 3 agents
+### Coding — 21 skills, 3 agents
 
 | Skill | Your specialist |
 |-------|----------------|
 | `/brainstorm` | Product partner who challenges your assumptions |
 | `/plan` | Architect who breaks work into 2-5 min tasks with file paths |
+| `/plan-ceo-review` | Strategic reviewer who challenges scope, outcome, and framing |
+| `/plan-design-review` | Design reviewer who scores UX, accessibility, and consistency before implementation |
+| `/plan-eng-review` | Engineering reviewer who locks down architecture and data flow before code |
+| `/plan-devex-review` | DX reviewer who catches local-dev, onboarding, and debugging friction |
 | `/build` | Lead engineer dispatching subagents with TDD enforcement |
 | `/review` | Senior reviewer classifying BLOCKER / SUGGESTION / NIT |
 | `/qa` | QA lead running real browser tests, filing bugs, writing regression tests |
-| `/ship` | Release engineer: tests, coverage audit, PR, verify CI |
+| `/polish-beta` | HITL polish pass for copy, microcopy, and last-mile release quality |
+| `/ship` | Release engineer: tests, coverage audit, PR open, deploy handoff |
+| `/land-and-deploy` | Release owner who merges, deploys, canaries, and verifies health |
+| `/canary` | Post-deploy verifier for critical flows, console errors, and perf regressions |
+| `/document-release` | Docs steward syncing CHANGELOG, README, API docs, and migration notes |
 | `/compound` | Knowledge curator capturing patterns for next time |
 | `/investigate` | Debugger who traces data flow and logs hypotheses |
 | `/technical-writing` | Tech writer: README, API docs, migration guides |
@@ -273,7 +281,8 @@ Chain skills into end-to-end pipelines:
 
 | Command | What happens |
 |---------|-------------|
-| `/sprint` | brainstorm → plan → build → review → qa → ship → compound |
+| `/autoplan` | CEO → design → eng → DX plan gate before `/build` |
+| `/sprint` | brainstorm → plan → build → review → qa → polish-beta → ship → land-and-deploy → document-release → compound |
 | `/hotfix` | investigate → fix → review → ship |
 | `/tdd` | red → green → refactor (enforced) |
 | `/design-sprint` | research → design system → review → iterate |
