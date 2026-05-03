@@ -128,6 +128,13 @@ function buildSessionContext() {
   }
 
   try {
+    const agentsMd = readFileSync(join(PLUGIN_ROOT, "AGENTS.md"), "utf-8").trim();
+    if (agentsMd) sections.push(agentsMd);
+  } catch {
+    // Continue without AGENTS.md.
+  }
+
+  try {
     const toolMapping = readFileSync(join(SKILLS_DIR, "using-solo-squad", "references", "opencode-tools.md"), "utf-8").trim();
     if (toolMapping) sections.push(toolMapping);
   } catch {

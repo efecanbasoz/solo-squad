@@ -1,32 +1,105 @@
 #!/bin/bash
 set -e
 
-# Solo Squad session bootstrap — detects platform and injects context
+# Solo Squad — Universal Session Bootstrap
+# Injects context at session start with update checks, feature discovery,
+# and project context recovery.
 # Supports: Claude Code, Codex CLI, OpenCode
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PLUGIN_ROOT="$(dirname "$SCRIPT_DIR")"
+SOLO_SQUAD_DIR="$HOME/.solo-squad"
+SESSION_MARKER="$SOLO_SQUAD_DIR/.last-session"
 
-# Read the bootstrap skill content
-BOOTSTRAP_SKILL="$PLUGIN_ROOT/skills/using-solo-squad/SKILL.md"
+mkdir -p "$SOLO_SQUAD_DIR"
 
-if [ ! -f "$BOOTSTRAP_SKILL" ]; then
-  exit 0
+# ── 1. Update Check ──────────────────────────────────────────────────────
+LATEST_COMMIT=""
+UPDATE_MSG=""
+if command -v git &>/dev/null && [ -d "$PLUGIN_ROOT/.git" ]; then
+  LATEST_COMMIT=$(cd "$PLUGIN_ROOT" && git log -1 --format=%cd --date=short 2>/dev/null || echo "")
+  if [ -n "$LATEST_COMMIT" ]; then
+    UPDATE_MSG="\n📦 Solo Squad v2.2.0 (last updated: $LATEST_COMMIT)"
+  fi
 fi
 
-# Extract content after frontmatter (skip --- blocks)
-SESSION_CONTEXT=$(awk 'BEGIN{skip=0} /^---$/{skip++; next} skip>=2{print}' "$BOOTSTRAP_SKILL")
+# ── 2. Feature Discovery (once per day) ──────────────────────────────────
+FEATURE_DISCOVERY=""
+TODAY=$(date +%Y-%m-%d)
+FEATURE_FLAG="$SOLO_SQUAD_DIR/.feature-shown-$TODAY"
+
+if [ ! -f "$FEATURE_FLAG" ]; then
+  touch "$FEATURE_FLAG"
+  # Show one tip per day about underused skills
+  FEATURE_DISCOVERY="\n💡 Tip of the day: Use \`/slop-scan\` before code review to catch AI-generated quality issues (empty catches, redundant awaits, dead code)."
+fi
+
+# ── 3. Project Context Recovery ──────────────────────────────────────────
+PROJECT_CONTEXT=""
+
+# Recent design docs
+if [ -d "$PWD/docs/designs" ]; then
+  RECENT_DESIGNS=$(ls -t "$PWD/docs/designs" 2>/dev/null | head -3 | sed 's/^/  - docs\/designs\//' || true)
+  if [ -n "$RECENT_DESIGNS" ]; then
+    PROJECT_CONTEXT="${PROJECT_CONTEXT}\n📋 Recent design docs:\n$RECENT_DESIGNS"
+  fi
+fi
+
+# Recent plans
+if [ -d "$PWD/docs/plans" ]; then
+  RECENT_PLANS=$(ls -t "$PWD/docs/plans" 2>/dev/null | head -3 | sed 's/^/  - docs\/plans\//' || true)
+  if [ -n "$RECENT_PLANS" ]; then
+    PROJECT_CONTEXT="${PROJECT_CONTEXT}\n📋 Recent plans:\n$RECENT_PLANS"
+  fi
+fi
+
+# Recent learnings
+if [ -f "$SOLO_SQUAD_DIR/learnings.jsonl" ]; then
+  RECENT_LEARNINGS=$(tail -3 "$SOLO_SQUAD_DIR/learnings.jsonl" 2>/dev/null | sed 's/^/  - /' || true)
+  if [ -n "$RECENT_LEARNINGS" ]; then
+    PROJECT_CONTEXT="${PROJECT_CONTEXT}\n🧠 Recent learnings:\n$RECENT_LEARNINGS"
+  fi
+fi
+
+# ── 4. Bootstrap Skill Content ───────────────────────────────────────────
+BOOTSTRAP_SKILL="$PLUGIN_ROOT/skills/using-solo-squad/SKILL.md"
+BOOTSTRAP_CONTENT=""
+
+if [ -f "$BOOTSTRAP_SKILL" ]; then
+  BOOTSTRAP_CONTENT=$(awk 'BEGIN{skip=0} /^---$/{skip++; next} skip>=2{print}' "$BOOTSTRAP_SKILL" | sed 's/^/  /')
+fi
+
+# ── 5. Assemble Session Context ──────────────────────────────────────────
+SESSION_CONTEXT=""
+
+if [ -n "$UPDATE_MSG" ]; then
+  SESSION_CONTEXT="${SESSION_CONTEXT}${UPDATE_MSG}"
+fi
+
+if [ -n "$FEATURE_DISCOVERY" ]; then
+  SESSION_CONTEXT="${SESSION_CONTEXT}${FEATURE_DISCOVERY}"
+fi
+
+if [ -n "$PROJECT_CONTEXT" ]; then
+  SESSION_CONTEXT="${SESSION_CONTEXT}${PROJECT_CONTEXT}"
+fi
+
+if [ -n "$BOOTSTRAP_CONTENT" ]; then
+  SESSION_CONTEXT="${SESSION_CONTEXT}\n\n---\n\n${BOOTSTRAP_CONTENT}"
+fi
+
+# ── 6. Output in Platform-Native Format ──────────────────────────────────
 
 # Escape for JSON
-SESSION_CONTEXT=$(echo "$SESSION_CONTEXT" | jq -Rs .)
-# Remove outer quotes added by jq -Rs
-SESSION_CONTEXT="${SESSION_CONTEXT:1:${#SESSION_CONTEXT}-2}"
+SESSION_CONTEXT_ESCAPED=$(printf '%s' "$SESSION_CONTEXT" | jq -Rs . | sed 's/^"//;s/"$//')
 
-# Detect platform and output the right JSON format
 if [ -n "${CLAUDE_PLUGIN_ROOT:-}" ]; then
-  # Claude Code
-  printf '{ "hookSpecificOutput": { "hookEventName": "SessionStart", "additionalContext": "%s" } }\n' "$SESSION_CONTEXT"
+  # Claude Code — native hook format
+  printf '{ "hookSpecificOutput": { "hookEventName": "SessionStart", "additionalContext": "%s" } }\n' "$SESSION_CONTEXT_ESCAPED"
 else
-  # Codex CLI / OpenCode / default (SDK standard)
-  printf '{ "additionalContext": "%s" }\n' "$SESSION_CONTEXT"
+  # Codex CLI / OpenCode / SDK standard
+  printf '{ "additionalContext": "%s" }\n' "$SESSION_CONTEXT_ESCAPED"
 fi
+
+# Mark session
+date +%Y-%m-%dT%H:%M:%S > "$SESSION_MARKER"
