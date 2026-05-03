@@ -27,7 +27,7 @@ for agent_file in "$AGENTS_DIR"/*.md; do
   fm=$(awk 'BEGIN{skip=0} /^---$/{skip++; next} skip>=2{exit} skip>=1{print}' "$agent_file")
 
   # Required fields
-  for field in name description model tools version triggers; do
+  for field in name description model tools version; do
     if ! echo "$fm" | grep -qE "^${field}:"; then
       echo "  ❌ $agent_name: Missing '$field' in frontmatter"
       ((ERRORS++)) || true

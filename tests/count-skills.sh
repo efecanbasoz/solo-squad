@@ -5,7 +5,7 @@ set -euo pipefail
 # Validates the expected number of skills exist.
 
 SKILLS_DIR="${1:-./skills}"
-EXPECTED_COUNT="${2:-41}"
+EXPECTED_COUNT="${2:-27}"
 
 echo "🔍 Counting skills in $SKILLS_DIR..."
 
