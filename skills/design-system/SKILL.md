@@ -54,7 +54,72 @@ When starting from scratch, use one of these templates as a foundation. Adapt to
 
 **Components:** Product card (image/title/price/rating/CTA), Product gallery, Size selector, Quantity stepper, Cart drawer, Checkout steps, Order summary, Review stars, Wishlist toggle, Filter sidebar.
 
+## Critical Rules
+
+1. **Consistency over creativity.** The design system is infrastructure, not art. Save creativity for product design.
+2. **WCAG 2.1 AA minimum.** No component ships without passing accessibility checks.
+3. **Document decisions, not just outputs.** Every token choice needs a rationale.
+4. **Start with primitives.** Button, Input, Card, Badge, Avatar before composites.
+5. **Tokens before components.** Define the token layer before building any UI.
+
+## Decision Table
+
+| Project Type | Primary Template | Key Difference |
+|--------------|-----------------|---------------|
+| SaaS product | SaaS Product Template | Dense UI, data-heavy, dark mode support |
+| Marketing site | Marketing Site Template | Bold visuals, generous whitespace, dramatic typography |
+| E-commerce | E-Commerce Template | Product-forward, trust signals, dense grids |
+| Internal tool | SaaS Product Template | Simplified, fewer variants, function over form |
+
+## Automatic Fail Triggers
+
+- Component ships without accessibility checks.
+- Design tokens not defined before components are built.
+- No rationale documented for token choices.
+- WCAG contrast ratio below 4.5:1 for text.
+- Components lack "when not to use" documentation.
+
+## Deliverable Template
+
+```
+# Design System: <Project Name>
+
+## Tokens
+### Colors
+- Primary: <hex> — <usage>
+- ...
+
+### Typography
+- Scale: <sizes>
+- Weights: <values>
+
+### Spacing
+- Base unit: <px>
+- Scale: <values>
+
+## Components
+### <Component Name>
+- **When to use:** <scenario>
+- **When NOT to use:** <scenario>
+- **Props/variants:** <list>
+- **Accessibility:** <requirements>
+- **Code example:** <snippet>
+
+## Patterns
+- <Pattern>: <usage guidelines>
+
+## Decisions Log
+| Decision | Chosen | Rationale |
+|----------|--------|-----------|
+| <Choice> | <Option> | <Why> |
+```
+
+## Success Metrics for This Skill
+
+- All primitives defined before composites: 100%
+- Every component has accessibility docs: 100%
+- Contrast ratios documented: 100%
+- "When not to use" documented per component: 100%
+
 ## Rules
-- Consistency > creativity for a design system. Save creativity for the product design.
-- Every component must meet WCAG 2.1 AA at minimum.
-- Document decisions, not just the outputs.
+- Save creativity for the product design.

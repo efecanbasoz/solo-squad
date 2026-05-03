@@ -44,15 +44,63 @@ When returning `ROLLBACK`:
 2. Recommend the revert command (platform-specific: `vercel rollback`, `gh pr revert`, etc.) but **do not execute it** — rollback is a human decision.
 3. Capture the evidence (screenshots, console dump, network HAR) to a timestamped folder under `~/.canary/` for post-mortem.
 
+## Critical Rules
+
+1. Capture baseline metrics before touching the new deployment — comparison without baseline is invalid.
+2. Drive every critical flow end-to-end using real browser automation; synthetic health checks are insufficient.
+3. Declare `UNREACHABLE` and escalate immediately if any critical flow is blocked by auth, 404, or infrastructure failure.
+4. Make the rollback decision within 10 minutes of deploy completion; partial data beats a blind guess.
+5. Preserve all evidence (screenshots, console logs, network HAR) before the deployment changes again.
+
+## Mandatory Process
+
+1. MUST identify 3-5 critical flows before testing begins.
+2. MUST capture baseline metrics on current production for each flow.
+3. MUST execute each critical flow via `/browse` on the new deployment.
+4. MUST compare results against regression thresholds (LCP, CLS, errors, 5xx).
+5. MUST produce a `PROCEED` / `HOLD` / `ROLLBACK` decision with cited evidence.
+6. MUST save evidence bundle to `~/.canary/<timestamp>/` on `HOLD` or `ROLLBACK`.
+
+## Automatic Fail Triggers
+
+- Declaring `PROCEED` without running all reachable critical flows.
+- Skipping baseline capture and comparing against memory or estimates.
+- Returning `ROLLBACK` without naming the exact flow, threshold, and evidence.
+- Exceeding the 10-minute budget without returning `HOLD` with partial results.
+- Missing new 5xx errors or console regressions due to incomplete flow coverage.
+
+## Deliverable Template
+
+```markdown
+## Canary Report — [TIMESTAMP]
+
+**Decision:** PROCEED / HOLD / ROLLBACK
+
+### Per-Flow Comparison
+| Flow | Baseline LCP | Canary LCP | Δ | Console Errors | Network Errors | Verdict |
+|------|-------------|------------|---|----------------|----------------|---------|
+| ...  | ...         | ...        | ... | ...            | ...            | ...     |
+
+### Failed Thresholds
+- Flow: [name] — [threshold] — [value]
+
+### Evidence Location
+`~/.canary/[timestamp]/`
+
+### Recommended Action
+[revert command or next step]
+```
+
+## Success Metrics for This Skill
+
+- 100% of critical flows reached or explicitly declared `UNREACHABLE`
+- 100% of `HOLD`/`ROLLBACK` decisions include timestamped evidence bundle
+- ≥90% of canary checks complete within 10-minute budget
+- 0% false `PROCEED` on flows with regressions
+- 100% of new 5xx or console errors caught vs. baseline
+
 ## Rules
 
 - Never declare `PROCEED` on a flow you could not reach (auth wall, 404). Report as `UNREACHABLE` and escalate.
 - Baseline capture is required. A canary without a baseline is a smoke test, not a regression check.
 - 10-minute budget from deploy to decision. If you cannot finish in time, return `HOLD` with partial results — never guess.
-- Rollback triggers the `/incident-response` skill if the regression affects paying users.
-
-## Deliverables
-
-- Rollback decision: `PROCEED` / `HOLD` / `ROLLBACK` with the specific flow + threshold cited
-- Per-flow metrics comparison (baseline vs. canary) as a table
-- Evidence bundle under `~/.canary/<timestamp>/` on `HOLD` or `ROLLBACK`

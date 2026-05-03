@@ -39,12 +39,59 @@ You own the PR from "approved" to "confirmed healthy in production." This skill 
    - Docs commits
    - Known follow-ups (from `/document-release` TODO output)
 
+## Critical Rules
+
+1. Never merge past a failing required check — CI is the source of truth, admin override is forbidden.
+2. Never auto-execute a rollback — recommend and trigger `/incident-response`, but let a human decide.
+3. If the deploy platform or command is unknown, halt and ask — do not guess or assume.
+4. Documentation commits land ONLY after canary returns `PROCEED` — never before.
+5. Every decision must be logged with timestamp, evidence, and next action before advancing.
+
+## Mandatory Process
+
+1. Confirm all required CI checks are green and all review blockers are resolved.
+2. Verify the target branch is not under a deploy freeze.
+3. Merge using the project's preferred strategy with a clean final commit title.
+4. Trigger or wait for the deploy event; track until `READY` or timeout (15 min).
+5. Run `/canary` on the new deploy URL and capture the decision (`PROCEED` / `HOLD` / `ROLLBACK`).
+6. If canary returns `PROCEED`, run `/document-release` and commit doc updates to `main`.
+7. Post the release summary with version, URL, canary evidence, docs commits, and known follow-ups.
+8. If canary returns `HOLD`, pause and surface evidence; if `ROLLBACK`, trigger `/incident-response`.
+
+## Automatic Fail Triggers
+
+- Merging with any failing required CI check.
+- Deploy timeout exceeds 15 minutes without status update.
+- Canary returns `ROLLBACK` and the skill continues without triggering `/incident-response`.
+- Doc commits pushed before canary completes or on a `HOLD`/`ROLLBACK` decision.
+- Missing observability — any step advanced without logging decision, timing, and evidence.
+
+## Deliverable Template
+
+```markdown
+## Land and Deploy Summary
+
+- **PR:** `<pr-url>` → **Merged:** `<commit-sha>`
+- **Deploy URL:** `<url>` — **Status:** `<ready/failed/timeout>`
+- **Canary Decision:** `<PROCEED/HOLD/ROLLBACK>` — **Evidence:** `<link or notes>`
+- **Doc Commits:** `<list or "Skipped — canary did not pass">`
+- **Release Summary:** `<pasted to channel or link>`
+- **Follow-ups:** `<list or "None">`
+- **Rollback Command (if needed):** `<git revert / rollback command>`
+```
+
+## Success Metrics for This Skill
+
+- 100% of merges pass all required CI checks with zero admin overrides.
+- 100% of deploys are tracked to `READY` or explicitly timed out and escalated.
+- 100% of canary decisions are captured with evidence before proceeding to docs.
+- 100% of doc commits land after canary `PROCEED` — never before.
+- 95% of releases complete end-to-end (merge → deploy → canary → docs → announce) without human intervention.
+
 ## Rules
 
 - Never merge past a failing required check, even with admin override — CI is the source of truth.
 - Never auto-execute a rollback. Rollback is a human decision; this skill recommends, it does not act.
-- If the deploy platform is unknown, halt at step 3 and ask — do not guess the deploy command.
-- Doc commits land after canary passes. If canary returns `HOLD` or `ROLLBACK`, docs wait.
 - Every step is observable: log the decision, timing, and next action before moving on.
 
 ## Deliverables

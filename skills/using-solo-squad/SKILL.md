@@ -11,7 +11,7 @@ triggers:
 
 # Using Solo Squad
 
-You have access to Solo Squad — a collection of coding, design, security, and quality skills that turn one developer into a full squad.
+You have access to Solo Squad — a collection of development, design, security, and quality skills that turn one developer into a full squad.
 
 ## Instruction Priority Hierarchy
 
@@ -43,16 +43,13 @@ Skill descriptions must be **trigger-only**. Do not put process details in the d
 
 ## Available Skills
 
-### Coding
+### Development
 
 | Skill | When to Use |
 |-------|-------------|
 | `/brainstorm` | New feature ideas — refine before coding |
 | `/plan` | Turn a design doc into step-by-step tasks |
-| `/plan-ceo-review` | Challenge scope, outcome, and strategic fit |
-| `/plan-design-review` | Stress-test UX and user-facing plan quality |
-| `/plan-eng-review` | Review architecture, data flow, and delivery risk |
-| `/plan-devex-review` | Catch tooling, operability, and team-friction issues |
+| `/plan-review` | Multi-lens plan review (CEO, Design, Eng, DevEx) |
 | `/build` | Execute a plan with TDD and subagents |
 | `/review` | Multi-agent code review before merge |
 | `/qa` | Browser-based testing and bug fixing |
@@ -66,18 +63,14 @@ Skill descriptions must be **trigger-only**. Do not put process details in the d
 | `/technical-writing` | README, API docs, migration guides |
 | `/devops-pipeline` | CI/CD pipeline design |
 | `/database-optimization` | Query and schema optimization |
-| `/workflow-mapping` | Document workflows and handoff contracts |
-| `/developer-advocacy` | DX audits, tutorials, sample apps |
 
 ### Design
 
 | Skill | When to Use |
 |-------|-------------|
 | `/design-system` | Build a design system from scratch |
-| `/design-review` | Audit UI with AI slop detection |
+| `/design-review` | Audit UI with AI slop detection + brand alignment |
 | `/ux-research` | User testing, personas, journey maps |
-| `/brand-check` | Brand consistency audit |
-| `/image-prompts` | AI image prompt engineering |
 
 ### Security
 
@@ -85,13 +78,6 @@ Skill descriptions must be **trigger-only**. Do not put process details in the d
 |-------|-------------|
 | `/cso` | OWASP Top 10 + STRIDE security audit |
 | `/benchmark` | Performance benchmarking |
-| `/browse` | Headless browser automation |
-| `/careful` | Destructive command warnings |
-| `/codex-review` | Cross-AI second opinion on diffs |
-| `/freeze` | Lock edits to a specific directory |
-| `/guard` | Combine /careful + /freeze |
-| `/incident-response` | Production incident management with SLOs |
-| `/legal-compliance` | GDPR, CCPA, KVKK, HIPAA compliance |
 
 ### Quality & Learning
 
@@ -107,14 +93,12 @@ Skill descriptions must be **trigger-only**. Do not put process details in the d
 
 | Command | Flow |
 |---------|------|
-| `/autoplan` | CEO → design → eng → DX plan gate before `/build` |
+| `/autoplan` | Multi-lens plan review before `/build` |
 | `/sprint` | brainstorm → plan → build → review → qa → polish-beta → ship → land-and-deploy → document-release → compound |
 | `/hotfix` | investigate → fix → review → ship |
 | `/tdd` | red → green → refactor (enforced) |
 | `/design-sprint` | research → design system → review → iterate |
-| `/asset-gen` | Generate AI image assets for a campaign |
 | `/security-scan` | OWASP + STRIDE + dependency audit |
-| `/lockdown` | Maximum safety mode for production work |
 
 ## Agents
 

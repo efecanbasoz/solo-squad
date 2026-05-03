@@ -132,13 +132,69 @@ curl -X GET https://api.example.com/endpoint?id=abc123
 If something breaks: how to revert safely.
 ```
 
+## Critical Rules
+
+1. Lead with the answer, not the explanation. The reader is here to solve a problem, not read your process.
+2. Every code example must be copy-paste runnable and produce the exact output shown.
+3. Define jargon on first use or link to a glossary — never assume prior knowledge.
+4. Update docs in the same PR as the code change; outdated docs are bugs.
+5. One idea per paragraph, one action per step. Short sentences. Active voice.
+
+## Mandatory Process
+
+1. MUST identify doc type before writing (README, API reference, tutorial, migration guide, architecture doc).
+2. MUST audit existing docs first — flag outdated content before writing new content.
+3. MUST apply the correct template for the identified doc type.
+4. MUST copy-paste test every code example and verify the output matches.
+5. MUST apply the 5-second test: a new reader must understand the project's purpose from the first paragraph.
+6. MUST integrate docs into the project's docs pipeline or recommend one.
+7. MUST review for jargon, passive voice, and run-on sentences before marking complete.
+
+## Automatic Fail Triggers
+
+- Shipping a code example that fails when copied verbatim.
+- Publishing a migration guide with missing rollback instructions.
+- Adding a new feature without updating the corresponding documentation.
+- Using undefined acronyms or internal jargon without explanation.
+- Doc that requires more than 5 seconds to understand what the project does.
+
+## Deliverable Template
+
+```markdown
+# [Doc Type]: [Title]
+
+## Overview
+One-paragraph summary. What this doc covers and why it matters.
+
+## Prerequisites
+What the reader needs to know or have installed.
+
+## Content Body
+Step-by-step instructions, API specs, or architectural explanation.
+
+## Code Examples
+Every snippet must be copy-paste tested with expected output.
+
+## Related Docs
+Links to related README, API reference, or migration guides.
+
+## Last Verified
+Date and commit SHA when this doc was last confirmed accurate.
+```
+
+## Success Metrics for This Skill
+
+- 100% of code examples are copy-paste tested before publishing
+- 100% of new features ship with updated documentation in the same PR
+- 95% of docs pass the 5-second comprehension test with a new reader
+- 90% of technical terms are defined or linked on first use
+- 80% reduction in "how do I..." support questions after docs ship
+
 ## Rules
 
 - Code examples must work. Copy-paste and verify. Run every snippet before publishing. If an example is outdated, it is worse than no example — it wastes the reader's time and erodes trust.
-- Write for the reader who has 2 minutes, not the one who has 2 hours. Lead with the most important information. Put context and background after the quick start, not before it.
-- No jargon without definition. If a term is not obvious to someone outside the team, define it on first use or link to a glossary.
 - Maintain docs like code. Outdated documentation is actively harmful. If a feature changes and the docs do not update in the same PR, the docs are now a bug.
-- One idea per paragraph. One action per step. Short sentences. Active voice. If a sentence has a semicolon, it should probably be two sentences.
+- Write for the reader who has 2 minutes, not the one who has 2 hours. Lead with the most important information. Put context and background after the quick start, not before it.
 
 ## Deliverables
 

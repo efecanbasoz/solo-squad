@@ -71,11 +71,62 @@ digraph scrape {
 If the target page requires JavaScript rendering (SPA, React, Vue), `/scrape` will fail. In that case:
 > "This page requires JavaScript rendering. Use `/browse` instead for headless browser automation."
 
-## Rules
+## Critical Rules
 
-- Always respect `robots.txt` and Terms of Service
-- Never scrape authenticated content without explicit permission
-- Rate limit requests (max 1 req/sec for most sites)
-- Validate output structure before saving
-- Include source URL and timestamp in extraction metadata
-- Handle errors gracefully: network failures, malformed HTML, encoding issues
+1. **Respect robots.txt and ToS.** No exceptions.
+2. **Never scrape authenticated content without permission.**
+3. **Rate limit.** Max 1 req/sec for most sites.
+4. **Validate output before saving.** Structure, types, deduplication.
+5. **Include metadata.** Source URL and timestamp in every extraction.
+6. **Graceful errors.** Network failures, malformed HTML, encoding issues — all handled.
+
+## Decision Table
+
+| Target Type | Tool | When to Use /browse Instead |
+|-------------|------|---------------------------|
+| Static HTML page | curl + grep/sed/awk | JavaScript-rendered content |
+| JSON API | curl + jq | Requires authentication |
+| Paginated lists | curl + loop | Dynamic pagination |
+| Table extraction | grep + paste | Complex nested tables |
+
+## Automatic Fail Triggers
+
+- robots.txt violated.
+- Authenticated content scraped without permission.
+- Rate limit exceeded.
+- Output saved without validation.
+- Missing source URL or timestamp in metadata.
+- Errors not handled gracefully.
+
+## Deliverable Template
+
+```
+=== DATA EXTRACTION ===
+Source: <URL>
+Timestamp: <ISO 8601>
+Format: <JSON|CSV>
+
+EXTRACTED DATA
+[
+  {"field": "value", ...},
+  ...
+]
+
+METADATA
+- Records: <count>
+- Duplicates removed: <count>
+- Missing values: <count>
+- Source URL: <URL>
+- Extracted at: <timestamp>
+```
+
+## Success Metrics for This Skill
+
+- robots.txt respected: 100%
+- Rate limit enforced: 100%
+- Output validated before save: 100%
+- Metadata included: 100%
+- Errors handled gracefully: 100%
+
+## Rules
+- If the page requires JavaScript rendering, use `/browse` instead.

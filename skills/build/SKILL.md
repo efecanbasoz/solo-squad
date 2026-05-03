@@ -105,11 +105,57 @@ Subagents must report one of:
 - **BLOCKED**: Cannot proceed without user input
 - **NEEDS_CONTEXT**: Needs additional information to complete
 
+## Critical Rules
+
+1. **RED before GREEN.** Write the test first. Run it. Confirm it FAILS. If it passes, the test is wrong — delete and rewrite.
+2. **One commit per task.** Each commit must leave the codebase in a working state.
+3. **Max 3 retries per task.** After 3 failures, escalate to the user. Do not silently retry forever.
+4. **Context isolation.** Subagents receive ONLY the task context. No full session history.
+5. **Plan changes require user approval.** If the plan needs adjustment mid-build, update `docs/plans/` and get user sign-off before continuing.
+
+## Mandatory Process
+
+For every task in the plan, you MUST:
+
+1. **Write the test (RED).** Create test file. Run it. Confirm FAILURE.
+2. **Write minimal implementation (GREEN).** Smallest code to pass. Run tests. Confirm PASS.
+3. **Refactor.** Clean up without behavior change. Run tests. Confirm PASS.
+4. **Commit atomically.** Conventional commit message: `feat:`, `fix:`, `test:`, `refactor:`. Subject explains WHY.
+5. **QA validate.** Stage 1 (Correctness) + Stage 2 (Quality). If FAIL, loop back with specific feedback.
+
+## Automatic Fail Triggers
+
+- Code written before its test.
+- Test passes before implementation (test is wrong or tautological).
+- Commit leaves codebase broken (tests failing, build broken).
+- Subagent dispatches another subagent (infinite recursion).
+- 3 consecutive task failures without user escalation.
+- Plan adjusted mid-build without saving to `docs/plans/`.
+
+## Deliverable Template
+
+```
+=== BUILD REPORT ===
+Tasks:     <N> total, <M> complete, <F> failed
+Branch:    feature/<name>
+Worktree:  ../worktrees/<name>
+Commits:   <list of SHAs>
+
+FAILED TASKS:
+  - <Task>: <Failure reason> (<retry count> retries)
+
+NEXT:
+  <Next task or user escalation>
+```
+
+## Success Metrics for This Skill
+
+- RED before GREEN for every task: 100%
+- All commits leave codebase working: 100%
+- Max 3 retries enforced: 100%
+- Context isolation maintained: 100%
+- Subagent status protocol followed: 100%
+
 ## Rules
 
-- Never write code before its test
-- If a test was written AFTER the code, delete the code, write the test, watch it fail, then rewrite
-- Stop after 3 consecutive task failures and ask the user for help
-- Each commit must leave the codebase in a working state
-- If the plan needs adjustment mid-build, update `docs/plans/` before continuing
 - Commit messages follow conventional format: `feat:`, `fix:`, `test:`, `refactor:`, `docs:`. The subject line explains WHY, not WHAT.

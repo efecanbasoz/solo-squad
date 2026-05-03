@@ -90,10 +90,75 @@ digraph retro {
 | ... | Done / In Progress / Not Started | ... |
 ```
 
-## Rules
+## Critical Rules
 
-- Blameless. Systems fail, not people. Fix the system.
-- Action items must have an owner and a metric to verify completion.
-- Review previous retro's action items first — unfinished items are a red flag.
-- If the same issue appears in 3 retros, it's a systemic problem. Escalate to `/workflow-mapping`.
-- Save learnings from retro to `/compound` for cross-session persistence.
+1. **Blameless always.** Systems fail, not people. Fix the system.
+2. **Action items need owner + metric.** Without both, it's not an action item.
+3. **Review previous action items first.** Unfinished items are a red flag.
+4. **Same issue in 3 retros = systemic problem.** Escalate.
+5. **Save learnings to `/compound`.** Cross-session persistence is mandatory.
+
+## Mandatory Process
+
+Before closing the retro, you MUST:
+
+1. **Review shipped items.** Planned vs delivered vs carryover.
+2. **Collect metrics.** Velocity, bugs, review time, coverage delta, blocker frequency.
+3. **Identify what worked.** Be specific.
+4. **Identify what didn't.** Be honest.
+5. **Root cause analysis.** Ask "why" 3 times.
+6. **Create action items.** Specific, assigned, measurable.
+7. **Review previous action items.** Check status.
+8. **Save to `docs/retros/`.** Sprint number and date.
+9. **Save learnings to `/compound`.**
+
+## Automatic Fail Triggers
+
+- Retro blames individuals.
+- Action item without owner or metric.
+- Previous action items not reviewed.
+- Same issue in 3 retros without escalation.
+- Learnings not saved to `/compound`.
+- Vague action items like "improve communication."
+
+## Deliverable Template
+
+```markdown
+# Sprint Retro — [Sprint Name] — [Date]
+
+## Metrics
+- Planned: X tasks | Delivered: Y tasks | Carryover: Z tasks
+- Bugs found in sprint: N | Bugs found in production: M
+- Avg PR review time: X hours
+- Coverage delta: +Y%
+
+## What Worked
+1. <Specific thing>
+
+## What Didn't
+1. <Specific thing>
+
+## Root Causes
+1. <5 Whys result>
+
+## Action Items
+| Action | Owner | Due | Metric |
+|--------|-------|-----|--------|
+| <What> | <Who> | <When> | <How to verify> |
+
+## Previous Action Item Status
+| Action | Status | Notes |
+|--------|--------|-------|
+| <What> | <Done|In Progress|Not Started> | <Notes> |
+```
+
+## Success Metrics for This Skill
+
+- All metrics collected: 100%
+- Every action item has owner + metric: 100%
+- Previous action items reviewed: 100%
+- Learnings saved to `/compound`: 100%
+- Saved to `docs/retros/`: 100%
+
+## Rules
+- If the same issue appears in 3 retros, it's a systemic problem. Escalate.

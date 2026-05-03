@@ -85,13 +85,83 @@ digraph review {
 
 6. **Report:** "X issues auto-fixed, Y 🔴 blockers, Z 🟡 suggestions, W 💭 nits."
 
+## Critical Rules
+
+1. **Five lenses, no skipping.** Correctness, Security, Performance, Maintainability, Test Coverage — all run on every review.
+2. **Confidence calibration mandatory.** Every finding gets a confidence score (100/75/50/25). Only 8/10+ gets reported.
+3. **Auto-fix only when unambiguous.** If there's more than one correct fix, ASK. Never guess.
+4. **Single review pass.** All feedback delivered at once. No drip-feeding.
+5. **Every comment teaches.** Include WHY it matters, not just WHAT to change.
+
+## Mandatory Process
+
+Before delivering the review, you MUST:
+
+1. **Identify the diff.** `git diff main...HEAD` or equivalent.
+2. **Run all five lenses.** Correctness → Security → Performance → Maintainability → Test Coverage.
+3. **Classify every finding.** 🔴 BLOCKER / 🟡 SUGGESTION / 💭 NIT with confidence score.
+4. **Auto-fix obvious issues.** Only when ONE correct fix exists. Commit with `fix:` prefix.
+5. **Build the readiness dashboard.** Score each lens 0-10. Overall verdict: SHIP / FIX / HOLD.
+6. **Deliver in one pass.** All findings, all fixes, all praise — single output.
+
+## Automatic Fail Triggers
+
+- Review delivered without running all five lenses.
+- Finding reported without confidence score.
+- "Zero issues found" claimed without exhaustive review.
+- Auto-fix applied when ambiguous.
+- Drip-feeding feedback (multiple review rounds without user request).
+- Only criticism, no praise.
+
+## Deliverable Template
+
+```
+=== CODE REVIEW ===
+Branch: <name>
+Files changed: <N>
+
+LENS SCORES
+  Correctness:     <0-10>
+  Security:        <0-10>
+  Performance:     <0-10>
+  Maintainability: <0-10>
+  Test Coverage:   <0-10>
+─────────────────────
+Overall: <SHIP|FIX|HOLD>
+
+🔴 BLOCKERS (<count>)
+  [Confidence: <score>]
+  <File>:<Line> — <Issue>
+  Why: <Business/security/user impact>
+  Suggestion: <Specific fix>
+
+🟡 SUGGESTIONS (<count>)
+  [Confidence: <score>]
+  <File>:<Line> — <Issue>
+  Why: <Impact>
+  Suggestion: <Specific fix>
+
+💭 NITS (<count>)
+  [Confidence: <score>]
+  <File>:<Line> — <Issue>
+
+✨ PRAISE
+  <File>:<Line> — <What was done well>
+
+AUTO-FIXES APPLIED
+  - <File>: <What was fixed> (<commit SHA>)
+```
+
+## Success Metrics for This Skill
+
+- All five lenses run: 100%
+- Every finding has confidence score: 100%
+- Single review pass delivered: 100%
+- BLOCKER findings include specific line references: 100%
+- Praise included when warranted: 100%
+
 ## Rules
 
-- Never approve your own code without at least running the review lenses
-- Auto-fix only when there's ONE correct fix. If ambiguous, ASK.
 - A review that finds nothing is suspicious. Look harder.
 - Always check: are error messages helpful to the user? Are logs sufficient for debugging?
-- Deliver all feedback in a single review pass. No drip-feeding — one review, complete findings.
-- Every comment must include WHY it matters, not just WHAT to change.
-- Praise good code — call out clever solutions and clean patterns.
 - Suggest, don't demand: "Consider using X because Y" not "Change this to X"

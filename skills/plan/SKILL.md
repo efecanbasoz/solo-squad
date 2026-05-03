@@ -72,16 +72,70 @@ Use the protocol defined in `/polish-beta` (`approve` / `edit: <notes>` / `rejec
 Do NOT write any code, scaffold any project, or take implementation action until the user approves the task list.
 </HARD-GATE>
 
-## Rules
+## Critical Rules
 
-- YAGNI: only plan what's needed now
-- DRY: if you see duplication in the plan, restructure
-- Every task must have a test. No exceptions.
-- Plans with more than 20 tasks should be split into phases
-- Include a "done criteria" section at the end
-- Always ask: "Should I proceed to /build, or do you want to adjust?"
+1. **Architecture before tasks.** No task breakdown without a data flow diagram, state machine, and error paths.
+2. **Every task has a test.** No exceptions. If you cannot write a test for a task, the task is too vague — split it.
+3. **Tasks are independently verifiable.** A failing task must not block unrelated work.
+4. **YAGNI and DRY.** Only plan what's needed now. Restructure if you see duplication.
+5. **Plans > 20 tasks must be split into phases.** Each phase gets its own plan file.
 
-## Plan review modes
+## Decision Table
+
+| Situation | Architecture Pattern | Avoid When |
+|-----------|---------------------|------------|
+| Simple CRUD endpoint | Handler → Service → DB | N/A — always appropriate |
+| Real-time updates | WebSocket / SSE | Polling is simpler and sufficient |
+| Background processing | Queue + Worker | Synchronous processing is faster |
+| Complex state machine | State machine with explicit transitions | Boolean flags scattered in code |
+| Multi-step wizard | Stepper with validation per step | One giant form with client-side only validation |
+
+## Automatic Fail Triggers
+
+- Plan saved without a data flow diagram.
+- Any task missing a test strategy.
+- Tasks are not independently verifiable (circular dependencies).
+- No "done criteria" section.
+- User did not approve the task list before saving.
+
+## Deliverable Template
+
+```markdown
+# Plan: <Title>
+
+## Architecture
+<Data flow diagram (ASCII)>
+
+## State Machine
+<States and transitions>
+
+## Error Paths
+<How each error is handled>
+
+## Test Strategy
+<What to test and how>
+
+## Tasks
+| # | Task | File(s) | Test | Verify | Est |
+|---|------|---------|------|--------|-----|
+| 1 | <What> | <Path> | <Test> | <Cmd> | 3m |
+
+## Done Criteria
+- [ ] All tasks complete
+- [ ] All tests pass
+- [ ] Coverage ≥ 80%
+- [ ] Review approved
+```
+
+## Success Metrics for This Skill
+
+- Architecture diagram present: 100%
+- Every task has test + verify: 100%
+- Tasks independently verifiable: 100%
+- User approval obtained: 100%
+- Plan file saved to `docs/plans/`: 100%
+
+## Plan Review Modes
 
 If a design doc exists, run three lightweight review lenses automatically:
 - **Scope review**: Is anything missing? Is anything unnecessary?
@@ -89,3 +143,7 @@ If a design doc exists, run three lightweight review lenses automatically:
 - **Test review**: Is every behavior covered by a test?
 
 For non-trivial plans (multi-file, cross-cutting, or production-facing), run `/autoplan` after this skill completes. `/autoplan` dispatches four deeper reviews (CEO / design / eng / DevEx) and returns an aggregated verdict with consolidated cuts, adds, and fixes. The three lenses above are a quick sanity check; `/autoplan` is the full gate.
+
+## Rules
+
+- Always ask: "Should I proceed to /build, or do you want to adjust?"

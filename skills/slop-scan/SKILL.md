@@ -78,9 +78,68 @@ digraph slopscan {
 
 5. **Report:** Pattern counts, auto-fixed count, manual review needed count.
 
-## Rules
+## Critical Rules
 
-- Focus on AI-generated patterns, not general linting (use eslint/ruff for that)
-- A zero-finding report is suspicious. Look harder.
-- Be specific: "Empty catch at `src/api.ts:42` swallows auth errors" not "missing error handling"
+1. **Focus on AI slop patterns, not general linting.** eslint/ruff handles style. You handle logic smell.
+2. **A zero-finding report is suspicious.** Look harder.
+3. **Be specific.** "Empty catch at `src/api.ts:42` swallows auth errors" not "missing error handling."
+4. **Auto-fix only when safe.** Remove dead code, simplify awaits, extract duplicates, add basic logging.
+5. **Classify every finding.** 🔴 HIGH / 🟡 MEDIUM / 💭 LOW with confidence.
+
+## Mandatory Process
+
+Before reporting, you MUST:
+
+1. **Scan recently modified files.** `git diff --name-only HEAD~5` or PR files.
+2. **Check all slop patterns.** Empty catches, redundant awaits, dead code, copy-paste smell, generic naming, missing error handling.
+3. **Classify findings.** 🔴 HIGH: silent failures, data loss, security gaps. 🟡 MEDIUM: maintainability. 💭 LOW: style.
+4. **Auto-fix where safe.** Remove dead code, simplify awaits, extract duplicates, add logging.
+5. **Report with specifics.** File, line, pattern, impact.
+
+## Automatic Fail Triggers
+
+- Zero findings reported without exhaustive scan.
+- General linting issues reported as slop (use eslint/ruff for style).
+- Vague findings without file/line references.
+- Auto-fix applied unsafely (changing behavior).
+- Missing error handling classified as LOW.
+
+## Deliverable Template
+
+```
+=== SLOP SCAN ===
+Scope: <files scanned>
+
+PATTERN COUNTS
+- Empty catch blocks: <count>
+- Redundant awaits: <count>
+- Dead code: <count>
+- Copy-paste smell: <count>
+- Generic naming: <count>
+- Missing error handling: <count>
+
+🔴 HIGH (<count>)
+- <File>:<Line> — <Pattern> — <Impact>
+
+🟡 MEDIUM (<count>)
+- <File>:<Line> — <Pattern> — <Impact>
+
+💭 LOW (<count>)
+- <File>:<Line> — <Pattern> — <Impact>
+
+AUTO-FIXES APPLIED
+- <File>: <What was fixed>
+
+MANUAL REVIEW NEEDED
+- <File>:<Line> — <Why auto-fix was unsafe>
+```
+
+## Success Metrics for This Skill
+
+- All 6 patterns checked: 100%
+- Every finding has file:line reference: 100%
+- Auto-fixes are behavior-preserving: 100%
+- Zero-finding reports double-checked: 100%
+
+## Rules
 - Suggest, don't demand: "Consider extracting this pattern to a shared utility" not "refactor this"

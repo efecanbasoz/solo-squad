@@ -69,9 +69,74 @@ digraph health {
 
 7. **Recommendations.** Top 3 actions to improve health score.
 
-## Rules
+## Critical Rules
 
+1. **Weighted scoring prevents gaming.** 100% coverage of worthless tests is not a 10.
+2. **Trends over absolutes.** A dropping trend is more important than a single low score.
+3. **Honest reporting.** No inflating scores to look good.
+4. **Top 3 actions only.** Don't overwhelm with recommendations.
+5. **Compare with previous run.** Trend report is mandatory if historical data exists.
+
+## Mandatory Process
+
+Before delivering the report, you MUST:
+
+1. **Run test coverage.** `npm test -- --coverage` or equivalent. Target: >80% critical paths, >60% utilities.
+2. **Measure complexity.** Cyclomatic complexity per function <10. Files >20 flagged.
+3. **Check duplication.** Target <5% duplication rate.
+4. **Check documentation.** Public API without docs, README staleness >30 days, missing ADRs.
+5. **Calculate weighted score.** Coverage 30%, Complexity 25%, Duplication 20%, Documentation 15%, Test quality 10%.
+6. **Trend report.** Compare with previous run in `docs/health-reports/`.
+7. **Top 3 recommendations.** Prioritized by impact.
+
+## Automatic Fail Triggers
+
+- Score calculated without running actual tools.
+- Trend report skipped when historical data exists.
+- Recommendations not prioritized (all marked "high priority").
+- Score inflated to look good.
+- No comparison with previous run when data exists.
+
+## Deliverable Template
+
+```
+=== CODEBASE HEALTH ===
+Date: <date>
+Branch: <name>
+
+SCORES (0-10)
+Coverage:        <score> (weight: 30%)
+Complexity:      <score> (weight: 25%)
+Duplication:     <score> (weight: 20%)
+Documentation:   <score> (weight: 15%)
+Test quality:    <score> (weight: 10%)
+─────────────────────────
+OVERALL:         <score>/10
+
+TREND (vs previous)
+| Metric | Previous | Current | Delta |
+|--------|----------|---------|-------|
+| Overall | <score> | <score> | <+/-> |
+
+TOP 3 ACTIONS
+| Priority | Action | Expected Impact |
+|----------|--------|----------------|
+| 1 | <What> | <Impact> |
+| 2 | <What> | <Impact> |
+| 3 | <What> | <Impact> |
+
+FLAGS
+- Complexity >20: <files>
+- Duplication >5%: <files>
+- Missing docs: <files>
+```
+
+## Success Metrics for This Skill
+
+- All 5 metrics measured with real tools: 100%
+- Weighted score calculated correctly: 100%
+- Trend report included when data exists: 100%
+- Top 3 recommendations prioritized: 100%
+
+## Rules
 - Health score is a guide, not a gate. A 6/10 codebase with clear ownership is better than a 9/10 with none.
-- Focus on trends, not absolute numbers.
-- Weighted scoring prevents gaming (e.g., 100% coverage of worthless tests).
-- Report honestly. A dropping trend is more important than a single low score.

@@ -7,7 +7,7 @@
 [![Codex CLI](https://img.shields.io/badge/Codex_CLI-Plugin-green)](https://github.com/openai/codex)
 [![OpenCode](https://img.shields.io/badge/OpenCode-Plugin-orange)](https://github.com/sst/opencode)
 
-**40 skills + 8 workflow commands** that turn AI agents into disciplined engineers. Each skill is a battle-tested process with **DOT flowcharts**, **hard gates**, and **anti-slop defenses** — so your agent follows the playbook instead of improvising.
+**27 skills + 6 workflow commands** that turn AI agents into disciplined engineers. Each skill is a battle-tested process with **DOT flowcharts**, **hard gates**, and **anti-slop defenses** — so your agent follows the playbook instead of improvising.
 
 **Zero dependencies.** Pure markdown + shell scripts. Install in 10 seconds.
 
@@ -250,6 +250,7 @@ Solo Squad:
   Visual Quality:    7/10  — spacing inconsistent between card variants
   Consistency:       5/10  — three different border-radius values used
   Accessibility:     6/10  — contrast ratio 3.2:1 on muted text (need 4.5:1)
+  Brand Alignment:   4/10  — off-brand colors in new components
   AI Slop Detection: CLEAN — no generic stock patterns detected
 
   Top fix: Unify border-radius to design token --radius-md
@@ -260,59 +261,45 @@ Solo Squad:
 
 ## What's inside
 
-### Coding — 21 skills, 6 agents
+### Development — 16 skills, 5 agents
 
 | Skill | Your specialist |
 |-------|----------------|
-| `/brainstorm` | Product partner who challenges your assumptions |
-| `/plan` | Architect who breaks work into 2-5 min tasks with file paths |
-| `/plan-ceo-review` | Strategic reviewer who challenges scope, outcome, and framing |
-| `/plan-design-review` | Design reviewer who scores UX, accessibility, and consistency before implementation |
-| `/plan-eng-review` | Engineering reviewer who locks down architecture and data flow before code |
-| `/plan-devex-review` | DX reviewer who catches local-dev, onboarding, and debugging friction |
-| `/build` | Lead engineer dispatching subagents with TDD enforcement |
-| `/review` | Senior reviewer classifying 🔴 BLOCKER / 🟡 SUGGESTION / 💭 NIT |
-| `/qa` | QA lead running real browser tests, filing bugs, writing regression tests |
-| `/polish-beta` | HITL polish pass for copy, microcopy, and last-mile release quality |
-| `/ship` | Release engineer: tests, coverage audit, PR open, deploy handoff |
-| `/land-and-deploy` | Release owner who merges, deploys, canaries, and verifies health |
-| `/canary` | Post-deploy verifier for critical flows, console errors, and perf regressions |
-| `/document-release` | Docs steward syncing CHANGELOG, README, API docs, and migration notes |
-| `/compound` | Knowledge curator capturing patterns for next time |
-| `/investigate` | Debugger who traces data flow and logs hypotheses |
-| `/technical-writing` | Tech writer: README, API docs, migration guides |
-| `/devops-pipeline` | DevOps engineer: CI/CD, IaC, zero-downtime deploys |
-| `/database-optimization` | DBA: query plans, indexing, N+1 detection |
-| `/workflow-mapping` | Systems analyst: happy paths, failure modes, handoffs |
-| `/developer-advocacy` | DevRel: DX audits, tutorials, sample apps |
+| `/brainstorm` | 💡 Product partner who challenges your assumptions |
+| `/plan` | 🗺️ Architect who breaks work into 2-5 min tasks with file paths |
+| `/plan-review` | 🔍 Multi-lens review: CEO, Design, Eng, DevEx in one pass |
+| `/build` | 🔨 Lead engineer dispatching subagents with TDD enforcement |
+| `/review` | 👁️ Senior reviewer classifying 🔴 BLOCKER / 🟡 SUGGESTION / 💭 NIT |
+| `/qa` | 🧪 QA lead running real browser tests, filing bugs, writing regression tests |
+| `/polish-beta` | ✨ HITL polish pass for copy, microcopy, and last-mile release quality |
+| `/ship` | 🚀 Release engineer: tests, coverage audit, PR open, deploy handoff |
+| `/land-and-deploy` | 🎯 Release owner who merges, deploys, canaries, and verifies health |
+| `/canary` | 🐤 Post-deploy verifier for critical flows, console errors, and perf regressions |
+| `/document-release` | 📝 Docs steward syncing CHANGELOG, README, API docs, and migration notes |
+| `/compound` | 🧠 Knowledge curator capturing patterns for next time |
+| `/investigate` | 🔎 Debugger who traces data flow and logs hypotheses |
+| `/technical-writing` | 📚 Tech writer: README, API docs, migration guides |
+| `/devops-pipeline` | ⚙️ DevOps engineer: CI/CD, IaC, zero-downtime deploys |
+| `/database-optimization` | 🗄️ DBA: query plans, indexing, N+1 detection |
 
-**Agents:** Architect (designs, never implements) · Tester (edge cases, screenshot evidence) · Debugger (read-only investigator) · Critic (design quality, AI slop detection) · Sentinel (security review, 8/10+ confidence gate) · Reality Checker (evidence-based certification, default NEEDS WORK)
+**Agents:** Architect (designs, never implements) · Tester (edge cases, screenshot evidence) · Debugger (read-only investigator) · Sentinel (security review, 8/10+ confidence gate) · Reality Checker (evidence-based certification, default NEEDS WORK)
 
-### Design — 5 skills, 1 agent
+### Design — 3 skills, 1 agent
 
 | Skill | Your specialist |
 |-------|----------------|
-| `/design-system` | Design lead building tokens, components, patterns from scratch |
-| `/design-review` | Critic with AI slop detection and 0-10 scoring |
-| `/ux-research` | Researcher: test scripts, personas, journey maps |
-| `/brand-check` | Brand guardian: color/font matching, guideline reverse-engineering |
-| `/image-prompts` | Art director: Midjourney, DALL-E, Flux prompts with photo reference |
+| `/design-system` | 🎨 Design lead building tokens, components, patterns from scratch |
+| `/design-review` | 🖼️ Critic with AI slop detection, 0-10 scoring, and brand alignment |
+| `/ux-research` | 🔬 Researcher: test scripts, personas, journey maps |
 
 **Agent:** Design Critic (detects AI slop, scores craft, severity classification)
 
-### Security — 9 skills, 1 agent
+### Security — 2 skills, 1 agent
 
 | Skill | Your specialist |
 |-------|----------------|
-| `/cso` | Security officer: OWASP + STRIDE + supply chain + zero-trust |
-| `/benchmark` | Performance engineer: Core Web Vitals, load testing, capacity planning |
-| `/incident-response` | Incident commander: SEV classification, SLOs, post-mortems, runbooks |
-| `/legal-compliance` | Compliance officer: GDPR, CCPA, KVKK, HIPAA |
-| `/browse` | Browser automation: navigate, click, fill, screenshot, verify |
-| `/careful` | Safety net: warns before rm -rf, DROP TABLE, force-push |
-| `/freeze` | Scope lock: restrict edits to one directory |
-| `/guard` | Maximum safety: /careful + /freeze combined |
-| `/codex-review` | Second opinion: cross-AI independent code review |
+| `/cso` | 🛡️ Security officer: OWASP + STRIDE + supply chain + zero-trust |
+| `/benchmark` | ⚡ Performance engineer: Core Web Vitals, load testing, capacity planning |
 
 **Agent:** Sentinel (read-only security review, 8/10+ confidence gate)
 
@@ -320,11 +307,11 @@ Solo Squad:
 
 | Skill | Your specialist |
 |-------|----------------|
-| `/slop-scan` | AI slop detector: catches empty catches, redundant awaits, dead code, copy-paste smell |
-| `/learn` | Knowledge engineer: captures cross-session operational learnings |
-| `/health` | Code health monitor: weighted 0-10 score for coverage, complexity, duplication, docs |
-| `/scrape` | Data extractor: structured data from web pages via curl + jq |
-| `/retro` | Sprint retrospective: what worked, what didn't, data-driven action items |
+| `/slop-scan` | 🧹 AI slop detector: catches empty catches, redundant awaits, dead code, copy-paste smell |
+| `/learn` | 📖 Knowledge engineer: captures cross-session operational learnings |
+| `/health` | 🏥 Code health monitor: weighted 0-10 score for coverage, complexity, duplication, docs |
+| `/scrape` | 🔧 Data extractor: structured data from web pages via curl + jq |
+| `/retro` | 📊 Sprint retrospective: what worked, what didn't, data-driven action items |
 
 ### Workflow commands
 
@@ -332,14 +319,12 @@ Chain skills into end-to-end pipelines:
 
 | Command | What happens |
 |---------|-------------|
-| `/autoplan` | CEO → design → eng → DX plan gate before `/build` |
-| `/sprint` | brainstorm → plan → build → review → qa → polish-beta → ship → land-and-deploy → document-release → compound |
-| `/hotfix` | investigate → fix → review → ship |
-| `/tdd` | red → green → refactor (enforced) |
-| `/design-sprint` | research → design system → review → iterate |
-| `/asset-gen` | Generate AI image assets for a campaign |
-| `/security-scan` | OWASP + STRIDE + dependency audit |
-| `/lockdown` | Maximum safety mode for production work |
+| `/autoplan` | 🔍 Multi-lens plan review before `/build` |
+| `/sprint` | 💡 brainstorm → plan → build → review → qa → polish-beta → ship → land-and-deploy → document-release → compound |
+| `/hotfix` | 🔥 investigate → fix → review → ship |
+| `/tdd` | 🧪 red → green → refactor (enforced) |
+| `/design-sprint` | 🎨 research → design system → review → iterate |
+| `/security-scan` | 🛡️ OWASP + STRIDE + dependency audit |
 
 ---
 

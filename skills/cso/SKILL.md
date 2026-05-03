@@ -42,7 +42,81 @@ Evaluate the application against zero-trust principles:
 - [ ] Secrets management: no hardcoded secrets, rotation policy in place
 - [ ] Audit logging: all access decisions are logged with enough detail to reconstruct events
 
+## Critical Rules
+
+1. **Confidence gate is mandatory.** Only report findings with confidence >= 8/10. Below that, note as "investigate further."
+2. **Every finding needs an exploit scenario.** "XSS vulnerability" is useless. "Attacker injects script via search parameter which executes in admin context" is actionable.
+3. **Zero false positives.** Every finding must be independently verified. No theoretical-only issues.
+4. **Prioritize by exploitability, not just severity.** Remotely exploitable > locally exploitable > theoretical.
+5. **Supply chain is part of the audit.** SBOM, CVE scan, dependency confusion, typosquatting — all checked.
+
+## Mandatory Process
+
+Before delivering the audit, you MUST:
+
+1. **Run OWASP Top 10 scan.** All 10 categories checked.
+2. **Run STRIDE threat model.** Every component: Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation.
+3. **Generate SBOM.** All direct and transitive dependencies inventoried.
+4. **CVE scan all dependencies.** NVD + GitHub Advisory checked.
+5. **Apply confidence gate.** Only >= 8/10 findings reported.
+6. **Verify independently.** No theoretical-only issues.
+
+## Automatic Fail Triggers
+
+- Finding reported without exploit scenario.
+- Finding with confidence < 8/10 reported as issue.
+- Theoretical-only issue reported without verification.
+- Supply chain audit skipped.
+- No SBOM generated.
+- Zero findings reported without exhaustive coverage.
+
+## Deliverable Template
+
+```
+=== SECURITY AUDIT ===
+Scope: <what was audited>
+Date: <date>
+
+OWASP TOP 10
+| # | Category | Status | Findings |
+|---|----------|--------|----------|
+| 1 | Injection | <PASS|FAIL> | <count> |
+| ... | ... | ... | ... |
+
+STRIDE FINDINGS
+| Component | Threat | Severity | Confidence | Exploit Scenario | Remediation |
+|-----------|--------|----------|------------|-----------------|-------------|
+| <Name> | <Threat> | <Critical/High/Medium/Low> | <1-10> | <How attacker uses it> | <Specific fix> |
+
+SUPPLY CHAIN
+| Dependency | Version | CVE | Severity | Action |
+|------------|---------|-----|----------|--------|
+| <Name> | <Version> | <CVE-ID> | <Severity> | <Upgrade/Remove> |
+
+ZERO-TRUST CHECKLIST
+- [ ] Least privilege
+- [ ] Network segmentation
+- [ ] Mutual TLS
+- [ ] Token validation
+- [ ] Secrets management
+- [ ] Audit logging
+
+SUMMARY
+- Critical: <count>
+- High: <count>
+- Medium: <count>
+- Low: <count>
+- Investigate further: <count>
+```
+
+## Success Metrics for This Skill
+
+- OWASP Top 10 all checked: 100%
+- STRIDE applied to every component: 100%
+- SBOM generated: 100%
+- Confidence gate applied: 100%
+- Every finding has exploit scenario: 100%
+
 ## Rules
-- Zero false positives is the goal. Every finding must be actionable.
-- Include the exploit scenario. "XSS vulnerability" is useless. "Attacker injects script via the search parameter which executes in admin context" is actionable.
+- Zero false positives is the goal.
 - Prioritize by exploitability, not just severity.

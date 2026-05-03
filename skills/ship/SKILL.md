@@ -72,10 +72,58 @@ Use the protocol defined in `/polish-beta` (`approve` / `edit: <notes>` / `rejec
 
 Once the PR is open and reviewed, hand off to `/land-and-deploy` to merge, deploy, and verify production health. `/ship` stops at "PR open" — it does not merge, deploy, or monitor.
 
+## Critical Rules
+
+1. Never merge, deploy, or bypass CI from this skill — `/ship` opens PRs only.
+2. If any test fails, halt immediately and report the failure — do not proceed to coverage audit.
+3. New code without tests is untested code — flag every untested file and block the PR until covered or explicitly overridden.
+4. The PR description is a contract with reviewers — draft it completely before opening the PR.
+5. Context rot kills accuracy — steps 3–6 MUST run as subagents when the parent session exceeds 15K tokens.
+
+## Mandatory Process
+
+1. Sync `main` and verify no merge conflicts.
+2. Run the full test suite — all tests MUST pass.
+3. Audit test coverage for lines, branches, and new code; flag any untested files.
+4. Verify plan completion if a plan file exists; block on missing tasks unless user overrides.
+5. Sync docs — scan README, CHANGELOG, and API docs for stale references.
+6. Draft the PR description using the hand-off pattern for large changesets.
+7. Push the branch and open the PR with the drafted title and body.
+8. Confirm the PR URL and link to the user before exiting.
+
+## Automatic Fail Triggers
+
+- Failing tests in the pre-flight suite.
+- Coverage on new code drops below 80% without human override.
+- Plan file exists but tasks are incomplete without explicit user approval.
+- Stale docs reference removed or renamed APIs without an update applied.
+- PR opened with an empty or auto-generated description (no hand-off draft).
+
+## Deliverable Template
+
+```markdown
+## Ship Summary
+
+- **Branch:** `<branch-name>`
+- **PR:** `<pr-url>`
+- **Tests:** `<pass/fail>` — `<count>` tests run
+- **Coverage:** Lines `<pct>%` / Branches `<pct>%` / New Code `<pct>%`
+- **Untested Files:** `<list or "None">`
+- **Plan Completion:** `<complete/missing — list if missing>`
+- **Docs Updated:** `<list or "No changes">`
+- **PR Description:** `<inline or hand-off file path>`
+```
+
+## Success Metrics for This Skill
+
+- 100% of shipped PRs pass CI before opening.
+- 100% of new code has ≥80% test coverage or explicit HITL override.
+- 100% of plan files are verified complete before PR creation.
+- 100% of PR descriptions are human-drafted or subagent-drafted (never empty/auto-generated).
+- 95% of ships open the PR on the first attempt without post-push edits.
+
 ## Rules
 
 - Never ship with failing tests.
 - If coverage drops below baseline, add tests first.
-- The PR description is the first thing reviewers see. Make it count.
-- The subagent hand-off return block signals continuation, never termination.
 - Ship opens the PR. Land-and-deploy closes the loop. Do not merge from this skill.

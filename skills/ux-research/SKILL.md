@@ -31,7 +31,66 @@ When running a study (not just planning):
 4. **Analyze.** Affinity mapping: group observations into themes. Severity rating per finding: Critical (blocks task completion), Major (causes significant difficulty), Minor (causes slight hesitation), Cosmetic (noticed but not impactful).
 5. **Synthesize.** Each finding needs: observation, evidence (quotes, video timestamps), recommendation, confidence level (High/Medium/Low based on consistency across participants).
 
+## Critical Rules
+
+1. **Research question first.** If you can't name the decision this research informs, don't run the study.
+2. **Method matches question.** Usability testing for "can they use it?", interviews for "why?", surveys for "how many?", analytics for "what are they doing?".
+3. **Never lead the witness.** Open questions, then silence.
+4. **Insights without recommendations are just interesting facts.** Every finding needs a recommended action.
+5. **5 users find 85% of issues.** Start small, iterate.
+
+## Decision Table
+
+| Research Question | Method | Sample Size | Avoid When |
+|-------------------|--------|-------------|------------|
+| Can users complete the task? | Usability test | 5-8 | You need statistical significance |
+| Why do users behave this way? | Interview | 5-8 | You need quantitative prevalence |
+| How many feel this way? | Survey | 30+ | You need deep qualitative insight |
+| What are users actually doing? | Analytics review | N/A (existing data) | You need "why" not "what" |
+
+## Automatic Fail Triggers
+
+- Study run without a clear research question.
+- Leading questions in the script.
+- Findings reported without recommendations.
+- No severity ratings on usability issues.
+- "We should do more research" as the only recommendation.
+
+## Deliverable Template
+
+```
+# Research Brief: <Study Name>
+
+## Research Question
+<What decision will this inform?>
+
+## Method
+<Chosen method and why>
+
+## Participants
+- Criteria: <screener>
+- Count: <N>
+
+## Key Findings
+| Finding | Severity | Evidence | Recommendation | Confidence |
+|---------|----------|----------|----------------|------------|
+| <What> | <Critical/Major/Minor/Cosmetic> | <Quote/timestamp> | <Action> | High/Medium/Low |
+
+## Synthesis
+<Themes and patterns>
+
+## Next Steps
+- <Action item>
+```
+
+## Success Metrics for This Skill
+
+- Research question defined: 100%
+- Method matches question: 100%
+- Every finding has recommendation: 100%
+- Severity ratings present: 100%
+
 ## Rules
-- 5 users find 85% of usability issues. Start small.
-- Never lead the witness. Ask open questions, then shut up.
+- Start small.
+- Ask open questions, then shut up.
 - Insights without recommendations are just interesting facts.
