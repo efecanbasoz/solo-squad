@@ -1,6 +1,11 @@
 ---
 name: codex-review
-description: "Cross-AI code review: get an independent second opinion on your diff from a different perspective. Compare findings between reviewers."
+version: "2.2.0"
+description: Cross-AI code review
+triggers:
+  - "second opinion"
+  - "cross ai review"
+  - "codex check"
 ---
 
 # Codex Review

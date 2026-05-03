@@ -1,6 +1,12 @@
 ---
 name: ux-research
-description: "UX research planning: user testing scripts, survey design, persona development, journey mapping, and usability test analysis."
+version: "2.2.0"
+description: UX research planning
+triggers:
+  - "user testing"
+  - "persona"
+  - "journey map"
+  - "usability"
 ---
 
 # UX Research

@@ -1,6 +1,11 @@
 ---
 name: document-release
-description: "After shipping, update every doc the change touched: README, CHANGELOG, API reference, migration notes, and in-repo guides. Catch stale docs before they mislead the next reader."
+version: "2.2.0"
+description: After shipping, update every doc the change touched
+triggers:
+  - "update docs"
+  - "sync docs"
+  - "release notes"
 ---
 
 # Document Release

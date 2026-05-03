@@ -1,6 +1,11 @@
 ---
 name: plan-design-review
-description: "Design lens on a plan: rate each design dimension 0-10 before implementation begins. Visual clarity, interaction design, accessibility, consistency, performance. Returns a scorecard with specific fixes."
+version: "2.2.0"
+description: Design lens on a plan
+triggers:
+  - "design review plan"
+  - "ux review"
+  - "plan quality"
 ---
 
 # Plan Design Review

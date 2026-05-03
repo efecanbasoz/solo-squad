@@ -1,6 +1,12 @@
 ---
 name: legal-compliance
-description: "Regulatory compliance checking: GDPR, CCPA, KVKK, HIPAA. Privacy policy review, consent management, data handling procedures."
+version: "2.2.0"
+description: Regulatory compliance checking
+triggers:
+  - "gdpr"
+  - "compliance"
+  - "privacy"
+  - "hipaa"
 ---
 
 # Legal Compliance

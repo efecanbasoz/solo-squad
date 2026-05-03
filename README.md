@@ -4,13 +4,10 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-blueviolet)](https://docs.anthropic.com/en/docs/claude-code)
-[![Codex CLI](https://img.shields.io/badge/Codex_CLI-Compatible-green)](https://github.com/openai/codex)
-[![OpenCode](https://img.shields.io/badge/OpenCode-Compatible-orange)](https://github.com/sst/opencode)
-[![Cursor](https://img.shields.io/badge/Cursor-Compatible-blue)](https://cursor.com)
-[![Gemini CLI](https://img.shields.io/badge/Gemini_CLI-Compatible-yellow)](https://github.com/google-gemini/gemini-cli)
-[![Copilot CLI](https://img.shields.io/badge/Copilot_CLI-Compatible-lightgrey)](https://githubnext.com/projects/copilot-cli)
+[![Codex CLI](https://img.shields.io/badge/Codex_CLI-Plugin-green)](https://github.com/openai/codex)
+[![OpenCode](https://img.shields.io/badge/OpenCode-Plugin-orange)](https://github.com/sst/opencode)
 
-**35 skills + 8 workflow commands** across coding, design, and security for any AI coding CLI. No vague instructions — each skill is a battle-tested process with numbered steps, quality gates, and defined deliverables.
+**40 skills + 8 workflow commands** across coding, design, and security for AI coding CLIs. No vague instructions — each skill is a battle-tested process with numbered steps, quality gates, defined deliverables, and DOT flowcharts.
 
 ---
 
@@ -18,9 +15,9 @@
 
 No dependencies. No build step. Pure markdown + shell scripts.
 
-### Claude Code
+### Claude Code (Recommended)
 
-Add the Solo Squad marketplace, then install:
+#### Marketplace Install (Recommended)
 
 ```bash
 claude plugins marketplace add https://github.com/efecanbasoz/solo-squad
@@ -33,26 +30,42 @@ Reload to activate:
 /reload-plugins
 ```
 
+#### Manual Install
+
+```bash
+git clone https://github.com/efecanbasoz/solo-squad ~/.claude/solo-squad
+```
+
+Then add to your Claude Code plugins directory. Skills are auto-discovered from `.claude-plugin/plugin.json`.
+
 ### Codex CLI
 
-Clone and symlink so Codex auto-discovers skills at startup:
+#### Marketplace Install (Recommended)
+
+```bash
+codex plugin marketplace add efecanbasoz/solo-squad
+codex plugins install solo-squad
+```
+
+Or add the marketplace manually:
+
+```bash
+# Clone the repo
+git clone https://github.com/efecanbasoz/solo-squad ~/.codex/solo-squad
+
+# Add the marketplace
+cp ~/.codex/solo-squad/.agents/plugins/marketplace.json ~/.agents/plugins/solo-squad-marketplace.json
+```
+
+Restart Codex to discover the plugin.
+
+#### Manual Install (Legacy)
 
 ```bash
 git clone https://github.com/efecanbasoz/solo-squad ~/.codex/solo-squad
 mkdir -p ~/.agents/skills
 ln -s ~/.codex/solo-squad/skills ~/.agents/skills/solo-squad
 ```
-
-<details>
-<summary>Windows (PowerShell)</summary>
-
-```powershell
-git clone https://github.com/efecanbasoz/solo-squad "$env:USERPROFILE\.codex\solo-squad"
-New-Item -ItemType Directory -Force "$env:USERPROFILE\.agents\skills"
-cmd /c mklink /J "$env:USERPROFILE\.agents\skills\solo-squad" "$env:USERPROFILE\.codex\solo-squad\skills"
-```
-
-</details>
 
 To enable subagent dispatch for skills like `/build` and `/sprint`, add to `~/.codex/config.toml`:
 
@@ -63,7 +76,7 @@ multi_agent = true
 
 ### OpenCode
 
-Install with the OpenCode CLI:
+#### Plugin Registry Install (Recommended)
 
 ```bash
 opencode plugin "solo-squad@git+https://github.com/efecanbasoz/solo-squad.git" --global
@@ -77,40 +90,21 @@ Or add it manually to your `opencode.json`:
 }
 ```
 
+#### Manual Install
+
+```bash
+git clone https://github.com/efecanbasoz/solo-squad ~/.config/opencode/solo-squad
+```
+
+Then add to `opencode.json`:
+
+```json
+{
+  "plugin": ["/absolute/path/to/solo-squad"]
+}
+```
+
 The JS plugin at `.opencode/plugins/solo-squad.js` registers skills, workflow commands, and subagents automatically, then injects session context on the first user message.
-
-### Cursor
-
-Install from the agent chat:
-
-```
-/install-plugin efecanbasoz/solo-squad
-```
-
-Skills, agents, commands, and hooks are discovered from `.cursor-plugin/plugin.json`.
-
-### Gemini CLI
-
-Install as a Gemini extension:
-
-```bash
-gemini extensions install https://github.com/efecanbasoz/solo-squad
-```
-
-`GEMINI.md` and `gemini-extension.json` at the repo root provide context and tool mapping.
-
-> **Note:** Gemini CLI does not support subagents. Skills that dispatch agents fall back to sequential execution.
-
-### Copilot CLI
-
-Add the marketplace and install:
-
-```bash
-copilot plugins marketplace add efecanbasoz/solo-squad
-copilot plugins install solo-squad
-```
-
-Copilot uses the same `.claude-plugin/` manifest and shares full hook support.
 
 ### Updating
 
@@ -119,22 +113,16 @@ Each platform picks up updates differently:
 | Platform | Update command |
 |----------|---------------|
 | Claude Code | `claude plugins update solo-squad` |
-| Codex CLI | `cd ~/.codex/solo-squad && git pull` |
+| Codex CLI | `codex plugin marketplace upgrade` or `cd ~/.codex/solo-squad && git pull` |
 | OpenCode | Remove + re-add in `opencode.json` (auto-fetches latest) |
-| Cursor | `/update-plugin solo-squad` |
-| Gemini CLI | `gemini extensions update solo-squad` |
-| Copilot CLI | `copilot plugins update solo-squad` |
 
 ### Uninstalling
 
 | Platform | Uninstall command |
 |----------|------------------|
 | Claude Code | `claude plugins uninstall solo-squad` |
-| Codex CLI | `rm ~/.agents/skills/solo-squad && rm -rf ~/.codex/solo-squad` |
+| Codex CLI | `codex plugins uninstall solo-squad` |
 | OpenCode | Remove from `opencode.json` |
-| Cursor | `/remove-plugin solo-squad` |
-| Gemini CLI | `gemini extensions uninstall solo-squad` |
-| Copilot CLI | `copilot plugins uninstall solo-squad` |
 
 ---
 
@@ -187,9 +175,9 @@ Solo Squad: Build complete. 12/12 tasks, 94% coverage.
   → /review
 
   Multi-lens review:
-    BLOCKER: Race condition in WebSocket reconnect (auto-fixed)
-    SUGGESTION: Extract toast queue into custom hook
-    NIT: Inconsistent error message casing
+    🔴 BLOCKER: Race condition in WebSocket reconnect (auto-fixed)
+    🟡 SUGGESTION: Extract toast queue into custom hook
+    💭 NIT: Inconsistent error message casing
 
   → /polish-beta
 
@@ -252,7 +240,7 @@ Solo Squad:
 
 ## What's inside
 
-### Coding — 21 skills, 3 agents
+### Coding — 21 skills, 6 agents
 
 | Skill | Your specialist |
 |-------|----------------|
@@ -263,7 +251,7 @@ Solo Squad:
 | `/plan-eng-review` | Engineering reviewer who locks down architecture and data flow before code |
 | `/plan-devex-review` | DX reviewer who catches local-dev, onboarding, and debugging friction |
 | `/build` | Lead engineer dispatching subagents with TDD enforcement |
-| `/review` | Senior reviewer classifying BLOCKER / SUGGESTION / NIT |
+| `/review` | Senior reviewer classifying 🔴 BLOCKER / 🟡 SUGGESTION / 💭 NIT |
 | `/qa` | QA lead running real browser tests, filing bugs, writing regression tests |
 | `/polish-beta` | HITL polish pass for copy, microcopy, and last-mile release quality |
 | `/ship` | Release engineer: tests, coverage audit, PR open, deploy handoff |
@@ -278,7 +266,7 @@ Solo Squad:
 | `/workflow-mapping` | Systems analyst: happy paths, failure modes, handoffs |
 | `/developer-advocacy` | DevRel: DX audits, tutorials, sample apps |
 
-**Agents:** Architect (designs, never implements) · Tester (edge cases, screenshot evidence) · Debugger (read-only investigator)
+**Agents:** Architect (designs, never implements) · Tester (edge cases, screenshot evidence) · Debugger (read-only investigator) · Critic (design quality, AI slop detection) · Sentinel (security review, 8/10+ confidence gate) · Reality Checker (evidence-based certification, default NEEDS WORK)
 
 ### Design — 5 skills, 1 agent
 
@@ -298,7 +286,7 @@ Solo Squad:
 |-------|----------------|
 | `/cso` | Security officer: OWASP + STRIDE + supply chain + zero-trust |
 | `/benchmark` | Performance engineer: Core Web Vitals, load testing, capacity planning |
-| `/incident-response` | Incident commander: SEV classification, post-mortems, runbooks |
+| `/incident-response` | Incident commander: SEV classification, SLOs, post-mortems, runbooks |
 | `/legal-compliance` | Compliance officer: GDPR, CCPA, KVKK, HIPAA |
 | `/browse` | Browser automation: navigate, click, fill, screenshot, verify |
 | `/careful` | Safety net: warns before rm -rf, DROP TABLE, force-push |
@@ -307,6 +295,16 @@ Solo Squad:
 | `/codex-review` | Second opinion: cross-AI independent code review |
 
 **Agent:** Sentinel (read-only security review, 8/10+ confidence gate)
+
+### Quality & Learning — 5 skills
+
+| Skill | Your specialist |
+|-------|----------------|
+| `/slop-scan` | AI slop detector: catches empty catches, redundant awaits, dead code, copy-paste smell |
+| `/learn` | Knowledge engineer: captures cross-session operational learnings |
+| `/health` | Code health monitor: weighted 0-10 score for coverage, complexity, duplication, docs |
+| `/scrape` | Data extractor: structured data from web pages via curl + jq |
+| `/retro` | Sprint retrospective: what worked, what didn't, data-driven action items |
 
 ### Workflow commands
 
@@ -327,40 +325,40 @@ Chain skills into end-to-end pipelines:
 
 ## How it works
 
-Each skill is a **structured process** — numbered steps, decision criteria, quality gates, and explicit deliverables. Your agent follows the playbook instead of improvising.
+Each skill is a **structured process** — numbered steps, decision criteria, quality gates, explicit deliverables, and DOT flowcharts. Your agent follows the playbook instead of improvising.
 
 ```
 skills/
-├── brainstorm/SKILL.md     ← Role + Process + Rules + Deliverables
+├── brainstorm/SKILL.md     ← Role + Process + Rules + Deliverables + DOT Flowchart
 ├── plan/SKILL.md
 ├── build/SKILL.md
 ├── ...
 agents/
 ├── architect.md            ← Persona + Expertise + Decision Framework
 ├── tester.md
+├── reality-checker.md      ← Evidence-based certification, default NEEDS WORK
 ├── ...
 commands/
 ├── sprint.md               ← Skill chain with human approval gates
 ├── hotfix.md
 ├── ...
 hooks/
-├── tdd-reminder.sh         ← Fires when you write code without tests
-├── brand-check.sh          ← Fires when you edit CSS/SVG/assets
-├── destructive-warning.sh  ← Fires before rm -rf, DROP TABLE, etc.
+├── session-start           ← Universal bootstrap with feature discovery
+├── hooks.json              ← SessionStart + PreToolUse + PostToolUse
 ```
 
-Skills are written in **SKILL.md** with `name` and `description` frontmatter — the universal format across all supported CLIs. Write once, run anywhere.
+Skills are written in **SKILL.md** with `name`, `description`, `version`, and `triggers` frontmatter — the universal format across all supported CLIs. Write once, run anywhere.
 
 ---
 
 ## Multi-CLI support
 
-| Feature | Claude Code | Codex CLI | OpenCode | Cursor | Gemini CLI | Copilot CLI |
-|---------|:-----------:|:---------:|:--------:|:------:|:----------:|:-----------:|
-| Skills | Native | Native (symlink) | Native (plugin) | Native | Native | Native |
-| Agents | Native | With `multi_agent` | Native (plugin) | Native | Reference | Native |
-| Hooks | Full | SessionStart | Via JS plugin | Full | SessionStart | Full |
-| Commands | Native | Via skills | Native (plugin) | Native | Via skills | Native |
+| Feature | Claude Code | Codex CLI | OpenCode |
+|---------|:-----------:|:---------:|:--------:|
+| Skills | Native (marketplace) | Native (plugin) | Native (plugin) |
+| Agents | Native | With `multi_agent` | Native (plugin) |
+| Hooks | Full (SessionStart + Pre/Post) | SessionStart + Pre/Post | Via JS plugin |
+| Commands | Native | Native (plugin) | Native (plugin) |
 
 Tool name differences are bridged automatically via reference docs in `skills/using-solo-squad/references/`.
 
@@ -382,15 +380,16 @@ On Pro/Max/Team plans with included usage, this rarely matters.
 
 ## Built on
 
-- **[superpowers](https://github.com/obra/superpowers)** — TDD discipline, subagent-driven development, multi-CLI architecture
-- **[gstack](https://github.com/garrytan/gstack)** — Host config system, browser automation, safety guardrails
-- **[compound-engineering](https://github.com/EveryInc/compound-engineering-plugin)** — Knowledge compounding philosophy
+- **[superpowers](https://github.com/obra/superpowers)** — TDD discipline, subagent-driven development, multi-CLI architecture, DOT flowcharts, rationalization tables
+- **[gstack](https://github.com/garrytan/gstack)** — Host config system, browser automation, safety guardrails, persistent memory
+- **[compound-engineering](https://github.com/EveryInc/compound-engineering-plugin)** — Knowledge compounding philosophy, converter architecture
+- **[agency-agents](https://github.com/msitarzewski/agency-agents)** — Evidence-based certification, SRE frameworks, code review formats, orchestration patterns
 
 ---
 
 ## Contributing
 
-Add a skill in your domain. Each one needs a `SKILL.md` with frontmatter, numbered process, explicit rules, and defined deliverables. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Add a skill in your domain. Each one needs a `SKILL.md` with frontmatter, numbered process, explicit rules, defined deliverables, and a DOT flowchart. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 

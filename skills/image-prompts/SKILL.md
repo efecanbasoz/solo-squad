@@ -1,6 +1,12 @@
 ---
 name: image-prompts
-description: "Generate optimized AI image prompts for Midjourney, DALL-E, Stable Diffusion, and Flux. Photography direction, style references, and iterative refinement."
+version: "2.2.0"
+description: Generate optimized AI image prompts for Midjourney, DALL-E, Stable Diffusion, and Flux.
+triggers:
+  - "generate image"
+  - "ai image"
+  - "midjourney"
+  - "dalle"
 ---
 
 # Image Prompts

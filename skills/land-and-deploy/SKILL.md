@@ -1,6 +1,11 @@
 ---
 name: land-and-deploy
-description: "Merge the PR, trigger the deploy, and verify production health end-to-end. The bridge between /ship and a confirmed live release."
+version: "2.2.0"
+description: Merge the PR, trigger the deploy, and verify production health end-to-end.
+triggers:
+  - "merge deploy"
+  - "deploy production"
+  - "go live"
 ---
 
 # Land and Deploy

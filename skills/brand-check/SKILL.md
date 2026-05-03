@@ -1,6 +1,11 @@
 ---
 name: brand-check
-description: "Brand consistency audit: check deliverables against brand guidelines for color usage, typography, voice and tone, logo placement, and visual style."
+version: "2.2.0"
+description: Brand consistency audit
+triggers:
+  - "brand audit"
+  - "check brand"
+  - "guidelines"
 ---
 
 # Brand Check

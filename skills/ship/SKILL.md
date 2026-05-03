@@ -1,6 +1,12 @@
 ---
 name: ship
-description: "Sync main, run tests, audit coverage, push, and open a PR. Bootstraps test frameworks if none exist."
+version: "2.2.0"
+description: Sync main, run tests, audit coverage, push, and open a PR.
+triggers:
+  - "ship code"
+  - "open pr"
+  - "release"
+  - "deploy"
 ---
 
 # Ship

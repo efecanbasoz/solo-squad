@@ -1,6 +1,11 @@
 ---
 name: careful
-description: "Safety guardrails: warns before destructive commands like rm -rf, DROP TABLE, force-push, git reset --hard. Activate by saying 'be careful'. Override any warning."
+version: "2.2.0"
+description: Safety guardrails
+triggers:
+  - "be careful"
+  - "safety"
+  - "destructive command"
 ---
 
 # Careful

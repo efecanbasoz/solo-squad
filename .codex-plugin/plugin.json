@@ -1,7 +1,7 @@
 {
   "name": "solo-squad",
-  "description": "Turn one developer into a full squad. 40 skills across coding, design & security — with multi-agent workflows, TDD enforcement, and safety guardrails.",
   "version": "2.2.0",
+  "description": "Turn one developer into a full squad. 40 skills across coding, design & security — with multi-agent workflows, TDD enforcement, and safety guardrails.",
   "author": {
     "name": "Solo Squad",
     "email": "hello@sirkhet.com"
@@ -30,7 +30,7 @@
     "shortDescription": "One developer. A full squad of specialists.",
     "longDescription": "40 skills across coding, design, and security workflows. Multi-agent TDD enforcement, safety guardrails, and DOT flowcharts for disciplined development.",
     "category": "Productivity",
-    "capabilities": ["Read", "Write", "Edit", "Bash", "Agent"],
+    "capabilities": ["Read", "Write", "Edit", "Bash"],
     "defaultPrompt": [
       "Use Solo Squad to plan and build a new feature",
       "Use Solo Squad to review this code before merging",

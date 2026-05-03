@@ -1,6 +1,11 @@
 ---
 name: plan-ceo-review
-description: "CEO lens on a plan: strategic scope challenge. Are we solving the right problem, at the right size, for the right outcome? Returns a verdict mode — CLEAR, TIGHTEN, TRIAGE, or HALT — with specific cuts or adds."
+version: "2.2.0"
+description: CEO lens on a plan
+triggers:
+  - "ceo review"
+  - "scope challenge"
+  - "strategic review"
 ---
 
 # Plan CEO Review

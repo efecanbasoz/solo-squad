@@ -1,6 +1,12 @@
 ---
 name: cso
-description: "Security audit: OWASP Top 10 scan, STRIDE threat modeling, zero-noise findings with 8/10+ confidence gate, independent verification, and concrete exploit scenarios."
+version: "2.2.0"
+description: Security audit
+triggers:
+  - "security audit"
+  - "owasp"
+  - "stride"
+  - "security scan"
 ---
 
 # CSO (Chief Security Officer)

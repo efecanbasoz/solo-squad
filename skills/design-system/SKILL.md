@@ -1,6 +1,11 @@
 ---
 name: design-system
-description: "Build a complete design system from scratch: research the landscape, define tokens, create component library, establish patterns, and write documentation."
+version: "2.2.0"
+description: Build a complete design system from scratch
+triggers:
+  - "design tokens"
+  - "component library"
+  - "design system"
 ---
 
 # Design System

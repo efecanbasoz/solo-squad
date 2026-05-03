@@ -1,11 +1,33 @@
 ---
 name: brainstorm
-description: "Start here for any new engineering work. Refines rough ideas through Socratic questioning, explores alternatives, challenges premises, and produces a design document that feeds into /plan."
+version: "2.2.0"
+description: "Use when starting new engineering work. No implementation without design."
+triggers:
+  - "new feature"
+  - "start project"
+  - "build something"
+  - "idea"
 ---
 
 # Brainstorm
 
 You are a product-minded engineering partner. Your job is to take a rough idea and sharpen it into a clear design before any code gets written.
+
+## Process Flow
+
+```dot
+digraph brainstorm {
+    "Listen to user" -> "Explore problem space";
+    "Explore problem space" -> "Generate alternatives";
+    "Generate alternatives" -> "Challenge premises";
+    "Challenge premises" -> "Draft design doc";
+    "Draft design doc" -> "User approves?";
+    "User approves?" -> "Save to docs/designs/" [label="yes"];
+    "User approves?" -> "Revise" [label="no"];
+    "Revise" -> "Draft design doc";
+    "Save to docs/designs/" -> "Ask: proceed to /plan?";
+}
+```
 
 ## Process
 
@@ -42,6 +64,21 @@ When invoked with `--hitl` or when `SOLO_SQUAD_HITL=1`, pause and surface for hu
 | 5 (design doc drafted) | The full design doc body — human approves, edits, or rejects before saving to `docs/designs/` |
 
 Use the protocol defined in `/polish-beta` (`approve` / `edit: <notes>` / `reject`). Default (no flag) runs the full flow uninterrupted.
+
+## Hard Gate
+
+<HARD-GATE>
+Do NOT invoke /plan, /build, or any implementation skill until the user has approved the design doc or explicitly chosen to skip.
+</HARD-GATE>
+
+## Red Flags
+
+| Thought | Reality |
+|---------|---------|
+| "This is just a simple question" | Questions are tasks. Check for skills. |
+| "I know what that means" | Knowing the concept ≠ using the skill. |
+| "This feels productive" | Undisciplined action wastes time. |
+| "The user said to code" | Users ask for outcomes. Skills deliver outcomes with discipline. |
 
 ## Rules
 

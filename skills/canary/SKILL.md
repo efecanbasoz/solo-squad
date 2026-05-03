@@ -1,6 +1,11 @@
 ---
 name: canary
-description: "Post-deploy canary check: drive critical flows in a real browser, watch console errors and performance regressions, and decide rollback vs. proceed within 10 minutes of shipping."
+version: "2.2.0"
+description: Post-deploy canary check
+triggers:
+  - "canary check"
+  - "verify deploy"
+  - "production health"
 ---
 
 # Canary

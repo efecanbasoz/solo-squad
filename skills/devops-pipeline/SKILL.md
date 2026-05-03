@@ -1,6 +1,12 @@
 ---
 name: devops-pipeline
-description: "CI/CD pipeline design, infrastructure as code, container orchestration, and zero-downtime deployment strategies."
+version: "2.2.0"
+description: CI/CD pipeline design, infrastructure as code, container orchestration, and zero-downtime deploym...
+triggers:
+  - "ci cd"
+  - "pipeline"
+  - "infrastructure"
+  - "deployment"
 ---
 
 # DevOps Pipeline

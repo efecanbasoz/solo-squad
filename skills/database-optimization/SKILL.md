@@ -1,6 +1,12 @@
 ---
 name: database-optimization
-description: "Query optimization, indexing strategies, schema design review, and performance tuning for PostgreSQL, MySQL, and Supabase."
+version: "2.2.0"
+description: Query optimization, indexing strategies, schema design review, and performance tuning for Postgre...
+triggers:
+  - "optimize query"
+  - "slow query"
+  - "index"
+  - "database"
 ---
 
 # Database Optimization

@@ -2,7 +2,7 @@
 set -e
 
 # Solo Squad session bootstrap — detects platform and injects context
-# Supports: Claude Code, Codex CLI, OpenCode, Copilot CLI
+# Supports: Claude Code, Codex CLI, OpenCode
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PLUGIN_ROOT="$(dirname "$SCRIPT_DIR")"
@@ -23,16 +23,10 @@ SESSION_CONTEXT=$(echo "$SESSION_CONTEXT" | jq -Rs .)
 SESSION_CONTEXT="${SESSION_CONTEXT:1:${#SESSION_CONTEXT}-2}"
 
 # Detect platform and output the right JSON format
-if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
-  # Cursor
-  printf '{ "additional_context": "%s" }\n' "$SESSION_CONTEXT"
-elif [ -n "${GEMINI_EXTENSION_ROOT:-}" ]; then
-  # Gemini CLI
-  printf '{ "additionalContext": "%s" }\n' "$SESSION_CONTEXT"
-elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+if [ -n "${CLAUDE_PLUGIN_ROOT:-}" ]; then
   # Claude Code
   printf '{ "hookSpecificOutput": { "hookEventName": "SessionStart", "additionalContext": "%s" } }\n' "$SESSION_CONTEXT"
 else
-  # Codex CLI / Copilot CLI / default (SDK standard)
+  # Codex CLI / OpenCode / default (SDK standard)
   printf '{ "additionalContext": "%s" }\n' "$SESSION_CONTEXT"
 fi

@@ -1,6 +1,12 @@
 ---
 name: investigate
-description: "Systematic root-cause debugging. No fixes without investigation. Traces data flow, tests hypotheses, stops after 3 failed attempts."
+version: "2.2.0"
+description: Systematic root-cause debugging.
+triggers:
+  - "find bug"
+  - "debug"
+  - "root cause"
+  - "investigate error"
 ---
 
 # Investigate

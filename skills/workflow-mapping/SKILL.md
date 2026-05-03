@@ -1,6 +1,11 @@
 ---
 name: workflow-mapping
-description: "Complete workflow documentation: happy paths, branch conditions, failure modes, recovery paths, and handoff contracts."
+version: "2.2.0"
+description: Complete workflow documentation
+triggers:
+  - "document workflow"
+  - "process map"
+  - "handoff"
 ---
 
 # Workflow Mapping

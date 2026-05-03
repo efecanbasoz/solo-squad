@@ -1,6 +1,12 @@
 ---
 name: developer-advocacy
-description: "Developer community building, DX auditing, technical content creation, sample apps, and SDK documentation."
+version: "2.2.0"
+description: Developer community building, DX auditing, technical content creation, sample apps, and SDK docum...
+triggers:
+  - "developer experience"
+  - "dx audit"
+  - "sample app"
+  - "tutorial"
 ---
 
 # Developer Advocacy

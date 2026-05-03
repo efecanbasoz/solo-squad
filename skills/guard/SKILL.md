@@ -1,6 +1,11 @@
 ---
 name: guard
-description: "Maximum safety mode: combines /careful (destructive command warnings) and /freeze (edit scope lock) in one command."
+version: "2.2.0"
+description: Maximum safety mode
+triggers:
+  - "maximum safety"
+  - "lockdown"
+  - "safe mode"
 ---
 
 # Guard

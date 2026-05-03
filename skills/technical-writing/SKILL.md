@@ -1,6 +1,12 @@
 ---
 name: technical-writing
-description: "README files, API references, migration guides, and developer documentation. Docs-as-code approach."
+version: "2.2.0"
+description: README files, API references, migration guides, and developer documentation.
+triggers:
+  - "write docs"
+  - "api docs"
+  - "readme"
+  - "documentation"
 ---
 
 # Technical Writing
