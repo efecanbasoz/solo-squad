@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate SKILL.md frontmatter
+        run: bash tests/validate-frontmatter.sh
+
+      - name: Validate agent frontmatter
+        run: bash tests/validate-agents.sh
+
+      - name: Count skills
+        run: bash tests/count-skills.sh
+
+      - name: Check for stale references
+        run: |
+          # Ensure no references to removed platforms remain
+          ! grep -rni 'cursor\|gemini cli\|copilot cli' README.md CLAUDE.md AGENTS.md || true
+          echo "✅ No stale platform references found."
