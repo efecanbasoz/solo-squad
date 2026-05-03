@@ -1,13 +1,15 @@
 # Solo Squad
 
-> One developer. A full squad of specialists.
+> One developer with AI ships like a team of twenty.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-blueviolet)](https://docs.anthropic.com/en/docs/claude-code)
 [![Codex CLI](https://img.shields.io/badge/Codex_CLI-Plugin-green)](https://github.com/openai/codex)
 [![OpenCode](https://img.shields.io/badge/OpenCode-Plugin-orange)](https://github.com/sst/opencode)
 
-**40 skills + 8 workflow commands** across coding, design, and security for AI coding CLIs. No vague instructions — each skill is a battle-tested process with numbered steps, quality gates, defined deliverables, and DOT flowcharts.
+**40 skills + 8 workflow commands** that turn AI agents into disciplined engineers. Each skill is a battle-tested process with **DOT flowcharts**, **hard gates**, and **anti-slop defenses** — so your agent follows the playbook instead of improvising.
+
+**Zero dependencies.** Pure markdown + shell scripts. Install in 10 seconds.
 
 ---
 
@@ -123,6 +125,24 @@ Each platform picks up updates differently:
 | Claude Code | `claude plugins uninstall solo-squad` |
 | Codex CLI | `codex plugins uninstall solo-squad` |
 | OpenCode | Remove from `opencode.json` |
+
+---
+
+## What makes this different
+
+Most AI coding plugins give you vague prompts. Solo Squad gives you **processes agents can't skip**.
+
+| Other plugins | Solo Squad |
+|---------------|------------|
+| Vague instructions | **DOT flowcharts** — agents follow structured diagrams, not prose |
+| Agents skip steps | **Hard gates** (`<HARD-GATE>`, `<SUBAGENT-STOP>`) — behavioral boundaries that can't be rationalized away |
+| "Looks good to me" reviews | **Confidence calibration** — every finding rated 100/75/50/25. Only 8/10+ gets reported. Zero noise. |
+| Generic code review | **Evidence-based certification** — Reality Checker defaults to `NEEDS WORK`. Overwhelming proof required for `READY`. |
+| No memory between sessions | **Persistent learnings** — `/compound` and `/learn` capture patterns to `~/.solo-squad/learnings.jsonl` so your agent gets smarter over time |
+| Hidden dependencies | **Zero dependencies** — pure markdown + shell scripts. No npm install, no compiled binaries, no Docker. |
+| "AI slop" in output | **Anti-slop scan** — `/slop-scan` catches empty catches, redundant awaits, dead code, and copy-paste smell before review |
+
+**The result:** Your agent actually follows the process. No more skipped tests, no more "looks good to me" on broken code, no more hallucinated deployments.
 
 ---
 
