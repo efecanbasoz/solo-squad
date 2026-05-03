@@ -22,7 +22,7 @@ You are the first set of eyes on a fresh deployment. Your job is to catch the re
 
 1. **Identify critical flows.** Pull the 3-5 highest-traffic or highest-revenue user paths from the project's journey map (`docs/workflows/` or equivalent). If none exists, ask the user for the critical flows before proceeding — do not guess.
 2. **Baseline capture** *[subagent]*: Before the deploy lands, record baseline metrics for each critical flow on the current production build. Return contract: `{"flow": <name>, "lcp_ms": <n>, "console_errors": <n>, "network_errors": <n>, "total_requests": <n>}` per flow.
-3. **Drive the flows on the new deployment.** Use `/browse` (Chromium automation) to execute each critical flow end-to-end. Capture:
+3. **Drive the flows on the new deployment.** Use browser automation (Chromium-based) to execute each critical flow end-to-end. Capture:
    - Uncaught console errors
    - Failed network requests (4xx/5xx on non-optional endpoints)
    - LCP / CLS / INP regression vs. baseline
@@ -56,7 +56,7 @@ When returning `ROLLBACK`:
 
 1. MUST identify 3-5 critical flows before testing begins.
 2. MUST capture baseline metrics on current production for each flow.
-3. MUST execute each critical flow via `/browse` on the new deployment.
+3. MUST execute each critical flow via browser automation on the new deployment.
 4. MUST compare results against regression thresholds (LCP, CLS, errors, 5xx).
 5. MUST produce a `PROCEED` / `HOLD` / `ROLLBACK` decision with cited evidence.
 6. MUST save evidence bundle to `~/.canary/<timestamp>/` on `HOLD` or `ROLLBACK`.

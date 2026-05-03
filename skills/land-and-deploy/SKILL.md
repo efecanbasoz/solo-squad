@@ -16,7 +16,7 @@ You own the PR from "approved" to "confirmed healthy in production." This skill 
 
 - After `/ship` opens a PR and the review is approved.
 - When merging release branches that have passed CI, review, and QA.
-- Not for emergency rollbacks — use `/incident-response` instead.
+- Not for emergency rollbacks — handle as a production incident manually.
 
 ## Process
 
@@ -27,11 +27,11 @@ You own the PR from "approved" to "confirmed healthy in production." This skill 
    - If any check fails, halt and report — do not merge.
 2. **Merge.** Use the project's preferred merge strategy (squash, rebase, or merge commit — read from `CONTRIBUTING.md` or repo settings). Apply the final PR title as the commit subject.
 3. **Trigger deploy.** For repos with auto-deploy on merge (Vercel, Netlify, GitHub Actions → platform), wait for the deploy event. For manual deploys, dispatch the deploy command read from `docs/deploy.md` or the project's deploy runbook.
-4. **Watch the deploy.** Track the deploy until it reaches `READY` or equivalent. Timeout: 15 minutes. On failure, trigger `/incident-response` with the build logs and deploy URL.
+4. **Watch the deploy.** Track the deploy until it reaches `READY` or equivalent. Timeout: 15 minutes. On failure, escalate to the on-call engineer immediately with the build logs and deploy URL.
 5. **Run `/canary`.** Hand off to the canary skill with the new deploy URL. Return contract from canary: `PROCEED | HOLD | ROLLBACK`.
    - `PROCEED` → continue to step 6
    - `HOLD` → pause; surface canary evidence and wait for human call
-   - `ROLLBACK` → recommend revert command, do not execute, trigger `/incident-response`
+   - `ROLLBACK` → recommend revert command, do not execute, escalate to the on-call engineer immediately
 6. **Run `/document-release`.** Update CHANGELOG, README, and affected docs. Commit the doc updates to `main` as a follow-up `docs: post-release notes for vX.Y.Z` commit.
 7. **Announce.** Post a release summary:
    - Version / commit SHA / deploy URL
@@ -42,7 +42,7 @@ You own the PR from "approved" to "confirmed healthy in production." This skill 
 ## Critical Rules
 
 1. Never merge past a failing required check — CI is the source of truth, admin override is forbidden.
-2. Never auto-execute a rollback — recommend and trigger `/incident-response`, but let a human decide.
+2. Never auto-execute a rollback — recommend and escalate to the on-call engineer immediately, but let a human decide.
 3. If the deploy platform or command is unknown, halt and ask — do not guess or assume.
 4. Documentation commits land ONLY after canary returns `PROCEED` — never before.
 5. Every decision must be logged with timestamp, evidence, and next action before advancing.
@@ -56,13 +56,13 @@ You own the PR from "approved" to "confirmed healthy in production." This skill 
 5. Run `/canary` on the new deploy URL and capture the decision (`PROCEED` / `HOLD` / `ROLLBACK`).
 6. If canary returns `PROCEED`, run `/document-release` and commit doc updates to `main`.
 7. Post the release summary with version, URL, canary evidence, docs commits, and known follow-ups.
-8. If canary returns `HOLD`, pause and surface evidence; if `ROLLBACK`, trigger `/incident-response`.
+8. If canary returns `HOLD`, pause and surface evidence; if `ROLLBACK`, escalate to the on-call engineer immediately.
 
 ## Automatic Fail Triggers
 
 - Merging with any failing required CI check.
 - Deploy timeout exceeds 15 minutes without status update.
-- Canary returns `ROLLBACK` and the skill continues without triggering `/incident-response`.
+- Canary returns `ROLLBACK` and the skill continues without escalating to the on-call engineer.
 - Doc commits pushed before canary completes or on a `HOLD`/`ROLLBACK` decision.
 - Missing observability — any step advanced without logging decision, timing, and evidence.
 

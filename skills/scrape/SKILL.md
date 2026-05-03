@@ -66,10 +66,10 @@ digraph scrape {
    ]
    ```
 
-## When to Use /browse Instead
+## When to Use Browser Automation Instead
 
 If the target page requires JavaScript rendering (SPA, React, Vue), `/scrape` will fail. In that case:
-> "This page requires JavaScript rendering. Use `/browse` instead for headless browser automation."
+> "This page requires JavaScript rendering. Use browser automation instead."
 
 ## Critical Rules
 
@@ -82,7 +82,7 @@ If the target page requires JavaScript rendering (SPA, React, Vue), `/scrape` wi
 
 ## Decision Table
 
-| Target Type | Tool | When to Use /browse Instead |
+| Target Type | Tool | When to Use Browser Automation |
 |-------------|------|---------------------------|
 | Static HTML page | curl + grep/sed/awk | JavaScript-rendered content |
 | JSON API | curl + jq | Requires authentication |
@@ -129,4 +129,4 @@ METADATA
 - Errors handled gracefully: 100%
 
 ## Rules
-- If the page requires JavaScript rendering, use `/browse` instead.
+- If the page requires JavaScript rendering, use browser automation instead.

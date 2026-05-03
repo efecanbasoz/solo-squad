@@ -52,7 +52,7 @@ ls -la src/ || ls -la *.html
 grep -r "feature-name" . --include="*.ts" --include="*.tsx" --include="*.js" || echo "FEATURE NOT FOUND"
 
 # 3. Screenshot evidence
-# Use /browse or /qa to capture comprehensive screenshots
+# Use /qa to capture comprehensive screenshots
 
 # 4. Review all evidence
 ```

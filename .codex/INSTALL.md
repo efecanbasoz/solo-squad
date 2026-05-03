@@ -47,7 +47,7 @@ $review         — Multi-agent code review
 $ship           — Push and open PR
 $investigate    — Root-cause debugging
 $cso            — Security audit (OWASP + STRIDE)
-$careful        — Destructive command warnings
+$slop-scan      — AI-generated code quality scan
 ```
 
 ## Updating

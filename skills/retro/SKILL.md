@@ -39,7 +39,7 @@ digraph retro {
 
 3. **What worked.** Be specific:
    - "Task breakdown into 2-5 min chunks prevented scope creep"
-   - "Early `/plan-eng-review` caught the API contract issue before build"
+   - "Early `/plan-review` caught the API contract issue before build"
 
 4. **What didn't.** Be honest:
    - "3 tasks needed mid-sprint replanning — requirements weren't clear enough"

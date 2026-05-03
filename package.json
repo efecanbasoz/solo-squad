@@ -1,7 +1,7 @@
 {
   "name": "solo-squad",
   "version": "2.2.0",
-  "description": "Turn one developer into a full squad. 40 skills across coding, design, security & quality for AI coding CLIs.",
+  "description": "Turn one developer into a full squad. 27 skills across development, design, security & quality for AI coding CLIs.",
   "type": "module",
   "main": ".opencode/plugins/solo-squad.js",
   "repository": {

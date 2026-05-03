@@ -4,7 +4,7 @@ description: "Fast-track a critical fix: investigate -> fix -> review -> ship. S
 
 Emergency fix workflow. Skip ceremony, maintain quality.
 
-1. /investigate - Find root cause (auto-freeze to affected module)
+1. /investigate - Find root cause (scope-locked to affected module)
 2. Write failing test reproducing the bug
 3. Apply minimal fix, verify test passes
 4. /review - Quick review (security + correctness only)
@@ -15,7 +15,7 @@ Emergency fix workflow. Skip ceremony, maintain quality.
 1. Touch exactly one system per hotfix; scope creep is prohibited.
 2. Every hotfix must include a regression test that fails before the fix and passes after.
 3. The investigation phase must complete before any code change is written.
-4. Use the `/freeze` skill to lock edits to the affected module during investigation.
+4. Scope-lock edits to the affected module during investigation.
 5. Hotfixes skip planning and brainstorming, but never skip review and testing.
 
 ## Mandatory Process
