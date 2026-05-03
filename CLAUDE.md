@@ -1,13 +1,13 @@
 # Solo Squad
 
-Solo Squad is a plugin for AI coding CLIs that provides 40 skills across coding, design, security, and quality workflows. Works on Claude Code (primary), Codex CLI, and OpenCode.
+Solo Squad is a plugin for AI coding CLIs that provides 27 skills across development, design, security, and quality workflows. Works on Claude Code (primary), Codex CLI, and OpenCode.
 
 ## Structure
 
 ```
-skills/          — 40 SKILL.md files (the core content)
+skills/          — 27 SKILL.md files (the core content)
 agents/          — 6 agent definitions (Architect, Tester, Debugger, Critic, Sentinel, Reality Checker)
-commands/        — 8 workflow commands (autoplan, sprint, hotfix, tdd, etc.)
+commands/        — 6 workflow commands (autoplan, sprint, hotfix, tdd, design-sprint, security-scan)
 hooks/           — Runtime hooks + platform-detecting session-start + Windows wrapper
 .claude-plugin/  — Claude Code plugin manifest + marketplace
 .codex-plugin/   — Codex CLI plugin manifest
@@ -25,9 +25,9 @@ Agents are `.md` files with frontmatter (`name`, `description`, `model`, `tools`
 
 ## Categories
 
-- **Coding**: brainstorm, plan, plan-ceo-review, plan-design-review, plan-eng-review, plan-devex-review, build, review, qa, polish-beta, ship, land-and-deploy, canary, document-release, compound, investigate, technical-writing, devops-pipeline, database-optimization, workflow-mapping, developer-advocacy
-- **Design**: design-system, design-review, ux-research, brand-check, image-prompts
-- **Security**: cso, benchmark, browse, careful, codex-review, freeze, guard, incident-response, legal-compliance
+- **Development**: brainstorm, plan, plan-review, build, review, qa, polish-beta, ship, land-and-deploy, canary, document-release, compound, investigate, technical-writing, devops-pipeline, database-optimization
+- **Design**: design-system, design-review, ux-research
+- **Security**: cso, benchmark
 - **Quality & Learning**: slop-scan, learn, health, scrape, retro
 
 ## Multi-CLI Rules
