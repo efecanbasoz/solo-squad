@@ -4,6 +4,46 @@ All notable changes to Solo Squad will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-05-03
+
+Scope consolidation, native plugin manifests, skill standardization, and quality infrastructure. Solo Squad is now focused on 3 primary platforms with deeper integration.
+
+### Added
+
+- **5 new skills** — Quality & Learning division:
+  - `/slop-scan` — AI-generated code quality detection (empty catches, redundant awaits, dead code, copy-paste smell). Pattern from garrytan/gstack.
+  - `/learn` — Cross-session operational learning capture to `~/.solo-squad/learnings.jsonl`. Pattern from garrytan/gstack + EveryInc/compound-engineering.
+  - `/health` — Weighted 0-10 codebase health score (coverage 30%, complexity 25%, duplication 20%, documentation 15%, test quality 10%). Pattern from garrytan/gstack.
+  - `/scrape` — Structured data extraction via `curl` + `jq` with zero dependencies. Falls back to `/browse` for JS-rendered pages.
+  - `/retro` — Data-driven sprint retrospective with metrics, root cause analysis, and action items. Pattern from garrytan/gstack.
+- **Reality Checker agent** — Evidence-based certification agent that defaults to `NEEDS WORK`. Requires overwhelming proof for production readiness. Integrates `/qa` with agency-agents' reality-checker pattern.
+- **Native Codex CLI plugin manifest** — `.codex-plugin/plugin.json` + `.agents/plugins/marketplace.json` for marketplace install (`codex plugin marketplace add efecanbasoz/solo-squad`).
+- **Universal session-start preamble** — Update check, feature discovery (tip-of-the-day), project context recovery (recent designs, plans, learnings), and bootstrap injection. Supports Claude Code, Codex CLI, and OpenCode.
+- **CI validation pipeline** — `.github/workflows/ci.yml` with frontmatter validation, agent validation, skill count checks, and stale reference detection. `tests/` contains 3 shell-based validators.
+
+### Changed
+
+- **Scope narrowed to 3 platforms** — Claude Code (primary), Codex CLI, OpenCode. Cursor, Gemini CLI, and Copilot CLI support removed to focus on native integration depth.
+- **Skill frontmatter standardized** — All 40 skills now have `name`, `version: "2.2.0"`, `description` (trigger-only), and `triggers` (auto-trigger keywords).
+- **DOT flowcharts added** to critical skills — `/brainstorm`, `/plan`, `/build`, `/review`, `/qa`, `/compound` now include executable process specifications as GraphViz `digraph` blocks.
+- **Hard gates and rationalization tables** — `<HARD-GATE>` and `<SUBAGENT-STOP>` XML-style blocks prevent premature implementation. Red Flags tables counter common agent rationalizations.
+- **Review format upgraded** — `/review` now uses 🔴 BLOCKER / 🟡 SUGGESTION / 💭 NIT markers with confidence calibration (100/75/50/25 rubric). "Explain why, not just what" and "praise good code" directives from agency-agents.
+- **QA mindset shifted** — `/qa` defaults to `NEEDS WORK`, requires screenshot evidence, and auto-fails on fantasy assessments. Pattern from agency-agents/testing-reality-checker.
+- **Build process hardened** — `/build` now enforces task-by-task QA validation (task PASS etmeden sonrakine geçilmez), max 3 retry, context isolation for subagents, and Agent Status Protocol (`DONE`, `DONE_WITH_CONCERNS`, `BLOCKED`, `NEEDS_CONTEXT`).
+- **Incident Response expanded** — SRE framework integration: SLO definitions, error budgets, golden signals (latency, traffic, errors, saturation), observability stack, blameless post-mortems, game day planning.
+- **Architect agent enriched** — ADR template, Architecture Selection Guide (Pattern / Use When / Avoid When), Quality Attribute Analysis.
+- **OpenCode plugin enhanced** — AGENTS.md added to session context for richer bootstrap.
+- **Tool mapping docs updated** — Codex CLI install now documents native plugin + marketplace paths. OpenCode docs updated for plugin registry install.
+- **Skill count:** 35 → 40 (+5). Agents: 5 → 6 (+Reality Checker). Commands: 8 (unchanged).
+
+### Removed
+
+- `.cursor-plugin/` and `hooks/hooks-cursor.json` — Cursor support removed.
+- `GEMINI.md` and `gemini-extension.json` — Gemini CLI support removed.
+- `skills/using-solo-squad/references/copilot-tools.md` and `gemini-tools.md` — Copilot and Gemini tool mappings removed.
+- `.local/` squads (marketing, sales, project) — Removed to focus on core.
+- `scripts/bump-version.sh` no longer references removed manifests.
+
 ## [2.1.0] - 2026-04-19
 
 Sprint 1 of the v2.x feature waves. Five upstream-inspired additions that tighten planning, lock down deploys, and put the human back in the loop when it matters.

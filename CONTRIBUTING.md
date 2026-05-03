@@ -21,18 +21,43 @@ Required structure:
 ```
 ---
 name: "skill-name"
-description: "One sentence describing what this skill does and when to use it."
+version: "2.2.0"
+description: "Use when X. No process details here."
+triggers:
+  - "keyword 1"
+  - "keyword 2"
 ---
 
 # Skill Name
 
 You are a [role]. [One sentence about what you do.]
 
+## Process Flow
+
+```dot
+digraph skill-name {
+    "Step 1" -> "Step 2";
+    "Step 2" -> "Step 3";
+}
+```
+
 ## Process
 
 1. Step one.
 2. Step two.
 3. Step three.
+
+## Hard Gate
+
+<HARD-GATE>
+Do NOT [forbidden action] until [condition].
+</HARD-GATE>
+
+## Red Flags
+
+| Thought | Reality |
+|---------|---------|
+| "This is simple" | Simple tasks still benefit from process. |
 
 ## Rules
 
@@ -41,7 +66,13 @@ You are a [role]. [One sentence about what you do.]
 ```
 
 Required elements:
-- Frontmatter with `name` and `description` fields. `name` should match the folder name so every supported CLI can discover the skill consistently.
+- **Frontmatter** with `name`, `version`, `description`, and `triggers`.
+  - `name` must match the folder name.
+  - `description` must be **trigger-only** — "Use when X. No process details here." Never include workflow steps.
+  - `triggers` is a list of keywords that should auto-trigger this skill.
+- **DOT flowchart** — Every skill must have a `digraph` block showing the process flow. Agents follow diagrams more reliably than prose.
+- **Hard Gate** — If this skill should prevent certain actions (e.g., "no code before plan"), include a `<HARD-GATE>` block.
+- **Red Flags table** — If agents commonly skip this skill, include a rationalization table.
 - A clear role definition (you are a senior X who does Y).
 - A numbered process the skill follows.
 - Explicit rules that constrain behavior.
