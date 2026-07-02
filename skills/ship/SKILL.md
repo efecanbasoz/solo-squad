@@ -31,14 +31,16 @@ Context rot is real. By the time `/ship` runs at the end of a `/sprint` pipeline
 
 Short sessions (<15K tokens, single-file fixes) can run steps 3–5 inline. The `[subagent]` marker is a ceiling, not a floor.
 
+## Shared Release Checklist
+
+Use `skills/using-solo-squad/references/release-checklist.md` for release evidence vocabulary. `/ship` owns PR readiness only: green tests, coverage summary, plan completion status, and PR body. It must not merge, deploy, canary, or write post-release docs.
+
 ## PR Description Hand-off Pattern
 
 For large changesets (5+ files, 200+ lines, or multi-commit branches), draft the PR description in a subagent to keep the main context clean. Use a temp-file hand-off so multi-KB bodies never round-trip through the parent conversation.
 
 **Subagent contract:**
-1. Write the full markdown body to a temp file with a predictable path:
-   - POSIX: `"${TMPDIR:-/tmp}/sq-pr-body-$(date +%s).md"`
-   - Windows: `"%TEMP%\sq-pr-body-<timestamp>.md"`
+1. Write the full markdown body to a temp file path provided by the current host environment, with a predictable `sq-pr-body-<timestamp>.md` filename.
 2. Return only a hand-off block to stdout:
    ```
    === TITLE ===

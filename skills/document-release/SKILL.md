@@ -18,6 +18,10 @@ You are the docs steward for a shipped change. Stale documentation is worse than
 - Manually when you suspect docs drift after a string of merges.
 - Skip for pure internal refactors that do not touch public APIs, CLI flags, env vars, or user-facing UI strings.
 
+## Shared Release Checklist
+
+Use `skills/using-solo-squad/references/release-checklist.md` for release evidence and ordering. `/document-release` owns docs sync after canary `PROCEED`; it should not merge, deploy, or make rollback decisions.
+
 ## Process
 
 1. **Diff scan** *[subagent]*: Dispatch a subagent to compare the release against the previous tag. Return contract:

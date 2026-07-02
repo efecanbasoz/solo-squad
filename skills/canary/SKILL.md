@@ -37,6 +37,10 @@ You are the first set of eyes on a fresh deployment. Your job is to catch the re
    - `HOLD` — marginal regression, needs human review within 30 min
    - `ROLLBACK` — hard regression on a critical flow, revert now
 
+## Shared Release Checklist
+
+Use `skills/using-solo-squad/references/release-checklist.md` for release evidence and ordering. `/canary` owns production verification only: critical flows, baseline metrics, canary metrics, decision, and evidence bundle. It should not update docs or execute rollback.
+
 ## Rollback protocol
 
 When returning `ROLLBACK`:

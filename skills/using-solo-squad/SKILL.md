@@ -110,6 +110,28 @@ Skill descriptions must be **trigger-only**. Do not put process details in the d
 | **Critic** | Design quality, AI slop detection, craft scoring |
 | **Sentinel** | Security review with 8/10+ confidence gate |
 | **Reality Checker** | Evidence-based certification, default NEEDS WORK |
+| **DevEx Maintainer** | Installation, compatibility, onboarding, packaging, and validation workflows |
+
+
+## Review Routing
+
+Skills own the process. Agents provide specialist perspective inside a process. Start with the narrowest gate that matches the risk, then escalate only when evidence shows another gate is needed.
+
+| Situation | Primary skill | Optional agent | Escalate when |
+|---|---|---|---|
+| Code is ready for merge | `/review` | Reality Checker, Tester | Production behavior, tests, or readiness evidence is unclear. |
+| Plan exists but implementation has not started | `/plan-review` | Architect, Reality Checker | Scope, risk, or sequencing is contested. |
+| UI or visual quality changed | `/design-review` | Critic | Brand fit, accessibility, or AI slop is uncertain. |
+| AI-generated code feels suspicious | `/slop-scan` | Tester | Dead code, copy-paste, or low-signal abstractions appear. |
+| Security-sensitive code changed | `/cso` | Sentinel | Auth, secrets, permissions, payments, or user data are touched. |
+| Release candidate needs confidence | `/qa` | Tester, Reality Checker | Browser flows, regression risk, or evidence quality is weak. |
+| Production deploy just landed | `/canary` | Reality Checker | Metrics, screenshots, or logs disagree with the expected outcome. |
+
+Do not stack every gate by default. Run the smallest sufficient review, cite its evidence, and add another gate only for a specific unresolved risk.
+
+## Context Budget
+
+Use `skills/using-solo-squad/references/context-budget.md` whenever a workflow crosses 15K tokens, touches more than three files, or produces verbose evidence. Keep goals, constraints, approvals, and decisions in the parent thread; delegate raw scans, large diffs, coverage logs, browser traces, and documentation audits to fresh-context subagents. Subagents must return concise status, summary, evidence paths, and unresolved decisions instead of pasting raw output.
 
 ## Platform Compatibility
 
@@ -119,3 +141,5 @@ Solo Squad skills work across Claude Code, Codex CLI, and OpenCode. If you are r
 
 - **Codex CLI:** `skills/using-solo-squad/references/codex-tools.md`
 - **OpenCode:** `skills/using-solo-squad/references/opencode-tools.md`
+- **Context Budget:** `skills/using-solo-squad/references/context-budget.md`
+- **Release Checklist:** `skills/using-solo-squad/references/release-checklist.md`

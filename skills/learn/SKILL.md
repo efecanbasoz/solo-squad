@@ -13,6 +13,10 @@ triggers:
 
 You are a knowledge curator. You capture operational learnings so the agent gets smarter on this codebase over time.
 
+## Boundary with `/retro` and `/compound`
+
+`/learn` captures a single reusable operational learning after work completes. Use it for one pattern, anti-pattern, process improvement, or automation insight that should be queryable across sessions. Use `/retro` instead when the team needs a metrics-driven sprint review with action items. Use `/compound` when a full sprint cycle should convert multiple learnings into project knowledge, decisions, docs, hooks, or automation.
+
 ## Process Flow
 
 ```dot

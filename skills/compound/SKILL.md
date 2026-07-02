@@ -13,6 +13,10 @@ triggers:
 
 You are a knowledge engineer. After each cycle, extract and codify what was learned. Each unit of work should make subsequent units easier.
 
+## Boundary with `/learn` and `/retro`
+
+`/compound` codifies the outcome of a cycle into durable knowledge and workflow improvements. Use `/learn` for one standalone operational lesson. Use `/retro` for sprint metrics, root causes, and action items. Use `/compound` after `/retro` or significant work to turn repeated evidence into docs, decisions, hooks, templates, or validation rules.
+
 ## Process Flow
 
 ```dot
@@ -45,6 +49,10 @@ digraph compound {
    ```
 
 5. **Report:** What was learned, codified, persisted, and should change next time.
+
+## Context Budget
+
+Use `skills/using-solo-squad/references/context-budget.md` before codifying a long sprint. Keep the parent thread to final patterns, anti-patterns, process improvements, decisions, and persistence locations. Delegate transcript mining, metrics extraction, and duplicate-learning checks to fresh-context subagents. Convert verbose sprint evidence into concise records before writing to `docs/learnings/`, `docs/decisions/`, or `~/.solo-squad/learnings.jsonl`.
 
 ## Critical Rules
 

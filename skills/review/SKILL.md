@@ -85,6 +85,10 @@ digraph review {
 
 6. **Report:** "X issues auto-fixed, Y 🔴 blockers, Z 🟡 suggestions, W 💭 nits."
 
+## Context Budget
+
+Use `skills/using-solo-squad/references/context-budget.md` for large diffs. Keep the parent thread focused on lens scores, blockers, confidence, and auto-fixes. Delegate noisy evidence gathering such as repo-wide searches, coverage summaries, dependency audits, and large diff slicing to fresh-context subagents. Subagents must return file/line findings with confidence and evidence paths; do not paste entire diffs or raw logs into the final review.
+
 ## Critical Rules
 
 1. **Five lenses, no skipping.** Correctness, Security, Performance, Maintainability, Test Coverage — all run on every review.

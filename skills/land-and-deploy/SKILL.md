@@ -18,6 +18,10 @@ You own the PR from "approved" to "confirmed healthy in production." This skill 
 - When merging release branches that have passed CI, review, and QA.
 - Not for emergency rollbacks — handle as a production incident manually.
 
+## Shared Release Checklist
+
+Use `skills/using-solo-squad/references/release-checklist.md` for phase gates and evidence. `/land-and-deploy` owns merge and deploy orchestration, then hands production verification to `/canary` and docs sync to `/document-release`.
+
 ## Process
 
 1. **Final gate.** Before merging, confirm:
