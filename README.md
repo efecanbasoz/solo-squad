@@ -261,7 +261,7 @@ Solo Squad:
 
 ## What's inside
 
-### Development — 16 skills, 5 agents
+### Development — 16 skills, 6 agents
 
 | Skill | Your specialist |
 |-------|----------------|
@@ -282,7 +282,7 @@ Solo Squad:
 | `/devops-pipeline` | ⚙️ DevOps engineer: CI/CD, IaC, zero-downtime deploys |
 | `/database-optimization` | 🗄️ DBA: query plans, indexing, N+1 detection |
 
-**Agents:** Architect (designs, never implements) · Tester (edge cases, screenshot evidence) · Debugger (read-only investigator) · Sentinel (security review, 8/10+ confidence gate) · Reality Checker (evidence-based certification, default NEEDS WORK)
+**Agents:** Architect (designs, never implements) · Tester (edge cases, screenshot evidence) · Debugger (read-only investigator) · Sentinel (security review, 8/10+ confidence gate) · Reality Checker (evidence-based certification, default NEEDS WORK) · DevEx Maintainer (installation, compatibility, onboarding, packaging, validation)
 
 ### Design — 3 skills, 1 agent
 

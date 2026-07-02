@@ -97,6 +97,10 @@ Subagents receive ONLY the context they need:
 
 The controller curates context precisely. This prevents context window pollution.
 
+## Context Budget
+
+Use `skills/using-solo-squad/references/context-budget.md` throughout the build. The controller keeps the approved plan, current task, commit SHAs, test verdicts, and blockers. Subagents receive one task plus the minimum files needed and return only status, summary, tests run, evidence paths, and decisions needed. Raw compiler output, full test logs, and large diffs stay in files or terminal history unless a concise excerpt is required to unblock the next action.
+
 ## Agent Status Protocol
 
 Subagents must report one of:

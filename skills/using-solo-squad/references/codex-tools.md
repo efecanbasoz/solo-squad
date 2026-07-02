@@ -21,7 +21,7 @@ When running Solo Squad skills on Codex CLI, use these tool equivalents:
 
 - **Subagents:** Codex supports `spawn_agent` when `multi_agent = true` in `~/.codex/config.toml`. When a skill says "dispatch an agent", use `spawn_agent` with the agent prompt from `agents/*.md`.
 - **Skills:** Access skills with `$` prefix (e.g., `$brainstorm`) or invoke naturally via plugin.
-- **Named agents:** Codex does not have a named agent registry. To dispatch `architect`, `tester`, `debugger`, `critic`, `sentinel`, or `reality-checker`, read the corresponding `agents/*.md` file and spawn a `worker` agent with the system prompt.
+- **Named agents:** Codex does not have a named agent registry. To dispatch `architect`, `tester`, `debugger`, `critic`, `sentinel`, `reality-checker`, or `devex-maintainer`, read the corresponding `agents/*.md` file and spawn a `worker` agent with the system prompt.
 - **Hooks:** SessionStart hooks work natively. PreToolUse/PostToolUse hooks work via `hooks.json`.
 
 ## Installation

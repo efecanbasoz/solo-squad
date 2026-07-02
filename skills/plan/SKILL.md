@@ -55,6 +55,10 @@ digraph plan {
 
 5. **Save the plan** to `docs/plans/` with a descriptive filename.
 
+## Context Budget
+
+Use `skills/using-solo-squad/references/context-budget.md` for long or noisy planning sessions. Keep only the architecture diagram, state machine, error paths, test strategy, approved decisions, and final task table in the parent context. Delegate repo-wide discovery, prior-art scans, and dependency inventory to fresh-context subagents that return concise findings with file paths. If planning output exceeds 15K tokens or the task list exceeds 20 tasks, summarize the approved architecture before continuing and split the plan into phases.
+
 ## HITL Checkpoints
 
 When invoked with `--hitl` or when `SOLO_SQUAD_HITL=1`, pause and surface for human review at:
